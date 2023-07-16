@@ -12,10 +12,10 @@
 }
 
 #homeImages{
-    width:80%;
     margin:auto;
     padding-top:50px;
 }
+
 
 
 #homeImages i{
@@ -32,3 +32,4 @@
         height:500px;
     }
 }
+

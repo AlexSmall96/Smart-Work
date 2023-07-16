@@ -1,7 +1,9 @@
 import React from 'react'
 import styles from '../styles/Home.module.css'
-import { Col, Container, Row } from 'react-bootstrap';
-
+import { Col, Container, Row, Image } from 'react-bootstrap';
+import project from '../images/project.jpeg';
+import profile from '../images/profile.jpeg';
+import calender from '../images/calender.jpeg';
 
 export const Home = () => {
   return (
@@ -10,17 +12,17 @@ export const Home = () => {
             Plan. Share. Collaborate.
         </div>
             <Container id={styles.homeImages}>
-                <Row className={styles.imageRow}>
+                <Row>
                     <Col sm={4} xs={12}>
-                        <i className="fa-solid fa-diagram-project fa-2xl"></i>
+                    <Image src={project} fluid />
                         <p>Work on projects with your colleagues and friends.</p>
                     </Col>
                     <Col sm={4} xs={12}>
-                         <i className="fa-regular fa-id-card fa-2xl"></i>
+                    <Image src={profile} fluid />
                          <p>Customize your profile with your role, organisation, skills and interests.</p>
                     </Col>
                     <Col sm={4} xs={12}>
-                        <i className="fa-solid fa-calendar-check fa-2xl"></i>
+                    <Image src={calender} fluid />
                         <p>Update projects and tasks in real time.</p>
                     </Col>
                 </Row>

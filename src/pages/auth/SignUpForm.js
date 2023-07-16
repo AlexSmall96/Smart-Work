@@ -40,8 +40,8 @@ const SignUpForm = () => {
     try {
       await axios.post("/dj-rest-auth/registration/", signUpData);
       history.push("/signin");
-    } catch (err) {
-      setErrors(err.response?.data);
+    } catch (errors) {
+      setErrors(errors.response?.data);
     }
   };
 
