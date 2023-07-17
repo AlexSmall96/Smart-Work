@@ -7,7 +7,44 @@ import { useCurrentUser } from "../contexts/CurrentUserContext";
 
 const NavBar = () => {
   const currentUser = useCurrentUser();
-  const loggedInIcons = <>{currentUser?.username}</>
+  const newProjectIcon = (
+    <NavLink
+    className={styles.NavLink}
+    activeClassName={styles.Active}
+    to="/projects/create"
+    >
+    <i className="far fa-plus-square"></i>New Project
+    </NavLink>
+  )
+  const loggedInIcons = <>
+      <NavLink
+        className={styles.NavLink}
+        activeClassName={styles.Active}
+        to="/projects"
+      >
+      <i class="fa-solid fa-diagram-project"></i>My projects
+      </NavLink>
+      <NavLink
+        className={styles.NavLink}
+        activeClassName={styles.Active}
+        to="/tasks"
+      > 
+      <i class="fa-solid fa-list-check"></i>My Tasks
+      </NavLink>
+      <NavLink
+        className={styles.NavLink}
+        to="/"
+        onClick={() => {}}
+      >
+      <i class="fas fa-sign-out-alt"></i>Sign Out
+      </NavLink>
+      <NavLink
+        className={styles.NavLink}
+        to={`/profiles/${currentUser?.profile_id}`}
+      >
+      <img src={currentUser?.profile_image} />
+      </NavLink>
+  </>
   const loggedOutIcons = <>
     <NavLink
       className={styles.NavLink}
@@ -33,6 +70,7 @@ const NavBar = () => {
           Smart <i className="fa-solid fa-glasses"></i> Work
           </Navbar.Brand>
         </NavLink>
+        {currentUser && newProjectIcon}
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ml-auto text-left">
