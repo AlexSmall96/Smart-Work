@@ -3,11 +3,23 @@ import { Navbar, Container, Nav } from "react-bootstrap";
 import styles from "../styles/NavBar.module.css";
 import { NavLink } from "react-router-dom";
 import { CurrentUserContext } from "../App";
-import { useCurrentUser } from "../contexts/CurrentUserContext";
+import { useCurrentUser, useSetCurrentUser } from "../contexts/CurrentUserContext";
 import Avatar from "./Avatar";
+import axios from "axios";
 
 const NavBar = () => {
   const currentUser = useCurrentUser();
+  const setCurrentUser = useSetCurrentUser();
+
+  const handleSignOut = async () => {
+    try {
+      await axios.post("dj-rest-auth/logout/");
+      setCurrentUser(null);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   const newProjectIcon = (
     <NavLink
     className={styles.NavLink}
@@ -23,21 +35,21 @@ const NavBar = () => {
         activeClassName={styles.Active}
         to="/projects"
       >
-      <i class="fa-solid fa-diagram-project"></i> My projects
+      <i className="fa-solid fa-diagram-project"></i> My projects
       </NavLink>
       <NavLink
         className={styles.NavLink}
         activeClassName={styles.Active}
         to="/tasks"
       > 
-      <i class="fa-solid fa-list-check"></i> My Tasks
+      <i className="fa-solid fa-list-check"></i> My Tasks
       </NavLink>
       <NavLink
         className={styles.NavLink}
         to="/"
-        onClick={() => {}}
+        onClick={handleSignOut}
       >
-      <i class="fas fa-sign-out-alt"></i> Sign Out
+      <i className="fas fa-sign-out-alt"></i> Sign Out
       </NavLink>
       <NavLink
         className={styles.NavLink}
