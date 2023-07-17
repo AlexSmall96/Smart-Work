@@ -4,6 +4,7 @@ import styles from "../styles/NavBar.module.css";
 import { NavLink } from "react-router-dom";
 import { CurrentUserContext } from "../App";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
+import Avatar from "./Avatar";
 
 const NavBar = () => {
   const currentUser = useCurrentUser();
@@ -22,27 +23,27 @@ const NavBar = () => {
         activeClassName={styles.Active}
         to="/projects"
       >
-      <i class="fa-solid fa-diagram-project"></i>My projects
+      <i class="fa-solid fa-diagram-project"></i> My projects
       </NavLink>
       <NavLink
         className={styles.NavLink}
         activeClassName={styles.Active}
         to="/tasks"
       > 
-      <i class="fa-solid fa-list-check"></i>My Tasks
+      <i class="fa-solid fa-list-check"></i> My Tasks
       </NavLink>
       <NavLink
         className={styles.NavLink}
         to="/"
         onClick={() => {}}
       >
-      <i class="fas fa-sign-out-alt"></i>Sign Out
+      <i class="fas fa-sign-out-alt"></i> Sign Out
       </NavLink>
       <NavLink
         className={styles.NavLink}
         to={`/profiles/${currentUser?.profile_id}`}
       >
-      <img src={currentUser?.profile_image} />
+      <Avatar src={currentUser?.profile_image} text='Profile' height={40} />
       </NavLink>
   </>
   const loggedOutIcons = <>
@@ -51,14 +52,14 @@ const NavBar = () => {
       activeClassName={styles.Active}
       to="/signin"
     >
-    <i className="fas fa-sign-in-alt"></i>Sign in
+    <i className="fas fa-sign-in-alt"></i> Sign in
     </NavLink>
     <NavLink
       to="/signup"
       className={styles.NavLink}
       activeClassName={styles.Active}
     >
-      <i className="fas fa-user-plus"></i>Sign up
+      <i className="fas fa-user-plus"></i> Sign up
     </NavLink> 
   </>
 
@@ -80,7 +81,7 @@ const NavBar = () => {
               activeClassName={styles.Active}
               to="/"
             >
-              <i className="fas fa-home"></i>Home
+              <i className="fas fa-home"></i> Home
             </NavLink>
             {currentUser ? loggedInIcons : loggedOutIcons}
           </Nav>
