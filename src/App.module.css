@@ -3,6 +3,10 @@ font-family: "DM Sans", sans-serif;
 min-height: 100vh;
 }
 
+.textField{
+    text-align: justify;
+}
+
 .Main {
     padding-top: 81px;
 }
@@ -17,8 +21,6 @@ min-height: 100vh;
         padding-top: 100px;
     }
 }
-
-
 
 .Content {
 background-color: #ffffff;

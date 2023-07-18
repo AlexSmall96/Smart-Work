@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { Form, Button } from "react-bootstrap";
+import styles from '../../App.module.css'
+import { Form, Button, Row, Col } from "react-bootstrap";
 import axios from "axios";
 import { axiosReq, axiosRes } from "../../api/axiosDefaults";
-import { useHistory } from "react-router";
+import { useHistory } from "react-router";;
 
 
 function ProjectCreateForm() {
@@ -55,30 +56,39 @@ function ProjectCreateForm() {
             </Form.Group>
             <Form.Group controlId="description">
                 <Form.Label>Description</Form.Label>
-                <Form.Control 
+                <Form.Control
+                className={styles.textField}
+                as="textarea" rows={3}
+                size="sm"
                 type="text"
                 name="description"
                 value={description}
                 onChange={handleChange} />
             </Form.Group>
-            <Form.Group controlId="start-date">
-                <Form.Label>Start Date</Form.Label>
+            <Form.Group as={Row} controlId="start-date">
+                <Form.Label column xs="6">Start Date</Form.Label>
+                <Col xs="6">
                 <Form.Control 
                 type="date"
                 name="start-date"
                 value={startDate}
                 onChange={handleChange} />
+                </Col>
             </Form.Group>
-            <Form.Group controlId="due-date">
-                <Form.Label>Due Date</Form.Label>
+            <Form.Group as={Row} controlId="due-date">
+                <Form.Label column xs="6">Due Date</Form.Label>
+                <Col xs="6">
                 <Form.Control 
                 type="date"
                 name="due-date"
                 value={dueDate}
                 onChange={handleChange} />
+                </Col>
             </Form.Group>
-            <Form.Group controlId="complexity">
-                <Form.Label>Complexity</Form.Label>
+            
+            <Form.Group as={Row} controlId="complexity">
+                <Form.Label column xs="6">Complexity</Form.Label>
+                <Col xs="6">
                 <Form.Control 
                 as="select"
                 name="complexity"
@@ -89,6 +99,7 @@ function ProjectCreateForm() {
                     <option>Medium</option>
                     <option>High</option>
                 </Form.Control>
+                </Col>
             </Form.Group>
             <Button variant="primary" type="submit">
                 Create Project
