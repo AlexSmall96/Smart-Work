@@ -4,6 +4,7 @@ import { Col, Container, Row, Image } from 'react-bootstrap';
 import project from '../images/project.jpeg';
 import profile from '../images/profile.jpeg';
 import calender from '../images/calender.jpeg';
+import CollaboratorsProfiles from './profiles/CollaboratorsProfiles';
 
 export const Home = () => {
   return (
@@ -31,6 +32,7 @@ export const Home = () => {
             Get Started
         </div>
         <p>Already have an account? Login</p>
+        <CollaboratorsProfiles />
     </div>
   )
 }
