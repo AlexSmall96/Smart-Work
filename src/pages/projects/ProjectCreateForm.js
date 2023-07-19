@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { format } from 'date-fns';
 import styles from '../../App.module.css'
 import { Form, Button, Row, Col } from "react-bootstrap";
 import axios from "axios";
@@ -10,15 +11,24 @@ function ProjectCreateForm() {
     const [errors, setErrors] = useState({});
     const history = useHistory();
     const [projectData, setProjectData] = useState({
-        title:'',
-        description:'',
-        complexity:'Low',
-        startDate:'',
-        dueDate:'',
+        title: '',
+        description: '',
+        complexity: 'Low',
     })
 
-    const {title, description, complexity, startDate, dueDate} = projectData
+    const [startDate, setStartDate] = useState('2023-07-19')
+    const [dueDate, setDueDate] = useState('2023-07-19')
 
+    const {title, description, complexity} = projectData
+    
+    const handleStartDateChange = (event) => {
+        const newStartDate = format(new Date(event.target.value), 'yyyy-MM-dd');
+        setStartDate(newStartDate)
+    }
+    const handleDueDateChange = (event) => {
+        const newDueDate = format(new Date(event.target.value), 'yyyy-MM-dd');
+        setDueDate(newDueDate)
+    }
     const handleChange = (event) => {
         setProjectData({
             ...projectData,
@@ -28,9 +38,12 @@ function ProjectCreateForm() {
     const handleSubmit = async (event) => {
         event.preventDefault()
         const formData = new FormData();
-     
+        
         formData.append('title', title)
         formData.append('description', description)
+        formData.append('complexity', complexity)
+        formData.append('start_date', startDate.concat('T00:00:00.000000Z'))
+        formData.append('due_date', dueDate.concat('T00:00:00.000000Z'))
 
         try {
             const { data } = await axiosReq.post("/projects/", formData);
@@ -42,7 +55,7 @@ function ProjectCreateForm() {
             }
         }
         };
-
+    
     return (
         <div>
             <Form onSubmit={handleSubmit}>  
@@ -72,7 +85,7 @@ function ProjectCreateForm() {
                 type="date"
                 name="start-date"
                 value={startDate}
-                onChange={handleChange} />
+                onChange={handleStartDateChange} />
                 </Col>
             </Form.Group>
             <Form.Group as={Row} controlId="due-date">
@@ -82,7 +95,7 @@ function ProjectCreateForm() {
                 type="date"
                 name="due-date"
                 value={dueDate}
-                onChange={handleChange} />
+                onChange={handleDueDateChange} />
                 </Col>
             </Form.Group>
             
