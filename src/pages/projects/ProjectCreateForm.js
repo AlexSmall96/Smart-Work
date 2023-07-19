@@ -114,6 +114,9 @@ function ProjectCreateForm() {
                 </Form.Control>
                 </Col>
             </Form.Group>
+            <Button onClick={() => history.goBack()} variant="primary" type="button">
+                Cancel
+            </Button>
             <Button variant="primary" type="submit">
                 Create Project
             </Button>
