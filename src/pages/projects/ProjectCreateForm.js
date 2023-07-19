@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { format } from 'date-fns';
 import styles from '../../App.module.css'
-import { Form, Button, Row, Col } from "react-bootstrap";
-import axios from "axios";
+import { Form, Button, Row, Col, Alert } from "react-bootstrap";
 import { axiosReq, axiosRes } from "../../api/axiosDefaults";
 import { useHistory } from "react-router";;
 
@@ -67,6 +66,11 @@ function ProjectCreateForm() {
                 value={title}
                 onChange={handleChange} />
             </Form.Group>
+            {errors?.title?.map((message, idx) => (
+            <Alert variant="warning" key={idx}>
+             {message}
+             </Alert>
+             ))}
             <Form.Group controlId="description">
                 <Form.Label>Description</Form.Label>
                 <Form.Control
@@ -78,6 +82,11 @@ function ProjectCreateForm() {
                 value={description}
                 onChange={handleChange} />
             </Form.Group>
+            {errors?.description?.map((message, idx) => (
+            <Alert variant="warning" key={idx}>
+             {message}
+             </Alert>
+             ))}
             <Form.Group as={Row} controlId="start-date">
                 <Form.Label column xs="6">Start Date</Form.Label>
                 <Col xs="6">
@@ -88,6 +97,11 @@ function ProjectCreateForm() {
                 onChange={handleStartDateChange} />
                 </Col>
             </Form.Group>
+            {errors?.startDate?.map((message, idx) => (
+            <Alert variant="warning" key={idx}>
+             {message}
+             </Alert>
+             ))}
             <Form.Group as={Row} controlId="due-date">
                 <Form.Label column xs="6">Due Date</Form.Label>
                 <Col xs="6">
@@ -98,7 +112,11 @@ function ProjectCreateForm() {
                 onChange={handleDueDateChange} />
                 </Col>
             </Form.Group>
-            
+            {errors?.dueDate?.map((message, idx) => (
+            <Alert variant="warning" key={idx}>
+             {message}
+             </Alert>
+             ))}
             <Form.Group as={Row} controlId="complexity">
                 <Form.Label column xs="6">Complexity</Form.Label>
                 <Col xs="6">
@@ -114,6 +132,11 @@ function ProjectCreateForm() {
                 </Form.Control>
                 </Col>
             </Form.Group>
+            {errors?.complexity?.map((message, idx) => (
+            <Alert variant="warning" key={idx}>
+             {message}
+             </Alert>
+             ))}
             <Button onClick={() => history.goBack()} variant="primary" type="button">
                 Cancel
             </Button>
