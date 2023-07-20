@@ -15,8 +15,8 @@ function ProjectCreateForm() {
         complexity: 'Low',
     })
 
-    const [startDate, setStartDate] = useState('2023-07-19')
-    const [dueDate, setDueDate] = useState('2023-07-19')
+    const [startDate, setStartDate] = useState(format(new Date(), 'yyyy-MM-dd'))
+    const [dueDate, setDueDate] = useState(format(new Date(), 'yyyy-MM-dd'))
 
     const {title, description, complexity} = projectData
     
