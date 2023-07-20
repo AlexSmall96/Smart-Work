@@ -5,6 +5,7 @@ import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
 import { axiosReq } from "../../api/axiosDefaults";
+import Project from "./Project";
 
 function ProjectsPage(props) {
     const [projects, setProjects] = useState({results:[]});
@@ -15,17 +16,30 @@ function ProjectsPage(props) {
         const fetchProjects = async () => {
             try {
                 // Need to filter projects based on user
-                const {data} = await axiosReq.get('/projects/' )
+                const {data} = await axiosReq.get('/projects/')
+                setProjects(data)
+                setHasLoaded(true)
             } catch(err){
-                
+                console.log(err)
             }
         }
-    })
+
+        fetchProjects()
+    }, [])
   
   return (
     <Row className="h-100">
       <Col className="py-2 p-0 p-lg-2" lg={8}>
         <p>List of projects here</p>
+        {hasLoaded ? (
+            <>
+                {projects.results.length ? (
+                    projects.results.map(project => (
+                        <Project key={project.id} {...project} setProjects={setProjects} />
+                    ))
+                ) : ('no results')}
+            </>
+        ) : ('loading projects...')}
       </Col>
       <Col md={4} className="d-none d-lg-block p-0 p-lg-2">
       </Col>
