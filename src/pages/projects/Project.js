@@ -1,6 +1,6 @@
 import React from 'react'
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
-import { Card, Media } from 'react-bootstrap';
+import { Button, Card, Media } from 'react-bootstrap';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import Avatar from '../../components/Avatar';
 
@@ -22,6 +22,7 @@ const Project = (props) => {
     const is_owner = currentUser?.username === owner
 
   return (
+    <div>
     <Card>
         <Card.Body>
             <h2>{title}</h2>
@@ -34,8 +35,12 @@ const Project = (props) => {
                 <p>Start Date: {start_date}</p>
                 <p>Due Date: {due_date}</p>
             </Media>
+            {is_owner ? "project owner": "not project owner" }
+         
         </Card.Body>
     </Card>
+       <Button><i className="far fa-plus-square"></i> Add Task</Button>
+    </div>
   )
 }
 
