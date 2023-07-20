@@ -8,14 +8,20 @@ import SignInForm from "./pages/auth/SignInForm";
 import Home from "./pages/Home";
 import ProjectCreateForm from "./pages/projects/ProjectCreateForm";
 import ProjectPage from "./pages/projects/ProjectPage";
+import ProjectsPage from "./pages/projects/ProjectsPage";
+import { useCurrentUser } from "./contexts/CurrentUserContext";
 
 function App() {
+  const currentUser = useCurrentUser();
+  const profile_id = currentUser?.profile_id || ""
+  
   return (
         <div className={styles.App}>
           <NavBar />
           <Container className={styles.Main}>
             <Switch>
               <Route exact path="/" render={() => <Home />} />
+              <Route exact path="/projects" render={() => <ProjectsPage message="No projects found." />} />
               <Route exact path="/signin" render={() => <SignInForm />} />
               <Route exact path="/signup" render={() => <SignUpForm />} />
               <Route exact path="/projects/create" render={() => <ProjectCreateForm />} />
