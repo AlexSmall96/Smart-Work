@@ -19,7 +19,7 @@ function ProjectCreateForm() {
     const [dueDate, setDueDate] = useState(format(new Date(), 'yyyy-MM-dd'))
 
     const {title, description, complexity} = projectData
-    
+    // https://stackoverflow.com/questions/67866155/how-to-handle-onchange-value-in-date-reactjs // 
     const handleStartDateChange = (event) => {
         const newStartDate = format(new Date(event.target.value), 'yyyy-MM-dd');
         setStartDate(newStartDate)
