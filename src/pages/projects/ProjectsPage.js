@@ -13,13 +13,12 @@ function ProjectsPage(props) {
     const [projects, setProjects] = useState({results:[]});
     const [hasLoaded, setHasLoaded] = useState(false)
     const {pathname} = useLocation();
-    const filter = ""
-
+    
     useEffect(() => {
         const fetchProjects = async () => {
             try {
                 // Need to filter projects based on user
-                const {data} = await axiosReq.get(`/members/?profile=2`)
+                const {data} = await axiosReq.get(`/members/?profile=${currentUser.profile_id}`)
                 setProjects(data)
                 setHasLoaded(true)
             } catch(err){
