@@ -19,7 +19,7 @@ const CollaboratorsProfiles = () => {
         const { data } = await axiosReq.get(
           "/profiles/"
         );
-        console.log(data)
+        // console.log(data)
         setProfileData((prevState) => ({
           ...prevState,
           collaboratorsProfiles: data,

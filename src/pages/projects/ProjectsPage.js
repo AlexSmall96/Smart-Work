@@ -6,18 +6,20 @@ import Container from "react-bootstrap/Container";
 import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
 import { axiosReq } from "../../api/axiosDefaults";
 import Project from "./Project";
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 function ProjectsPage(props) {
+    const currentUser = useCurrentUser();
     const [projects, setProjects] = useState({results:[]});
     const [hasLoaded, setHasLoaded] = useState(false)
     const {pathname} = useLocation();
-    const filter=""
+    const filter = ""
 
     useEffect(() => {
         const fetchProjects = async () => {
             try {
                 // Need to filter projects based on user
-                const {data} = await axiosReq.get(`/projects/?${filter}`)
+                const {data} = await axiosReq.get(`/members/?profile=2`)
                 setProjects(data)
                 setHasLoaded(true)
             } catch(err){

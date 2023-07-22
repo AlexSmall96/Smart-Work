@@ -8,32 +8,36 @@ const Project = (props) => {
 
     const {
         id,
-        owner,
-        profile_id,
-        profile_image,
+        member_name,
+        title,
         start_date,
         due_date,
-        title,
-        description,
-        complexity
+        project_owner_image,
+        project_owner_name,
+        project_owner_profile_id,
+        project_owner_username,
+        complexity,
+        created_at,
+        profile,
+        project,
     } = props;
 
     const currentUser = useCurrentUser();
-    const is_owner = currentUser?.username === owner
+    const is_owner = currentUser?.username === project_owner_username
 
   return (
     <div>
     <Card>
         <Card.Body>
             <h2>{title}</h2>
-            <p>{description}</p>
             <Media className="align-items-center justify-content-between">
-                <Link to={`/profiles/${profile_id}`}>
+                <Link to={`/profiles/${project_owner_profile_id}`}>
                     <p>Project Owner:</p>
-                    <Avatar src={profile_image} height={55} />{owner}
+                    <Avatar src={project_owner_image} height={55} />{project_owner_username}
                 </Link>
                 <p>Start Date: {start_date}</p>
                 <p>Due Date: {due_date}</p>
+                <p>Complexity: {complexity}</p>
             </Media>
             {is_owner ? "project owner": "not project owner" }
          
