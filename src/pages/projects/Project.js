@@ -3,6 +3,7 @@ import { useCurrentUser } from '../../contexts/CurrentUserContext';
 import { Button, Card, Media } from 'react-bootstrap';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import Avatar from '../../components/Avatar';
+import MemberCreateForm from './MemberCreateForm';
 
 const Project = (props) => {
 
@@ -39,12 +40,15 @@ const Project = (props) => {
                 <p>Due Date: {due_date}</p>
                 <p>Complexity: {complexity}</p>
             </Media>
-            {is_owner ? "project owner": "not project owner" }
-         
+            {is_owner ? (
+                <>
+                    <Button><i className="fa-solid fa-list-check"></i> Add Task</Button>
+                    <MemberCreateForm />
+                </>
+            ): ("not project owner") }
         </Card.Body>
     </Card>
-       <Button><i className="fa-solid fa-list-check"></i> Add Task</Button>
-       <Button><i className="fa-solid fa-users"></i> Add Member</Button>
+
     </div>
   )
 }

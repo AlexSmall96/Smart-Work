@@ -10,6 +10,7 @@ import ProjectCreateForm from "./pages/projects/ProjectCreateForm";
 import ProjectPage from "./pages/projects/ProjectPage";
 import ProjectsPage from "./pages/projects/ProjectsPage";
 import { useCurrentUser } from "./contexts/CurrentUserContext";
+import MemberCreateForm from "./pages/projects/MemberCreateForm";
 
 function App() {
   const currentUser = useCurrentUser();
@@ -25,6 +26,7 @@ function App() {
               <Route exact path="/signin" render={() => <SignInForm />} />
               <Route exact path="/signup" render={() => <SignUpForm />} />
               <Route exact path="/projects/create" render={() => <ProjectCreateForm />} />
+              <Route exact path="/projects/members/create" render={() => <MemberCreateForm />} />
               <Route exact path="/projects/:id" render={() => <ProjectPage />} />
               <Route render={() => <p>Page not found!</p>} />
             </Switch>
