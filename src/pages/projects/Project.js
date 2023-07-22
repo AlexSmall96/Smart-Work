@@ -39,7 +39,8 @@ const Project = (props) => {
          
         </Card.Body>
     </Card>
-       <Button><i className="far fa-plus-square"></i> Add Task</Button>
+       <Button><i className="fa-solid fa-list-check"></i> Add Task</Button>
+       <Button><i className="fa-solid fa-users"></i> Add Member</Button>
     </div>
   )
 }
