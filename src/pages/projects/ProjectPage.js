@@ -16,7 +16,7 @@ function ProjectPage() {
     const handleMount = async () => {
       try {
         const [{data:project}] = await Promise.all([
-          axiosReq.get(`/projects/10`)
+          axiosReq.get(`/projects/1`)
         ])
         setProject({results: [project]})
         console.log(project)

@@ -11,12 +11,13 @@ function ProjectsPage(props) {
     const [projects, setProjects] = useState({results:[]});
     const [hasLoaded, setHasLoaded] = useState(false)
     const {pathname} = useLocation();
+    const filter=""
 
     useEffect(() => {
         const fetchProjects = async () => {
             try {
                 // Need to filter projects based on user
-                const {data} = await axiosReq.get('/projects/')
+                const {data} = await axiosReq.get(`/projects/?${filter}`)
                 setProjects(data)
                 setHasLoaded(true)
             } catch(err){
@@ -30,7 +31,6 @@ function ProjectsPage(props) {
   return (
     <Row className="h-100">
       <Col className="py-2 p-0 p-lg-2" lg={8}>
-        <p>List of projects here</p>
         {hasLoaded ? (
             <>
                 {projects.results.length ? (
