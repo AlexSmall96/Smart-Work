@@ -43,9 +43,11 @@ const Project = (props) => {
             {is_owner ? (
                 <>
                     <Button><i className="fa-solid fa-list-check"></i> Add Task</Button>
-                    <MemberCreateForm />
+                    <MemberCreateForm  />
                 </>
-            ): ("not project owner") }
+            ): (
+                <Button><i className="fa-solid fa-list-check"></i> Add Task</Button>
+            )}
         </Card.Body>
     </Card>
 

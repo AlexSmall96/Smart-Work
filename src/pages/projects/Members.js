@@ -11,11 +11,15 @@ const Members = () => {
       "project": 4,
   });
   }
-  const list = axiosReq.get('/members/')
+  
+  const listProfiles = async () => {
+    const profiles = await axiosReq.get('/profiles/')
+    console.log(profiles)
+  }
+  
   return (
     <div>
-    <Button onClick={handleClick}>Create Test Member</Button>
-    <p>{list.results}</p>
+    <Button onClick={listProfiles}>Log profiles</Button>
     </div>
   )
 }

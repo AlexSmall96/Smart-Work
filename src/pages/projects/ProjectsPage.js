@@ -11,6 +11,7 @@ import { useCurrentUser } from "../../contexts/CurrentUserContext";
 function ProjectsPage(props) {
     const currentUser = useCurrentUser();
     const [projects, setProjects] = useState({results:[]});
+    const [profiles, setProfiles] = useState({results:[]});
     const [hasLoaded, setHasLoaded] = useState(false)
     const {pathname} = useLocation();
     
@@ -25,10 +26,10 @@ function ProjectsPage(props) {
                 console.log(err)
             }
         }
-
         fetchProjects()
     }, [])
-  
+
+
   return (
     <Row className="h-100">
       <Col className="py-2 p-0 p-lg-2" lg={8}>
