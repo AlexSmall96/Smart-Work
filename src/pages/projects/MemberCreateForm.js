@@ -7,9 +7,10 @@ import { axiosReq } from '../../api/axiosDefaults';
 import { useEffect } from 'react';
 // https://react-bootstrap.netlify.app/docs/components/modal/ //
 
-function MemberCreateForm({id}) {
+function MemberCreateForm({project, title}) {
   const [show, setShow] = useState(false);
   const [profiles, setProfiles] = useState({results:[]});
+  const [profilesChecked, setProfilesChecked] = useState([]);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true)
 
@@ -22,22 +23,23 @@ function MemberCreateForm({id}) {
         console.log(err)
       }
     }
-
     fetchProfiles()
   }, [])
 
   const handleSubmit = async (event) => {
     const formData = new FormData();
-    formData.append('project', 1)
-    formData.append('profile', 2)
+    formData.append('project', project)
+    formData.append('profile', 1)
 
     event.preventDefault()
     try {
       const member = await axiosReq.post('/members/', formData)
     } catch(err){
-      console.log(err)
+      console.log(err.response)
     }
   }
+
+
   
   return (
     <>
@@ -48,7 +50,7 @@ function MemberCreateForm({id}) {
       
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Select Users to add to Project:</Modal.Title>
+          <Modal.Title>{`Select users to add to ${title}`}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
         
@@ -62,12 +64,13 @@ function MemberCreateForm({id}) {
                   <Avatar src={profile.image} height={55} />
                 </Link>
                 {profile.owner}
-                <input type="checkbox"></input>
+                <input id={profile.id} type="checkbox"></input>
               </div>
               )
             )
           ): ('No Users found. Add a user to your colleages list to add them to a project.')
         }
+        <p>Selected Users:</p>
         </Modal.Body> 
         <Modal.Footer>
           <Button type="button" variant="secondary" onClick={handleClose}>

@@ -43,7 +43,8 @@ const Project = (props) => {
             {is_owner ? (
                 <>
                     <Button><i className="fa-solid fa-list-check"></i> Add Task</Button>
-                    <MemberCreateForm id={id} />
+                    <MemberCreateForm project={project} title={title} /> 
+                    {/* {project is id of project associated with member} */}
                 </>
             ): (
                 <Button><i className="fa-solid fa-list-check"></i> Add Task</Button>
