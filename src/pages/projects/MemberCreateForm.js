@@ -3,6 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import Avatar from '../../components/Avatar';
+import Member from '../../components/Member';
 import { axiosReq } from '../../api/axiosDefaults';
 import { useEffect } from 'react';
 // https://react-bootstrap.netlify.app/docs/components/modal/ //
@@ -39,8 +40,10 @@ function MemberCreateForm({project, title}) {
     }
   }
 
+  const handleChange = () => {
+    console.log(this.id)
+  }
 
-  
   return (
     <>
     <form>
@@ -59,18 +62,13 @@ function MemberCreateForm({project, title}) {
           (
             profiles.results.map(
               profile => (
-              <div key={profile.id}>
-                <Link to={`/profiles/${profile.id}`}>
-                  <Avatar src={profile.image} height={55} />
-                </Link>
-                {profile.owner}
-                <input id={profile.id} type="checkbox"></input>
-              </div>
+                <Member key={profile.id} profile={profile}  selected={false} />
               )
             )
           ): ('No Users found. Add a user to your colleages list to add them to a project.')
         }
         <p>Selected Users:</p>
+        {/* use selectedProfiles.map => <Member profile={profile} selected={true}/> */}
         </Modal.Body> 
         <Modal.Footer>
           <Button type="button" variant="secondary" onClick={handleClose}>
