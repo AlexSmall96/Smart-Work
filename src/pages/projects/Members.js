@@ -7,19 +7,14 @@ const Members = () => {
     
   const handleClick = () => {
     axiosReq.post("/members/", {
-      "profile": 1,
-      "project": 4,
+      "profile": 2,
+      "project": 1,
   });
-  }
-  
-  const listProfiles = async () => {
-    const profiles = await axiosReq.get('/profiles/')
-    console.log(profiles)
   }
   
   return (
     <div>
-    <Button onClick={listProfiles}>Log profiles</Button>
+    <Button onClick={handleClick}>Create Member</Button>
     </div>
   )
 }

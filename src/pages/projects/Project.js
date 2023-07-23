@@ -43,7 +43,7 @@ const Project = (props) => {
             {is_owner ? (
                 <>
                     <Button><i className="fa-solid fa-list-check"></i> Add Task</Button>
-                    <MemberCreateForm  />
+                    <MemberCreateForm id={id} />
                 </>
             ): (
                 <Button><i className="fa-solid fa-list-check"></i> Add Task</Button>
