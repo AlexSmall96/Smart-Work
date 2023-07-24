@@ -4,6 +4,7 @@ import { Button, Card, Media } from 'react-bootstrap';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import Avatar from '../../components/Avatar';
 import MemberCreateForm from './MemberCreateForm';
+import Task from '../../components/Task';
 
 const Project = (props) => {
     // Data passed down from /members/ 
@@ -47,7 +48,7 @@ const Project = (props) => {
                     {/* {project is id of project associated with member} */}
                 </>
             ): (
-                <Button><i className="fa-solid fa-list-check"></i> Add Task</Button>
+                <Task />
             )}
         </Card.Body>
     </Card>
