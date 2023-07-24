@@ -42,12 +42,30 @@ function MemberCreateForm({project, title}) {
   }
 
   const handleClick = (event) => {
-    selectedProfileIds.push(event.target.id)
-    setSelectedProfileIds(selectedProfileIds)
-    setSelectedProfiles(
-      profiles.results.filter(profile => selectedProfileIds.includes((profile.id).toString()))
-    )
-    console.log(selectedProfiles)
+    if (event.target.selected === false){
+      event.target.parentNode.classList.remove("btn-secondary")
+      event.target.parentNode.classList.add("btn-primary")
+      selectedProfileIds.push(event.target.id)
+      setSelectedProfileIds(selectedProfileIds)
+      setSelectedProfiles(
+        profiles.results.filter(profile => selectedProfileIds.includes((profile.id).toString()))
+      )
+      event.target.selected = true
+    } else {
+      event.target.parentNode.classList.add("btn-secondary")
+      event.target.parentNode.classList.remove("btn-primary")
+      let index = selectedProfileIds.indexOf(event.target.id)
+      selectedProfileIds.splice(index, 1)
+      setSelectedProfileIds(selectedProfileIds)
+      setSelectedProfiles(
+        profiles.results.filter(profile => selectedProfileIds.includes((profile.id).toString()))
+      )
+      event.target.selected = false
+    }
+    
+    
+    
+
   }
 
   return (
@@ -68,7 +86,7 @@ function MemberCreateForm({project, title}) {
           (
             profiles.results.map(
               profile => (
-                <Button key={profile.id} onClick={handleClick}>
+                <Button key={profile.id} onClick={handleClick} variant="secondary">
                     <Member profile={profile} selected={false} />
                 </Button>
               )

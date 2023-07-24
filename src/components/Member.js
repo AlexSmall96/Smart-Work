@@ -9,10 +9,8 @@ const Member = ({profile, selected}) => {
         console.log(checked)
     }
   return (
-    <div id={profile.id}>
-    <Link to={`/profiles/${profile.id}`}>
+    <div id={profile.id} selected={selected}>
       <Avatar src={profile.image} height={55} />
-    </Link>
     {profile.owner}
   </div>
   )
