@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react'
 import Accordion from 'react-bootstrap/Accordion'
 import Card from 'react-bootstrap/Card'
@@ -6,19 +6,21 @@ import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import { Row, Col } from 'react-bootstrap'
 import { format } from 'date-fns';
+import Member from './Member'
+import { axiosReq } from '../api/axiosDefaults'
 
-const Task = () => {
-
+const TaskCreateForm = ({projectId}) => {
+    
     const [taskData, setTaskData] = useState({
         description: '',
         status: 'Not Started',
     })
-
+    const {description, status} = taskData
+    
     const [startDate, setStartDate] = useState(format(new Date(), 'yyyy-MM-dd'))
     const [dueDate, setDueDate] = useState(format(new Date(), 'yyyy-MM-dd'))
-
-    const {description, status} = taskData
-
+    const [members, setMembers] = useState({results:[]});
+    
     const handleDueDateChange = (event) => {
         const newDueDate = format(new Date(event.target.value), 'yyyy-MM-dd');
         setDueDate(newDueDate)
@@ -34,7 +36,18 @@ const Task = () => {
             [event.target.name]: event.target.value
         })
     }
-
+  useEffect(() => {
+    const fetchMembers = async () => {
+        try {
+            // Need to filter projects based on user
+            const {data} = await axiosReq.get(`/members/?project=${Number(projectId)}`)
+            setMembers(data)
+        } catch(err){
+            console.log(err)
+        }
+    }
+    fetchMembers()
+  })
   return (
     <Accordion>
     <Card>
@@ -89,6 +102,19 @@ const Task = () => {
                 </Form.Control>
                 </Col>
             </Form.Group>
+            <Form.Group as={Row} controlId="status">
+                <Form.Label column xs="6">Assigned To:</Form.Label>
+                <Col xs="6">
+                <Form.Control 
+                as="select"
+                name="assigned-to"
+                value={status}
+                onChange={handleChange}
+                >
+                    {members.results.map(member => <option>{member.member_username}</option> )}
+                </Form.Control>
+                </Col>
+            </Form.Group>
             <Button variant="primary" type="button">
                 Cancel
             </Button>
@@ -103,4 +129,4 @@ const Task = () => {
   )
 }
 
-export default Task
+export default TaskCreateForm

@@ -82,7 +82,7 @@ function MemberCreateForm({project, title}) {
             profiles.results.map(
               profile => (
                 <Button key={profile.id} onClick={handleClick} variant="secondary">
-                    <Member profile={profile} selected={false} />
+                    <Member profile={profile} />
                 </Button>
               )
             )

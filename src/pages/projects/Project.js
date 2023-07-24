@@ -4,7 +4,8 @@ import { Button, Card, Media } from 'react-bootstrap';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import Avatar from '../../components/Avatar';
 import MemberCreateForm from './MemberCreateForm';
-import Task from '../../components/Task';
+import Task from '../../components/TaskCreateForm';
+import TaskCreateForm from '../../components/TaskCreateForm';
 
 const Project = (props) => {
     // Data passed down from /members/ 
@@ -43,8 +44,8 @@ const Project = (props) => {
             </Media>
             {is_owner ? (
                 <>
-                    <Button><i className="fa-solid fa-list-check"></i> Add Task</Button>
-                    <MemberCreateForm project={project} title={title} profile={profile} /> 
+                    <MemberCreateForm project={project} title={title} profile={profile} />
+                    <TaskCreateForm projectId={project} />
                     {/* {project is id of project associated with member} */}
                 </>
             ): (
