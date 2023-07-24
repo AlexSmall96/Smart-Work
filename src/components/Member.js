@@ -9,12 +9,11 @@ const Member = ({profile, selected}) => {
         console.log(checked)
     }
   return (
-    <div>
+    <div id={profile.id}>
     <Link to={`/profiles/${profile.id}`}>
       <Avatar src={profile.image} height={55} />
     </Link>
     {profile.owner}
-    <input id={profile.id} type="checkbox" checked={checked} onChange={handleChange}></input>
   </div>
   )
 }

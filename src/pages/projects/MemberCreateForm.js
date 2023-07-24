@@ -11,7 +11,8 @@ import { useEffect } from 'react';
 function MemberCreateForm({project, title}) {
   const [show, setShow] = useState(false);
   const [profiles, setProfiles] = useState({results:[]});
-  const [profilesChecked, setProfilesChecked] = useState([]);
+  const [selectedProfileIds, setSelectedProfileIds] = useState([]);
+  const [selectedProfiles, setSelectedProfiles] = useState([]);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true)
 
@@ -40,8 +41,13 @@ function MemberCreateForm({project, title}) {
     }
   }
 
-  const handleChange = () => {
-    console.log(this.id)
+  const handleClick = (event) => {
+    selectedProfileIds.push(event.target.id)
+    setSelectedProfileIds(selectedProfileIds)
+    setSelectedProfiles(
+      profiles.results.filter(profile => selectedProfileIds.includes((profile.id).toString()))
+    )
+    console.log(selectedProfiles)
   }
 
   return (
@@ -62,13 +68,24 @@ function MemberCreateForm({project, title}) {
           (
             profiles.results.map(
               profile => (
-                <Member key={profile.id} profile={profile}  selected={false} />
+                <Button key={profile.id} onClick={handleClick}>
+                    <Member profile={profile} selected={false} />
+                </Button>
               )
             )
           ): ('No Users found. Add a user to your colleages list to add them to a project.')
         }
         <p>Selected Users:</p>
-        {/* use selectedProfiles.map => <Member profile={profile} selected={true}/> */}
+        {
+        selectedProfiles.length ?
+        (
+          selectedProfiles.map(
+          profile => (
+            <Member key={profile.id} profile={profile} selected={false}/>
+          )
+        )
+        ) : ('')
+        }
         </Modal.Body> 
         <Modal.Footer>
           <Button type="button" variant="secondary" onClick={handleClose}>
