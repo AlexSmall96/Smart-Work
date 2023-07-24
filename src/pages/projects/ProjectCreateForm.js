@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { format } from 'date-fns';
 import styles from '../../App.module.css'
 import { Form, Button, Row, Col, Alert } from "react-bootstrap";
-import { axiosReq, axiosRes } from "../../api/axiosDefaults";
+import { axiosReq } from "../../api/axiosDefaults";
 import { useHistory } from "react-router";
 
 

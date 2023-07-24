@@ -11,10 +11,11 @@ import { useCurrentUser } from "../../contexts/CurrentUserContext";
 function ProjectsPage(props) {
     const currentUser = useCurrentUser();
     const [projects, setProjects] = useState({results:[]});
+    const [members, setMembers] = useState({results:[]});
     const [profiles, setProfiles] = useState({results:[]});
     const [hasLoaded, setHasLoaded] = useState(false)
     const {pathname} = useLocation();
-    
+    // 
     useEffect(() => {
         const fetchProjects = async () => {
             try {
@@ -27,7 +28,7 @@ function ProjectsPage(props) {
             }
         }
         fetchProjects()
-    }, [])
+    })
 
 
   return (

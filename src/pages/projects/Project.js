@@ -6,7 +6,7 @@ import Avatar from '../../components/Avatar';
 import MemberCreateForm from './MemberCreateForm';
 
 const Project = (props) => {
-
+    // Data passed down from /members/ 
     const {
         id,
         member_name,
@@ -43,7 +43,7 @@ const Project = (props) => {
             {is_owner ? (
                 <>
                     <Button><i className="fa-solid fa-list-check"></i> Add Task</Button>
-                    <MemberCreateForm project={project} title={title} /> 
+                    <MemberCreateForm project={project} title={title} profile={profile} /> 
                     {/* {project is id of project associated with member} */}
                 </>
             ): (

@@ -10,11 +10,10 @@ import ProjectCreateForm from "./pages/projects/ProjectCreateForm";
 import ProjectPage from "./pages/projects/ProjectPage";
 import ProjectsPage from "./pages/projects/ProjectsPage";
 import { useCurrentUser } from "./contexts/CurrentUserContext";
-import MemberCreateForm from "./pages/projects/MemberCreateForm";
 
 function App() {
   const currentUser = useCurrentUser();
-  const profile_id = currentUser?.profile_id || ""
+  // const profile_id = currentUser?.profile_id || ""
   
   return (
         <div className={styles.App}>

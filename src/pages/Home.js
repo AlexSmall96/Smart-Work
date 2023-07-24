@@ -5,6 +5,7 @@ import project from '../images/project.jpeg';
 import profile from '../images/profile.jpeg';
 import calender from '../images/calender.jpeg';
 import CollaboratorsProfiles from './profiles/CollaboratorsProfiles';
+import ListMembers from './projects/ListMembers';
 
 export const Home = () => {
   return (
@@ -32,7 +33,7 @@ export const Home = () => {
             Get Started
         </div>
         <p>Already have an account? Login</p>
-        {/* <CollaboratorsProfiles /> */}
+        {/* <ListMembers /> */}
     </div>
   )
 }
