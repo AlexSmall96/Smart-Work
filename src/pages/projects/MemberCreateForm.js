@@ -13,6 +13,7 @@ function MemberCreateForm({project, title}) {
   const [profiles, setProfiles] = useState({results:[]});
   const [selectedProfileIds, setSelectedProfileIds] = useState([]);
   const [selectedProfiles, setSelectedProfiles] = useState([]);
+  const [feedback, setFeedback] = useState('')
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true)
 
@@ -29,15 +30,14 @@ function MemberCreateForm({project, title}) {
   }, [])
 
   const handleSubmit = async (event) => {
-    const formData = new FormData();
-    formData.append('project', project)
-    formData.append('profile', 1)
-
     event.preventDefault()
     try {
-      const member = await axiosReq.post('/members/', formData)
+      await Promise.all([
+        selectedProfileIds.map(id => axiosReq.post('/members/', {'project': project, 'profile': Number(id)}))
+      ])
+      setFeedback('Users successfully added to project')
     } catch(err){
-      console.log(err.response)
+      console.log(err)
     }
   }
 
@@ -62,10 +62,6 @@ function MemberCreateForm({project, title}) {
       )
       event.target.selected = false
     }
-    
-    
-    
-
   }
 
   return (
@@ -77,12 +73,11 @@ function MemberCreateForm({project, title}) {
       
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>{`Select users to add to ${title}`}</Modal.Title>
+          <Modal.Title>{feedback? 'Users succesfully added to project':`Select users to add to ${title}`}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-        
         {
-          profiles.results.length ? 
+          profiles.results.length && !feedback ? 
           (
             profiles.results.map(
               profile => (
@@ -91,9 +86,9 @@ function MemberCreateForm({project, title}) {
                 </Button>
               )
             )
-          ): ('No Users found. Add a user to your colleages list to add them to a project.')
+          ): ('')
         }
-        <p>Selected Users:</p>
+        <p>{feedback? '': 'Selected Users:'}</p>
         {
         selectedProfiles.length ?
         (
