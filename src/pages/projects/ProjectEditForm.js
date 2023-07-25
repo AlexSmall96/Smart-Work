@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Modal, Form, Button, Row, Col, Alert } from "react-bootstrap";
 import { format } from 'date-fns';
 import styles from '../../App.module.css'
+import { axiosReq } from '../../api/axiosDefaults';
 
 const ProjectEditForm = ({data}) => {
   const [show, setShow] = useState(false);
@@ -32,10 +33,25 @@ const ProjectEditForm = ({data}) => {
     [event.target.name]: event.target.value
     })
   }
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    console.log('submitted')
-  };
+  const handleSubmit = async (event) => {
+    event.preventDefault()
+    const formData = new FormData();
+    
+    formData.append('title', title)
+    formData.append('description', description)
+    formData.append('complexity', complexity)
+    formData.append('start_date', startDate.concat('T00:00:00.000000Z'))
+    formData.append('due_date', dueDate.concat('T00:00:00.000000Z'))
+
+    try {
+        const { data } = await axiosReq.put(`/projects/${data.project}`, formData);
+        } catch (err) {
+        console.log(err);
+        if (err.response?.status !== 401) {
+            setErrors(err.response?.data);
+        }
+    }
+    };
 
   return (
     <>
