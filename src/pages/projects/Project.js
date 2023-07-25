@@ -6,6 +6,7 @@ import Avatar from '../../components/Avatar';
 import MemberCreateForm from './MemberCreateForm';
 import Task from '../../components/TaskCreateForm';
 import TaskCreateForm from '../../components/TaskCreateForm';
+import ProjectEditForm from './ProjectEditForm';
 
 const Project = ({projectData, members}) => {
     
@@ -29,6 +30,7 @@ const Project = ({projectData, members}) => {
             {is_owner ? (
                 <>
                     <MemberCreateForm projectId={projectData.project} title={projectData.title} memberProfileIds={members.map(member => member.profile)} />
+                    <ProjectEditForm data={projectData} />
                     <TaskCreateForm members={members} />
                 </>
             ): (
