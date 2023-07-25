@@ -10,35 +10,36 @@ import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 function ProjectsPage(props) {
     const currentUser = useCurrentUser();
-    const [projects, setProjects] = useState({results:[]});
     const [members, setMembers] = useState({results:[]});
-    const [profiles, setProfiles] = useState({results:[]});
+    const [usersMembers, setUsersMembers] = useState([]);
     const [hasLoaded, setHasLoaded] = useState(false)
-    const {pathname} = useLocation();
     // 
     useEffect(() => {
-        const fetchProjects = async () => {
+        const fetchMembers = async () => {
             try {
-                // Need to filter projects based on user
-                const {data} = await axiosReq.get(`/members/?profile=${currentUser.profile_id}`)
-                setProjects(data)
+                // Need to filter members based on user
+                const {data} = await axiosReq.get(`/members/`)
+                setMembers(data)
+                setUsersMembers(
+                    members.results.filter(member => member.profile === currentUser.profile_id)
+                )
                 setHasLoaded(true)
             } catch(err){
                 console.log(err)
             }
         }
-        fetchProjects()
+        fetchMembers()
     })
-
 
   return (
     <Row className="h-100">
       <Col className="py-2 p-0 p-lg-2" lg={8}>
         {hasLoaded ? (
             <>
-                {projects.results.length ? (
-                    projects.results.map(project => (
-                        <Project key={project.id} {...project} setProjects={setProjects} />
+                {usersMembers.length ? (
+                    usersMembers.map(member => (
+                        // member is the instance of Member filtered by profile, memb is arbitary instance of Member
+                        <Project key={member.id} projectData={member} members={members.results.filter(memb => memb.project === member.project)} />
                     ))
                 ) : ('no results')}
             </>

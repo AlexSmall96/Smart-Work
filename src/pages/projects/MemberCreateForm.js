@@ -8,7 +8,7 @@ import { axiosReq } from '../../api/axiosDefaults';
 import { useEffect } from 'react';
 // https://react-bootstrap.netlify.app/docs/components/modal/ //
 
-function MemberCreateForm({project, title}) {
+function MemberCreateForm({projectId, title}) {
   const [show, setShow] = useState(false);
   const [profiles, setProfiles] = useState({results:[]});
   const [selectedProfileIds, setSelectedProfileIds] = useState([]);
@@ -33,7 +33,7 @@ function MemberCreateForm({project, title}) {
     event.preventDefault()
     try {
       await Promise.all([
-        selectedProfileIds.map(id => axiosReq.post('/members/', {'project': project, 'profile': Number(id)}))
+        selectedProfileIds.map(id => axiosReq.post('/members/', {'project': projectId, 'profile': Number(id)}))
       ])
       setFeedback('Users successfully added to project')
     } catch(err){

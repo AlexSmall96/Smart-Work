@@ -7,49 +7,32 @@ import MemberCreateForm from './MemberCreateForm';
 import Task from '../../components/TaskCreateForm';
 import TaskCreateForm from '../../components/TaskCreateForm';
 
-const Project = (props) => {
-    // Data passed down from /members/ 
-    const {
-        id,
-        member_name,
-        title,
-        start_date,
-        due_date,
-        project_owner_image,
-        project_owner_name,
-        project_owner_profile_id,
-        project_owner_username,
-        complexity,
-        created_at,
-        profile,
-        project,
-    } = props;
-
+const Project = ({projectData, members}) => {
+    
     const currentUser = useCurrentUser();
-    const is_owner = currentUser?.username === project_owner_username
+    const is_owner = currentUser?.username === projectData.project_owner_username
 
   return (
     <div>
     <Card>
         <Card.Body>
-            <h2>{title}</h2>
+            <h2>{projectData.title}</h2>
             <Media className="align-items-center justify-content-between">
-                <Link to={`/profiles/${project_owner_profile_id}`}>
+                <Link to={`/profiles/${projectData.project_owner_profile_id}`}>
                     <p>Project Owner:</p>
-                    <Avatar src={project_owner_image} height={55} />{project_owner_username}
+                    <Avatar src={projectData.project_owner_image} height={55} />{projectData.project_owner_username}
                 </Link>
-                <p>Start Date: {start_date}</p>
-                <p>Due Date: {due_date}</p>
-                <p>Complexity: {complexity}</p>
+                <p>Start Date: {projectData.start_date}</p>
+                <p>Due Date: {projectData.due_date}</p>
+                <p>Complexity: {projectData.complexity}</p>
             </Media>
             {is_owner ? (
                 <>
-                    <MemberCreateForm project={project} title={title} profile={profile} />
-                    <TaskCreateForm projectId={project} />
-                    {/* {project is id of project associated with member} */}
+                    <MemberCreateForm projectId={projectData.project} title={projectData.title} />
+                    <TaskCreateForm members={members} />
                 </>
             ): (
-                <Task />
+                <TaskCreateForm members={members} />
             )}
         </Card.Body>
     </Card>

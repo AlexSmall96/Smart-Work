@@ -9,7 +9,7 @@ import { format } from 'date-fns';
 import Member from './Member'
 import { axiosReq } from '../api/axiosDefaults'
 
-const TaskCreateForm = ({projectId}) => {
+const TaskCreateForm = ({members}) => {
     
     const [taskData, setTaskData] = useState({
         description: '',
@@ -19,7 +19,6 @@ const TaskCreateForm = ({projectId}) => {
     
     const [startDate, setStartDate] = useState(format(new Date(), 'yyyy-MM-dd'))
     const [dueDate, setDueDate] = useState(format(new Date(), 'yyyy-MM-dd'))
-    const [members, setMembers] = useState({results:[]});
     
     const handleDueDateChange = (event) => {
         const newDueDate = format(new Date(event.target.value), 'yyyy-MM-dd');
@@ -36,18 +35,6 @@ const TaskCreateForm = ({projectId}) => {
             [event.target.name]: event.target.value
         })
     }
-  useEffect(() => {
-    const fetchMembers = async () => {
-        try {
-            // Need to filter projects based on user
-            const {data} = await axiosReq.get(`/members/?project=${Number(projectId)}`)
-            setMembers(data)
-        } catch(err){
-            console.log(err)
-        }
-    }
-    fetchMembers()
-  })
   return (
     <Accordion>
     <Card>
@@ -111,8 +98,8 @@ const TaskCreateForm = ({projectId}) => {
                 value={status}
                 onChange={handleChange}
                 >
-                    {members.results.map(member => <option>{member.member_username}</option> )}
-                </Form.Control>
+                {members.map(member => <option key={member.id}>{member.member_username}</option> )}
+                </Form.Control> 
                 </Col>
             </Form.Group>
             <Button variant="primary" type="button">
