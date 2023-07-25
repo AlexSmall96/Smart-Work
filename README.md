@@ -33,7 +33,7 @@ Alex Small
 ## Future Features
 
 ## Testing
-Testing is detailed fully in [TESTING.MD](https://github.com/AlexSmall96/Rural-Fitness/blob/main/TESTING.MD).
+Testing is detailed fully in [TESTING.MD](https://github.com/AlexSmall96/Smart-Work/blob/main/TESTING.MD).
 
 ## Programming Languages, Frameworks, and Libraries used
 
