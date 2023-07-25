@@ -19,8 +19,8 @@ Alex Small
 ## Project Goals and Planning
 
 ### Database Schema
-
-
+To plan the structure of the database models, the following diagram was used. 
+![Database Schema](documentation/images/Smart-Work-db-schema.png)
 
 
 ## User Stories
@@ -37,7 +37,11 @@ Testing is detailed fully in [TESTING.MD](https://github.com/AlexSmall96/Smart-W
 
 ## Programming Languages, Frameworks, and Libraries used
 
-## Other programs used 
+## Other programs used
+- [https://dbdiagram.io/home](dbdiagram) was used to create the database schema diagram.
+- Github
+- Gitpod
+
 
 # Deployment
 ### Deploying the Site to Heroku
