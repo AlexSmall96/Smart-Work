@@ -7,6 +7,7 @@ import Avatar from '../../components/Avatar';
 import MemberCreateForm from './MemberCreateForm';
 import TaskCreateForm from '../../components/TaskCreateForm';
 import ProjectEditForm from './ProjectEditForm';
+import Task from './Task';
 
 const Project = ({projectData, members}) => {
     const [show, setShow] = useState(false);
@@ -51,10 +52,13 @@ const Project = ({projectData, members}) => {
                         </Modal.Footer>
                     </Modal>
                     <TaskCreateForm members={members} />
+                    <Task />
                 </>
-            ): (
+            ): (<>
                 <TaskCreateForm members={members} />
-            )}
+                {/* Get all tasks associated with project and map each into a task component*/}
+                <Task />
+            </>)}
         </Card.Body>
     </Card>
 
