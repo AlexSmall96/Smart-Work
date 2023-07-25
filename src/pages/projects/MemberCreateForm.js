@@ -8,7 +8,7 @@ import { axiosReq } from '../../api/axiosDefaults';
 import { useEffect } from 'react';
 // https://react-bootstrap.netlify.app/docs/components/modal/ //
 
-function MemberCreateForm({projectId, title}) {
+function MemberCreateForm({projectId, title, memberProfileIds}) {
   const [show, setShow] = useState(false);
   const [profiles, setProfiles] = useState({results:[]});
   const [selectedProfileIds, setSelectedProfileIds] = useState([]);
@@ -81,7 +81,7 @@ function MemberCreateForm({projectId, title}) {
           (
             profiles.results.map(
               profile => (
-                <Button key={profile.id} onClick={handleClick} variant="secondary">
+                <Button key={profile.id} onClick={handleClick} variant="secondary" disabled={memberProfileIds.includes(profile.id)}>
                     <Member profile={profile} />
                 </Button>
               )

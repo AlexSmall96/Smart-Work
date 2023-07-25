@@ -28,7 +28,7 @@ const Project = ({projectData, members}) => {
             </Media>
             {is_owner ? (
                 <>
-                    <MemberCreateForm projectId={projectData.project} title={projectData.title} />
+                    <MemberCreateForm projectId={projectData.project} title={projectData.title} memberProfileIds={members.map(member => member.profile)} />
                     <TaskCreateForm members={members} />
                 </>
             ): (
