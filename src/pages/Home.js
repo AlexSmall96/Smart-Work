@@ -33,7 +33,6 @@ export const Home = () => {
             Get Started
         </div>
         <p>Already have an account? Login</p>
-        {/* <ListMembers /> */}
     </div>
   )
 }

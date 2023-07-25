@@ -10,6 +10,11 @@ import { axiosReq } from '../api/axiosDefaults'
 
 
 const TaskCreateForm = ({members}) => {
+    const usernameToId = {}
+    for (let member of members){
+        let username = member.username
+        usernameToId.username = member.id
+    }
     
     const [taskData, setTaskData] = useState({
         description: '',
@@ -41,6 +46,21 @@ const TaskCreateForm = ({members}) => {
         setAssignedTo(event.target.value)
     }
 
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        const formData = new FormData();
+        formData.append('description', description)
+        formData.append('status', status)
+        formData.append('assigned_to', 12)
+        formData.append('start_date', startDate.concat('T00:00:00.000000Z'))
+        formData.append('due_date', dueDate.concat('T00:00:00.000000Z'))
+        try {
+            await axiosReq.post("/tasks/", formData);
+            } catch (err) {
+            console.log(err.response);
+        }
+    }
+
   return (
     <Accordion>
     <Card>
@@ -51,7 +71,7 @@ const TaskCreateForm = ({members}) => {
         </Card.Header>
         <Accordion.Collapse eventKey="0">
         <Card.Body>
-        <Form>  
+        <Form onSubmit={handleSubmit}>  
             <Form.Group controlId="description">
                 <Form.Label>Description</Form.Label>
                 <Form.Control 
@@ -112,7 +132,7 @@ const TaskCreateForm = ({members}) => {
                 Cancel
             </Button>
             <Button variant="primary" type="submit">
-                Confirm
+                Create Task
             </Button>
             </Form>
         </Card.Body>
