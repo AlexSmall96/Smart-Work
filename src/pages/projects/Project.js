@@ -8,6 +8,7 @@ import MemberCreateForm from './MemberCreateForm';
 import TaskCreateForm from '../../components/TaskCreateForm';
 import ProjectEditForm from './ProjectEditForm';
 import Task from './Task';
+import { axiosRes } from '../../api/axiosDefaults';
 
 const Project = ({projectData, members}) => {
     const [show, setShow] = useState(false);
@@ -15,6 +16,14 @@ const Project = ({projectData, members}) => {
     const handleShow = () => setShow(true);
     const currentUser = useCurrentUser();
     const is_owner = currentUser?.username === projectData.project_owner_username
+
+    const handleDelete = async () => {
+        try {
+            await axiosRes.delete(`/projects/${Number(projectData.project)}`)
+        } catch(err){
+            console.log(err)    
+        }
+    }
 
   return (
     <div>
@@ -46,7 +55,7 @@ const Project = ({projectData, members}) => {
                         <Button variant="secondary" onClick={handleClose}>
                             No
                         </Button>
-                        <Button variant="primary" onClick={handleClose}>
+                        <Button variant="primary" onClick={handleDelete}>
                             Yes
                         </Button>
                         </Modal.Footer>

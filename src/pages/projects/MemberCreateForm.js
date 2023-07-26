@@ -38,6 +38,13 @@ function MemberCreateForm({projectId, title, memberProfileIds}) {
       console.log(err)
     }
   }
+  
+  const handleChange = (event) => {
+      selectedProfileIds.push(event.target.parentNode.id)
+      setSelectedProfiles(
+        profiles.results.filter(profile => selectedProfileIds.includes((profile.id).toString()))
+      )
+  }
 
   const handleClick = (event) => {
     if (event.target.selected === false){
@@ -79,9 +86,11 @@ function MemberCreateForm({projectId, title, memberProfileIds}) {
           (
             profiles.results.map(
               profile => (
-                <Button key={profile.id} onClick={handleClick} variant="secondary" disabled={memberProfileIds.includes(profile.id)}>
-                    <Member profile={profile} />
-                </Button>
+                <div key={profile.id} id={profile.id}>
+                <Member profile={profile} />
+                <input type="checkbox" onChange={handleChange} variant="secondary" disabled={memberProfileIds.includes(profile.id)}></input>
+                </div>
+                
               )
             )
           ): ('')
