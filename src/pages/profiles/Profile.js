@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from "react-router-dom/cjs/react-router-dom.min"
 import { axiosReq } from '../../api/axiosDefaults';
-import { Card } from 'react-bootstrap';
+import { Card, Button } from 'react-bootstrap';
 import Avatar from '../../components/Avatar';
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
 import ProfileEditForm from './ProfileEditForm';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 const Profile = () => {
   const currentUser = useCurrentUser();
   const { id } = useParams();
   const [profile, setProfile] = useState({});
-
+  const history = useHistory();
 
   useEffect(() => {
       const fetchProfile = async () => {
@@ -22,7 +23,7 @@ const Profile = () => {
         }
       }
       fetchProfile()
-    }, [id])
+    }, [id, history ])
 
     const is_owner = currentUser?.username === profile?.owner;
   return (
@@ -52,7 +53,7 @@ const Profile = () => {
     </Card>
     {is_owner? (
       <ProfileEditForm profile={profile}/>
-    ):('')}
+    ):(<Button onClick={() => history.goBack()}>Back</Button>)}
     </>
   )
 }
