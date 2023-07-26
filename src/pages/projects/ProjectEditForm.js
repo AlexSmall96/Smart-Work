@@ -44,7 +44,7 @@ const ProjectEditForm = ({data}) => {
     formData.append('due_date', dueDate.concat('T00:00:00.000000Z'))
 
     try {
-        await axiosReq.put(`/projects/${data.project}`, formData);
+        await axiosReq.put(`/projects/${Number(data.project)}`, formData);
         } catch (err) {
         console.log(err);
         if (err.response?.status !== 401) {
@@ -64,7 +64,7 @@ const ProjectEditForm = ({data}) => {
           <Modal.Title>Edit Details for {data.title}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-            <Form onSubmit={handleSubmit}>  
+            <Form>  
             <Form.Group controlId="title">
                 <Form.Label>Title</Form.Label>
                 <Form.Control 
@@ -150,7 +150,7 @@ const ProjectEditForm = ({data}) => {
           <Button variant="secondary" onClick={handleClose}>
             Cancel
           </Button>
-          <Button variant="primary" onClick={handleClose}>
+          <Button variant="primary" onClick={handleSubmit}>
             Save Changes
           </Button>
         </Modal.Footer>
