@@ -44,7 +44,7 @@ const ProjectEditForm = ({data}) => {
     formData.append('due_date', dueDate.concat('T00:00:00.000000Z'))
 
     try {
-        const { data } = await axiosReq.put(`/projects/${data.project}`, formData);
+        await axiosReq.put(`/projects/${data.project}`, formData);
         } catch (err) {
         console.log(err);
         if (err.response?.status !== 401) {

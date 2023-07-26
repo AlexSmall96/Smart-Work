@@ -1,8 +1,6 @@
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import { Link } from 'react-router-dom/cjs/react-router-dom.min';
-import Avatar from '../../components/Avatar';
 import Member from '../../components/Member';
 import { axiosReq } from '../../api/axiosDefaults';
 import { useEffect } from 'react';

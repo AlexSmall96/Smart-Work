@@ -1,24 +1,25 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from "react-router";
+import { useParams } from "react-router-dom/cjs/react-router-dom.min"
 import { axiosReq } from '../../api/axiosDefaults';
 
 const Profile = () => {
-    const { id } = useParams();
-    const [profile, setProfile] = useState({})
-    useEffect(() => {
-        const fetchProfile = async () => {
-            try {
-                const data = await axiosReq.get(`/profiles/${id}/`)
-                setProfile(data)
-            } catch(err){
-                console.log(err.response)
-            }
+  const { id } = useParams();
+  const [profile, setProfile] = useState({});
+
+  useEffect(() => {
+      const fetchProfiles = async () => {
+        try {
+          const {data} = await axiosReq.get(`/profiles/${id}`)
+          setProfile(data)
+        } catch(err){
+          console.log(err.response)
         }
-        fetchProfile()
-    })
+      }
+      fetchProfiles()
+    }, [])
 
   return (
-    <div>{profile.owner}</div>
+    <p>{profile.owner}</p>
   )
 }
 

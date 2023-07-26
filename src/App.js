@@ -7,13 +7,12 @@ import SignUpForm from "./pages/auth/SignUpForm";
 import SignInForm from "./pages/auth/SignInForm";
 import Home from "./pages/Home";
 import ProjectCreateForm from "./pages/projects/ProjectCreateForm";
-import ProjectPage from "./pages/projects/ProjectPage";
 import ProjectsPage from "./pages/projects/ProjectsPage";
-import { useCurrentUser } from "./contexts/CurrentUserContext";
 import Profile from "./pages/profiles/Profile";
+// import { useCurrentUser } from "./contexts/CurrentUserContext";
 
 function App() {
-  const currentUser = useCurrentUser();
+  // const currentUser = useCurrentUser();
   // const profile_id = currentUser?.profile_id || ""
   
   return (
@@ -26,7 +25,6 @@ function App() {
               <Route exact path="/signin" render={() => <SignInForm />} />
               <Route exact path="/signup" render={() => <SignUpForm />} />
               <Route exact path="/projects/create" render={() => <ProjectCreateForm />} />
-              <Route exact path="/projects/:id" render={() => <ProjectPage />} />
               <Route exact path="/profiles/:id" render={() => <Profile />} />
               <Route render={() => <p>Page not found!</p>} />
             </Switch>

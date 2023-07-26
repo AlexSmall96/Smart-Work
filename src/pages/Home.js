@@ -4,8 +4,6 @@ import { Col, Container, Row, Image } from 'react-bootstrap';
 import project from '../images/project.jpeg';
 import profile from '../images/profile.jpeg';
 import calender from '../images/calender.jpeg';
-import CollaboratorsProfiles from './profiles/CollaboratorsProfiles';
-import ListMembers from './projects/ListMembers';
 
 export const Home = () => {
   return (

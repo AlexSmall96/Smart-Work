@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useState } from 'react'
 import Accordion from 'react-bootstrap/Accordion'
 import Card from 'react-bootstrap/Card'
@@ -12,8 +12,7 @@ import { axiosReq } from '../api/axiosDefaults'
 const TaskCreateForm = ({members}) => {
     const usernameToId = {}
     for (let member of members){
-        let username = member.username
-        usernameToId.username = member.id
+        usernameToId[member.username] = member.id
     }
     
     const [taskData, setTaskData] = useState({
@@ -51,7 +50,7 @@ const TaskCreateForm = ({members}) => {
         const formData = new FormData();
         formData.append('description', '')
         formData.append('status', 'Not Started')
-        formData.append('assigned_to', 12)
+        formData.append('assigned_to', usernameToId.assignedTo)
         formData.append('start_date', '2023-07-20T00:00:00.000000Z')
         formData.append('due_date', '2023-07-02T00:00:00.000000Z')
         try {

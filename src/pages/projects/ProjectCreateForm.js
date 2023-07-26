@@ -45,7 +45,7 @@ function ProjectCreateForm() {
         formData.append('due_date', dueDate.concat('T00:00:00.000000Z'))
 
         try {
-            const { data } = await axiosReq.post("/projects/", formData);
+            await axiosReq.post("/projects/", formData);
             history.push('/projects/');
             } catch (err) {
             console.log(err);
