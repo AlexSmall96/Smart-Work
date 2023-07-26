@@ -1,10 +1,12 @@
-import React, {useState} from 'react'
-import { Modal, Form, Button } from 'react-bootstrap';
+import React, {useState, useRef} from 'react'
+import { Modal, Form, Button, Image } from 'react-bootstrap';
 import Avatar from '../../components/Avatar';
+import { axiosReq } from '../../api/axiosDefaults';
 
 const ProfileEditForm = ({profile}) => {
 
     const [profileData, setProfileData] = useState({
+        id: profile.id,
         profName:profile.name,
         organisation:profile.organisation,
         role:profile.role,
@@ -12,10 +14,8 @@ const ProfileEditForm = ({profile}) => {
         interests:profile.interests
     })
 
-    const {profName, organisation, role, skills, interests} = profileData
-
-    const [image, setImage] = useState(profile.image)
-
+    const {id, profName, organisation, role, skills, interests, image} = profileData
+    const imageFile = useRef();
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -27,6 +27,32 @@ const ProfileEditForm = ({profile}) => {
             })
           }
 
+    const handleSubmit = async (event) => {
+      event.preventDefault();
+      const formData = new FormData();
+      formData.append("name", profName);
+      formData.append("organisation", organisation);
+      formData.append("role", role);
+      formData.append("skills", skills);
+      formData.append("interests", interests);
+  
+      if (imageFile?.current?.files[0]) {
+        formData.append("image", imageFile?.current?.files[0]);
+      }
+  
+      try {
+        const { data } = await axiosReq.put(`/profiles/${id}/`, formData);
+        // setCurrentUser((currentUser) => ({
+        //   ...currentUser,
+        //   profile_image: data.image,
+        // }));
+        // history.goBack();
+      } catch (err) {
+        console.log(err);
+        // setErrors(err.response?.data);
+      }
+    };
+
   return (
     <Form>  
     <Button variant="primary" onClick={handleShow}>
@@ -37,11 +63,35 @@ const ProfileEditForm = ({profile}) => {
         <Modal.Title>{`Edit profile details for ${profile.owner}`}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-      <Form.Group controlId="image">
-        <Avatar src={profile.image} height={100}/>
-        <button><Form.File id="image" label="Select Profile Image" /></button>
-    </Form.Group>  
-    <Form.Group controlId="profName">
+      <Form.Group>
+              {image && (
+                <figure>
+                  <Image src={image} fluid />
+                </figure>
+              )}
+              <div>
+                <Form.Label
+                  className="btn my-auto"
+                  htmlFor="image-upload"
+                >
+                  Change the image
+                </Form.Label>
+              </div>
+              <Form.File
+                id="image-upload"
+                ref={imageFile}
+                accept="image/*"
+                onChange={(e) => {
+                  if (e.target.files.length) {
+                    setProfileData({
+                      ...profileData,
+                      image: URL.createObjectURL(e.target.files[0]),
+                    });
+                  }
+                }}
+              />
+            </Form.Group> 
+      <Form.Group controlId="profName">
         <Form.Label>Name:</Form.Label>
         <Form.Control 
         type="text"
@@ -87,7 +137,7 @@ const ProfileEditForm = ({profile}) => {
         <Button variant="secondary" onClick={handleClose}>
           Cancel
         </Button>
-        <Button variant="primary" type="submit">
+        <Button variant="primary" onClick={handleSubmit}>
           Save Changes
         </Button>
     </Modal.Footer>

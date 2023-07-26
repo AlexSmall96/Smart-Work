@@ -34,7 +34,7 @@ const Profile = () => {
             {profile.name? profile.name : ''}
             <small>
                 {profile.role? (<p>{profile.role}{
-                    profile.organisation? (`at ${profile.organisation}`):('')
+                    profile.organisation? (` at ${profile.organisation}`):('')
                 }</p>)
                 :('')
             }
