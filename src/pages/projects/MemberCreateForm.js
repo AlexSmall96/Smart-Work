@@ -48,17 +48,13 @@ function MemberCreateForm({projectId, title, memberProfileIds}) {
 
   const handleClick = (event) => {
     if (event.target.selected === false){
-      event.target.parentNode.classList.remove("btn-secondary")
-      event.target.parentNode.classList.add("btn-primary")
       selectedProfileIds.push(event.target.id)
       setSelectedProfileIds(selectedProfileIds)
-      setSelectedProfiles(
+      setSelectedProfiles(  
         profiles.results.filter(profile => selectedProfileIds.includes((profile.id).toString()))
       )
       event.target.selected = true
     } else {
-      event.target.parentNode.classList.add("btn-secondary")
-      event.target.parentNode.classList.remove("btn-primary")
       let index = selectedProfileIds.indexOf(event.target.id)
       selectedProfileIds.splice(index, 1)
       setSelectedProfileIds(selectedProfileIds)
@@ -86,11 +82,7 @@ function MemberCreateForm({projectId, title, memberProfileIds}) {
           (
             profiles.results.map(
               profile => (
-                <div key={profile.id} id={profile.id}>
-                <Member profile={profile} />
-                <input type="checkbox" onChange={handleChange} variant="secondary" disabled={memberProfileIds.includes(profile.id)}></input>
-                </div>
-                
+                <Member key={profile.id} profile={profile} onClick={handleClick} selected={false} disabled={memberProfileIds.includes(profile.id)} />
               )
             )
           ): ('')
@@ -101,7 +93,7 @@ function MemberCreateForm({projectId, title, memberProfileIds}) {
         (
           selectedProfiles.map(
           profile => (
-            <Member key={profile.id} profile={profile} selected={false}/>
+            <Member key={profile.id} profile={profile} onClick={handleClick} selected={true} disabled={false}/>
           )
         )
         ) : ('')
