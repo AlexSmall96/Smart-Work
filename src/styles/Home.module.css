@@ -16,7 +16,17 @@
     padding-top:50px;
 }
 
+.caption{
+    color:black
+}
 
+.carouselIicon{
+   background-color:black;
+}
+
+.paddedCaption{
+    margin-top: 200px;
+}
 
 #homeImages i{
     color:blue;
@@ -33,3 +43,6 @@
     }
 }
 
+#about {
+    font-size:small
+}

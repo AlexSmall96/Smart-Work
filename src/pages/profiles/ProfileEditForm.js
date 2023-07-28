@@ -1,6 +1,5 @@
 import React, {useState, useRef} from 'react'
 import { Modal, Form, Button, Image } from 'react-bootstrap';
-import Avatar from '../../components/Avatar';
 import { axiosReq } from '../../api/axiosDefaults';
 
 const ProfileEditForm = ({profile}) => {
@@ -41,7 +40,7 @@ const ProfileEditForm = ({profile}) => {
       }
   
       try {
-        const { data } = await axiosReq.put(`/profiles/${id}/`, formData);
+        await axiosReq.put(`/profiles/${id}/`, formData);
         // setCurrentUser((currentUser) => ({
         //   ...currentUser,
         //   profile_image: data.image,

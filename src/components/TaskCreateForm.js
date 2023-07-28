@@ -50,7 +50,7 @@ const TaskCreateForm = ({members}) => {
         const formData = new FormData();
         formData.append('description', '')
         formData.append('status', 'Not Started')
-        formData.append('assigned_to', usernameToId.assignedTo)
+        formData.append('assigned_to', 1)
         formData.append('start_date', '2023-07-20T00:00:00.000000Z')
         formData.append('due_date', '2023-07-02T00:00:00.000000Z')
         try {

@@ -4,20 +4,22 @@ import { useCurrentUser } from '../../contexts/CurrentUserContext';
 import { Modal, Button, Card, Media } from 'react-bootstrap';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import Avatar from '../../components/Avatar';
-import MemberCreateForm from './MemberCreateForm';
-import TaskCreateForm from '../../components/TaskCreateForm';
-import ProjectEditForm from './ProjectEditForm';
-import Task from './Task';
+// import MemberCreateForm from './MemberCreateForm';
+// import TaskCreateForm from '../../components/TaskCreateForm'
+// import Task from './Task'
+// // import TaskCreateForm from '../../components/TaskCreateForm';
+// import ProjectEditForm from './ProjectEditForm';
+// import Task from './Task';
 import { axiosRes } from '../../api/axiosDefaults';
 
 const Project = ({projectData, members}) => {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    // const handleShow = () => setShow(true);
     const currentUser = useCurrentUser();
     const is_owner = currentUser?.username === projectData.project_owner_username
 
-    const handleDelete = async () => {
+    const handleDelete = async () => {  
         try {
             await axiosRes.delete(`/projects/${Number(projectData.project)}`)
         } catch(err){
@@ -41,16 +43,17 @@ const Project = ({projectData, members}) => {
             </Media>
             {is_owner ? (
                 <>
-                    <MemberCreateForm projectId={projectData.project} title={projectData.title} memberProfileIds={members.map(member => member.profile)} />
-                    <ProjectEditForm data={projectData} />
-                    <Button variant="primary" onClick={handleShow}>
+                    {/* <MemberCreateForm projectId={projectData.project} title={projectData.title} memberProfileIds={members.map(member => member.profile)} /> */}
+                    {/* <ProjectEditForm data={projectData} /> */}
+                    {/* <Button variant="primary" onClick={handleShow}>
                         Delete Project
-                    </Button>
+                    </Button> */}
+                    <Link to={`/projects/delete/${projectData.project}`}>Delete Project</Link>
 
                     <Modal show={show} onHide={handleClose}>
                         <Modal.Header closeButton>
                         <Modal.Title>Are you sure you want to delete {projectData.title}? This can't be undone.</Modal.Title>
-                        </Modal.Header>
+                        </Modal.Header> 
                         <Modal.Footer>
                         <Button variant="secondary" onClick={handleClose}>
                             No
@@ -60,13 +63,12 @@ const Project = ({projectData, members}) => {
                         </Button>
                         </Modal.Footer>
                     </Modal>
-                    <TaskCreateForm members={members} />
-                    <Task />
+                    {/* <TaskCreateForm members={members} />  */}
+                    {/* <Task /> */}
                 </>
             ): (<>
-                <TaskCreateForm members={members} />
-                {/* Get all tasks associated with project and map each into a task component*/}
-                <Task />
+                {/* <TaskCreateForm members={members} /> */}
+                {/* <Task /> */}
             </>)}
         </Card.Body>
     </Card>

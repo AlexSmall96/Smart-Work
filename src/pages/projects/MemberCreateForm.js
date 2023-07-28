@@ -8,7 +8,7 @@ import { useEffect } from 'react';
 
 function MemberCreateForm({projectId, title, memberProfileIds}) {
   const [show, setShow] = useState(false);
-  const [profiles, setProfiles] = useState({results:[]});
+  const [profiles, setProfiles] = useState([]);
   const [selectedProfileIds, setSelectedProfileIds] = useState([]);
   const [selectedProfiles, setSelectedProfiles] = useState([]);
   const [feedback, setFeedback] = useState('')
@@ -18,8 +18,8 @@ function MemberCreateForm({projectId, title, memberProfileIds}) {
   useEffect(() => {
     const fetchProfiles = async () => {
       try {
-        const {data} = await axiosReq.get('/profiles/') 
-        setProfiles(data)
+        const response = await axiosReq.get('/profiles/') 
+        setProfiles(response.data)
       } catch(err){
         console.log(err)
       }
@@ -39,19 +39,19 @@ function MemberCreateForm({projectId, title, memberProfileIds}) {
     }
   }
   
-  const handleChange = (event) => {
-      selectedProfileIds.push(event.target.parentNode.id)
-      setSelectedProfiles(
-        profiles.results.filter(profile => selectedProfileIds.includes((profile.id).toString()))
-      )
-  }
+  // const handleChange = (event) => {
+  //     selectedProfileIds.push(event.target.parentNode.id)
+  //     setSelectedProfiles(
+  //       profiles.results.filter(profile => selectedProfileIds.includes((profile.id).toString()))
+  //     )
+  // }
 
   const handleClick = (event) => {
     if (event.target.selected === false){
       selectedProfileIds.push(event.target.id)
       setSelectedProfileIds(selectedProfileIds)
       setSelectedProfiles(  
-        profiles.results.filter(profile => selectedProfileIds.includes((profile.id).toString()))
+        profiles.filter(profile => selectedProfileIds.includes((profile.id).toString()))
       )
       event.target.selected = true
     } else {
@@ -59,7 +59,7 @@ function MemberCreateForm({projectId, title, memberProfileIds}) {
       selectedProfileIds.splice(index, 1)
       setSelectedProfileIds(selectedProfileIds)
       setSelectedProfiles(
-        profiles.results.filter(profile => selectedProfileIds.includes((profile.id).toString()))
+        profiles.filter(profile => selectedProfileIds.includes((profile.id).toString()))
       )
       event.target.selected = false
     }
@@ -78,9 +78,9 @@ function MemberCreateForm({projectId, title, memberProfileIds}) {
         </Modal.Header>
         <Modal.Body>
         {
-          profiles.results.length && !feedback ? 
+          profiles.length && !feedback ? 
           (
-            profiles.results.map(
+            profiles.map(
               profile => (
                 <Member key={profile.id} profile={profile} onClick={handleClick} selected={false} disabled={memberProfileIds.includes(profile.id)} />
               )

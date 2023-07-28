@@ -7,6 +7,7 @@ import SignUpForm from "./pages/auth/SignUpForm";
 import SignInForm from "./pages/auth/SignInForm";
 import Home from "./pages/Home";
 import ProjectCreateForm from "./pages/projects/ProjectCreateForm";
+import ProjectDelete from "./pages/projects/ProjectDelete";
 import ProjectsPage from "./pages/projects/ProjectsPage";
 import Profile from "./pages/profiles/Profile";
 // import { useCurrentUser } from "./contexts/CurrentUserContext";
@@ -21,10 +22,11 @@ function App() {
           <Container className={styles.Main}>
             <Switch>
               <Route exact path="/" render={() => <Home />} />
-              <Route exact path="/projects" render={() => <ProjectsPage message="No projects found." />} />
+              <Route exact path="/projects/" render={() => <ProjectsPage />} />
               <Route exact path="/signin" render={() => <SignInForm />} />
               <Route exact path="/signup" render={() => <SignUpForm />} />
               <Route exact path="/projects/create" render={() => <ProjectCreateForm />} />
+              <Route exact path="/projects/delete/:id" render={() => <ProjectDelete />} />
               <Route exact path="/profiles/:id" render={() => <Profile />} />
               <Route render={() => <p>Page not found!</p>} />
             </Switch>
