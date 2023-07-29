@@ -7,7 +7,7 @@ import Form from 'react-bootstrap/Form'
 import { Row, Col } from 'react-bootstrap'
 import { format } from 'date-fns';
 import { axiosReq } from '../api/axiosDefaults'
-
+import styles from '../styles/Task.module.css'
 
 const TaskCreateForm = ({members}) => {
     const usernameToId = {}
@@ -63,7 +63,7 @@ const TaskCreateForm = ({members}) => {
   return (
     <Accordion>
     <Card>
-        <Card.Header>
+        <Card.Header className={styles.taskHeader}>
         <Accordion.Toggle as={Button} variant="link" eventKey="0">
             <i className="fa-solid fa-list-check"></i> Add Task
         </Accordion.Toggle>

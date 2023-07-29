@@ -61,18 +61,19 @@ const Project = ({projectData, members}) => {
                             
                         <Col xs={4}>
                             <Link to={`/projects/delete/${projectData.project}`}>     
-                                <Button variant="primary"><i class="fa-solid fa-trash-can"></i></Button>
+                                <Button variant="primary"><i className="fa-solid fa-trash-can"></i></Button>
                             </Link> 
                         </Col>                    
                     </Row>
                 </Container>
                 <TaskCreateForm members={members} /> 
-                <Task />
-                     
+                <Task projectData={projectData} />
+                <Task projectData={projectData} />
                 </>
             ): (<>
                 <TaskCreateForm members={members} /> 
-                <Task />
+                <Task projectData={projectData} />
+                <Task projectData={projectData} />
             </>)}
         </Card.Body>
     </Card>
