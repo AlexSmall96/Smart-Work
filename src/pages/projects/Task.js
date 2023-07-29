@@ -1,5 +1,5 @@
 import React from 'react'
-import { Form, Col, Row, Button, Accordion, Card } from 'react-bootstrap'
+import { Container, Form, Col, Row, Button, Accordion, Card } from 'react-bootstrap'
 import Avatar from '../../components/Avatar'
 import { Link } from 'react-router-dom/cjs/react-router-dom.min'
 import styles from '../../styles/Task.module.css'
@@ -11,10 +11,23 @@ const Task = ({projectData}) => {
     <Card>
         {/*Replace the projectData below with task data */}
         <Card.Header className={styles.taskHeader}>
-        <Accordion.Toggle as={Button} variant="link" eventKey="0">
-        <Avatar src={projectData.project_owner_image} height={30} />
-        Task Description Due: {format(new Date(projectData.due_date.slice(0,10)), "dd-MM-yyyy")}, In Progress
-        </Accordion.Toggle>
+        
+
+        <Container>
+                        <Row>
+                            <Col xs={2}>
+                                <Accordion.Toggle as={Button} variant="link" eventKey="0">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                                {/*Only allow edit permissions if task owner */}
+                                </Accordion.Toggle>
+                            </Col>
+                            <Col xs={2}><Avatar  src={projectData.project_owner_image} height={30}/></Col>                       
+                            <Col xs={3}>Learn React</Col>
+                            <Col xs={2}>{format(new Date(projectData.due_date.slice(0,10)), "dd-MM-yyyy")}</Col>
+                            <Col xs={3}>In Progress</Col>
+                        </Row>
+        </Container>
+
         </Card.Header>
         <Accordion.Collapse eventKey="0">
         <Card.Body>

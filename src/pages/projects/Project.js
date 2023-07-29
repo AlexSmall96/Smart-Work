@@ -66,14 +66,26 @@ const Project = ({projectData, members}) => {
                         </Col>                    
                     </Row>
                 </Container>
+                <Card>
+                    Tasks
+                    <Container>
+                        <Row>
+                            <Col xs={2}></Col>
+                            <Col xs={2}>Assigned To</Col>
+                            <Col xs={3}>Description</Col>
+                            <Col xs={2}>Due</Col>
+                            <Col xs={3}>Status</Col>
+                        </Row>
+                    </Container>
+                </Card>
+                <Task projectData={projectData} />
+                <Task projectData={projectData} />
                 <TaskCreateForm members={members} /> 
-                <Task projectData={projectData} />
-                <Task projectData={projectData} />
                 </>
             ): (<>
-                <TaskCreateForm members={members} /> 
                 <Task projectData={projectData} />
                 <Task projectData={projectData} />
+                <TaskCreateForm members={members} />
             </>)}
         </Card.Body>
     </Card>
