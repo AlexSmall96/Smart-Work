@@ -69,7 +69,7 @@ function MemberCreateForm({projectId, title, memberProfileIds}) {
     <>
     <form>
       <Button type="button" variant="primary" onClick={handleShow}>
-          <i className="fa-solid fa-users"></i> Add Member
+          + <i className="fa-solid fa-users"></i>
       </Button>
       
       <Modal show={show} onHide={handleClose}>

@@ -17,15 +17,12 @@
 }
 
 .caption{
-    color:black
+    color:black;
+    padding-top:60px;
 }
 
 .carouselIicon{
    background-color:black;
-}
-
-.paddedCaption{
-    margin-top: 200px;
 }
 
 #homeImages i{

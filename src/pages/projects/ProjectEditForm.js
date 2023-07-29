@@ -56,7 +56,7 @@ const ProjectEditForm = ({data}) => {
   return (
     <>
       <Button variant="primary" onClick={handleShow}>
-          Edit Project
+      <i class="fa-solid fa-pen-to-square"></i>
       </Button>
 
       <Modal show={show} onHide={handleClose}>
