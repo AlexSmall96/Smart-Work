@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from 'react'
 import { useParams, useHistory } from 'react-router-dom/cjs/react-router-dom.min'
 import { axiosReq } from '../../api/axiosDefaults';
-import { Button, Card } from 'react-bootstrap';
+import { Button, Card, Form } from 'react-bootstrap';
 import Avatar from '../../components/Avatar';
 import Member from '../../components/Member';
+import styles from '../../styles/AddMembers.module.css'
 
 const AddMembers = () => {
     const { projectId } = useParams();
@@ -13,6 +14,7 @@ const AddMembers = () => {
     const [selectedProfiles, setSelectedProfiles] = useState([])
     const [profiles, setProfiles] = useState([])
     const [title, setTitle] = useState('')
+    const [query, setQuery] = useState('');
 
     useEffect(() => {
         const fetchMembers = async () => {
@@ -26,7 +28,7 @@ const AddMembers = () => {
         }
         const fetchProfiles = async () => {
             try {
-                const response = await axiosReq.get('/profiles/')
+                const response = await axiosReq.get(`/profiles/?search=${query}`)
                 setProfiles(response.data)
             } catch(err) {
                 console.log(err.response)
@@ -34,7 +36,7 @@ const AddMembers = () => {
         }
         fetchMembers()
         fetchProfiles()
-      }, [projectId])
+      }, [projectId, query])
 
     const selectMember = (event) => {
         if (selectedProfileIds.includes(event.target.id)){
@@ -67,20 +69,35 @@ const AddMembers = () => {
         <Card.Header>
             {`Select users to add to ${title}`} 
         </Card.Header>
-        <Card.Body>
-        {profiles.map(profile => (
-        <Member
-            key={profile.id}
-            variant={`outline-${memberProfileIds.includes(profile.id)?'secondary':'primary'}`}
-            disabled={memberProfileIds.includes(profile.id)}
-            src={profile.image}
-            owner={profile.owner}
-            onClick={selectMember}
-            id={profile.id}
-            selected={selectedProfileIds.includes(profile.id.toString())}
-        />
-        ))}
-        </Card.Body>
+        <Card.Body className={styles.profilesCard}>
+        <Form
+          className={styles.SearchBar}
+          onSubmit={(event) => event.preventDefault()}
+        >
+          <Form.Control
+            value={query}
+            onChange={(event) => setQuery(event.target.value)}
+            type="text"
+            className="mr-sm-2"
+            placeholder="Search profiles by username, name or organsation"
+          />
+        </Form>
+        
+        {profiles.length?(
+        profiles.map(profile => (
+            <Member
+                key={profile.id}
+                variant={`outline-${memberProfileIds.includes(profile.id)?'secondary':'primary'}`}
+                disabled={memberProfileIds.includes(profile.id)}
+                src={profile.image}
+                owner={profile.owner}
+                organisation={profile.organisation}
+                onClick={selectMember}
+                id={profile.id}
+                selected={selectedProfileIds.includes(profile.id.toString())}
+            />
+            ))):('No results, please try a different search')}
+            </Card.Body>
         <Card.Footer>
             Selected Users:
             {selectedProfiles.map(profile => (
