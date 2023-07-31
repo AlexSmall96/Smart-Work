@@ -13,7 +13,7 @@ const Member = ({
       <Avatar src={src} height={height}/>
     {owner}
     <br></br>
-    <small>{organisation}</small>
+    {organisation}
     {selected? (<i className="fa-solid fa-check fa-sm"></i>):('')}
     <br></br>
     {disabled? (<small>Existing Member</small>):('')}

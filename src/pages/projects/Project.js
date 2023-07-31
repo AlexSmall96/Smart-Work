@@ -11,10 +11,12 @@ import Task from './Task';
 import TaskCreateForm from './TaskCreateForm';
 import { axiosReq } from '../../api/axiosDefaults';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
+import Member from '../../components/Member';
 
 const Project = ({projectData}) => {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
+    const [members, setMembers] = useState([])
     // const handleShow = () => setShow(true);
     const currentUser = useCurrentUser();
     const is_owner = currentUser?.username === projectData.project_owner_username
@@ -25,70 +27,50 @@ const Project = ({projectData}) => {
     //         console.log(err)    
     //     }
     // }
+    useEffect(() => {
+        const fetchMembers = async () => {
+          try {
+            const response = await axiosReq.get(`/members/?project=${projectData.project}`)
+            setMembers(response.data)
+          } catch(err){
+            console.log(err.response)
+          }
+        }
+        fetchMembers()
+      }, [projectData])
 
   return (
-    <div>
     <Card>
-        <Card.Body>
-            <h2><Link to={`/profiles/${projectData.project_owner_profile_id}`}>
+            <Card.Header>
+                <Link to={`/profiles/${projectData.project_owner_profile_id}`}>
                     <Avatar src={projectData.project_owner_image} height={55} />
                 </Link>{projectData.title}
-            </h2>
-            <p>{projectData.description}</p>
-            <Media className="align-items-center justify-content-between">
-
+                <Link to={`/projects/delete/${projectData.project}`}>     
+                    <Button variant="primary"><i className="fa-solid fa-trash-can"></i></Button>
+                </Link>
+                <ProjectEditForm data={projectData} />
+            </Card.Header>
+            <Card.Body>
+                <p>{projectData.description}</p>
                 <p>Start Date: {format(new Date(projectData.start_date.slice(0,10)), "dd-MM-yyyy")}</p>
                 <p>Due Date: {format(new Date(projectData.due_date.slice(0,10)), "dd-MM-yyyy")}</p>
                 <p>Complexity: {projectData.complexity}</p>
-            </Media>
-            {is_owner ? (
-                <>
-                <Container className={styles.ownerButtons}>
-                    <Row>
-                        <Col xs={4}>
-                            <Link to={`/members/add/${projectData.project}`}>
-                                <Button variant="primary">Add Members</Button>
-                            </Link>
-                        </Col>
-                        <Col xs={4}>
-                            <ProjectEditForm data={projectData} />
-                        </Col>
-                            
-                        <Col xs={4}>
-                            <Link to={`/projects/delete/${projectData.project}`}>     
-                                <Button variant="primary"><i className="fa-solid fa-trash-can"></i></Button>
-                            </Link> 
-                        </Col>                    
-                    </Row>
+                </Card.Body>
+                <p className={styles.left}>
+                    Members
+                <Link to={`/members/add/${projectData.project}`}>
+                    <Button size="sm" variant="outline-primary"><i className="far fa-plus-square"></i></Button>
+                </Link> 
+                </p>
+                <Container className={styles.overflow}>
+                    {members.map(member =>
+                <div key={member.id}>
+                 <Avatar src={member.member_image} height={30}/>
+                 <p className={styles.memberName}>{member.member_username}</p>
+                </div>
+)}
                 </Container>
-                <Card>
-                    <Card.Header>Tasks</Card.Header>
-                    <Card.Body>
-                    <Container>
-                        <Row>
-                            <Col xs={2}></Col>
-                            <Col xs={2}>Assigned To</Col>
-                            <Col xs={3}>Description</Col>
-                            <Col xs={2}>Due</Col>
-                            <Col xs={3}>Status</Col>
-                        </Row>
-                    </Container>
-                    </Card.Body>
                 </Card>
-                 <Task projectData={projectData} />
-                 <Task projectData={projectData} />
-                 <TaskCreateForm />
-                </>
-            ): (<>
-                {/* <Task projectData={projectData} />
-                <Task projectData={projectData} />
-                <TaskCreateForm members={members} /> */}
-            </>)}
-        </Card.Body>
-    </Card>
-
-    </div>
-  )
+    )
 }
-
 export default Project
