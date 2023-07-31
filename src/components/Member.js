@@ -2,11 +2,13 @@ import React from 'react'
 import Avatar from './Avatar'
 import { Button } from 'react-bootstrap'
 
-const Member = ({profile, onClick, selected, disabled}) => {
+const Member = ({
+  variant, disabled, src, owner, onClick, id, height=55
+}) => {
   return (
-    <Button id={profile.id} onClick={onClick} selected={selected} disabled={disabled} className="btn-secondary">
-      <Avatar src={profile.image} height={55}/>
-    {profile.owner}
+    <Button id={id} variant={variant} disabled={disabled} onClick={onClick}>
+      <Avatar src={src} height={height}/>
+    {owner}
   </Button> 
   )
 }

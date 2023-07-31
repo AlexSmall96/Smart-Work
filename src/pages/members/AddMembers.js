@@ -3,12 +3,14 @@ import { useParams, useHistory } from 'react-router-dom/cjs/react-router-dom.min
 import { axiosReq } from '../../api/axiosDefaults';
 import { Button, Card } from 'react-bootstrap';
 import Avatar from '../../components/Avatar';
+import Member from '../../components/Member';
 
 const AddMembers = () => {
     const { projectId } = useParams();
     const history = useHistory();
-    const [members, setMembers] = useState([])
     const [memberProfileIds, setMemberProfileIds] = useState([])
+    const [selectedProfileIds, setSelectedProfileIds] = useState([])
+    const [selectedProfiles, setSelectedProfiles] = useState([])
     const [profiles, setProfiles] = useState([])
     const [title, setTitle] = useState('')
 
@@ -16,7 +18,6 @@ const AddMembers = () => {
         const fetchMembers = async () => {
           try {
             const response = await axiosReq.get(`/members/?project=${projectId}`)
-            setMembers(response.data)
             setMemberProfileIds(response.data.map(member => member.profile))
             setTitle(response.data[0].title)
           } catch(err){
@@ -35,6 +36,29 @@ const AddMembers = () => {
         fetchProfiles()
       }, [projectId])
 
+    const selectMember = (event) => {
+        if (selectedProfileIds.includes(event.target.id)){
+            let index = selectedProfileIds.indexOf(event.target.id)
+            selectedProfileIds.splice(index, 1)
+            setSelectedProfileIds(
+                selectedProfileIds
+            )
+            setSelectedProfiles(
+                profiles.filter(profile => selectedProfileIds.includes(profile.id.toString()))
+            )
+            event.target.selected = false
+        } else {
+            selectedProfileIds.push(event.target.id)
+            setSelectedProfileIds(
+                selectedProfileIds
+            )
+            setSelectedProfiles(
+                profiles.filter(profile => selectedProfileIds.includes(profile.id.toString()))
+            )
+            event.target.selected = true
+        }
+    }
+
     
     // On success after member add, redirect back to project page //
   return (
@@ -43,17 +67,32 @@ const AddMembers = () => {
             {`Select users to add to ${title}`} 
         </Card.Header>
         <Card.Body>
-            members of project: 
-        {members.map(member => <p key={member.id}>{member.member_username}</p>)}
-            all profiles:
-        {profiles.map(profile =>
-        <Button 
-        variant="outline-secondary" 
-        disabled={memberProfileIds.includes(profile.id)} 
-        key={profile.id}
-        ><Avatar src={profile.image}/>{profile.owner}</Button>
-        )}
+        {profiles.map(profile => (
+        <Member
+            key={profile.id}
+            variant={"outline-secondary"}
+            disabled={memberProfileIds.includes(profile.id)}
+            src={profile.image}
+            owner={profile.owner}
+            onClick={selectMember}
+            id={profile.id}
+        />
+        ))}
         </Card.Body>
+        <Card.Footer>
+            Selected Users:
+            {selectedProfiles.map(profile => (
+            <Member
+            key={profile.id}
+            variant={"outline-secondary"}
+            disabled={memberProfileIds.includes(profile.id)}
+            src={profile.image}
+            owner={profile.owner}
+            onClick={selectMember}
+            height={35}
+            id={profile.id}
+            />))}
+        </Card.Footer>
     </Card>
   )
 }
