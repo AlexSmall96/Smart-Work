@@ -5,6 +5,7 @@ import Member from '../../components/Member';
 import { axiosReq } from '../../api/axiosDefaults';
 import { useEffect } from 'react';
 // https://react-bootstrap.netlify.app/docs/components/modal/ //
+import { useCurrentUser } from '../../contexts/CurrentUserContext';
 
 function MemberCreateForm({projectId, title, memberProfileIds}) {
   const [show, setShow] = useState(false);
@@ -12,8 +13,10 @@ function MemberCreateForm({projectId, title, memberProfileIds}) {
   const [selectedProfileIds, setSelectedProfileIds] = useState([]);
   const [selectedProfiles, setSelectedProfiles] = useState([]);
   const [feedback, setFeedback] = useState('')
+  const [hasLoaded, setHasLoaded] = useState(false)
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true)
+  const currentUser = useCurrentUser();
 
   useEffect(() => {
     const fetchProfiles = async () => {
@@ -24,8 +27,16 @@ function MemberCreateForm({projectId, title, memberProfileIds}) {
         console.log(err)
       }
     }
-    fetchProfiles()
-  }, [])
+
+    setHasLoaded(false);
+    const timer = setTimeout(() => {
+      fetchProfiles();
+    }, 1000);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [profiles])
 
   const handleSubmit = async (event) => {
     event.preventDefault()

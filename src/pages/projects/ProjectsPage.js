@@ -2,11 +2,14 @@ import React, { useEffect, useState } from "react";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import { axiosReq } from "../../api/axiosDefaults";
-import Project from "./Project";
+// import Project from "./Project";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import Task from "./Task";
+import ProjectForm from "./ProjectForm";
 
 function ProjectsPage(props) {
     const currentUser = useCurrentUser();
+    const [disabled, setDisabled] = useState(true)
     const [members, setMembers] = useState([]);
     const [usersMembers, setUsersMembers] = useState([]);
     const [hasLoaded, setHasLoaded] = useState(false)
@@ -23,10 +26,18 @@ function ProjectsPage(props) {
                 setHasLoaded(true)
             } catch(err){
                 console.log(err)
+                console.log(err.response)
             }
         }
-        fetchMembers()
-    })
+        setHasLoaded(false);
+        const timer = setTimeout(() => {
+          fetchMembers();
+        }, 1000);
+    
+        return () => {
+          clearTimeout(timer);
+        };
+    },[members, currentUser, disabled])
 
   return (
     <Row className="h-100">
@@ -35,8 +46,7 @@ function ProjectsPage(props) {
             <>
                 {usersMembers.length ? (
                     usersMembers.map(member => (
-                        // member is the instance of Member filtered by profile, memb is arbitary instance of Member
-                        <Project key={member.id} projectData={member} members={members.filter(memb => memb.project === member.project)} />
+                        <ProjectForm key={member.id} data={member}/>
                     ))
                 ) : ('no results')}
             </> 
@@ -49,3 +59,6 @@ function ProjectsPage(props) {
 }
 
 export default ProjectsPage;
+
+                        /* member is the instance of Member filtered by profile, memb is arbitary instance of Member */
+                        /* <Project key={member.id} projectData={member} members={members.filter(memb => memb.project === member.project)} /> */

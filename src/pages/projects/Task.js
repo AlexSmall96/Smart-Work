@@ -17,7 +17,7 @@ const Task = ({projectData}) => {
                         <Row>
                             <Col xs={2}>
                                 <Accordion.Toggle as={Button} variant="link" eventKey="0">
-                                <i class="fa-solid fa-pen-to-square"></i>
+                                <i className="fa-solid fa-pen-to-square"></i>
                                 {/*Only allow edit permissions if task owner */}
                                 </Accordion.Toggle>
                             </Col>

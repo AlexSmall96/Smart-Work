@@ -1,37 +1,30 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react';
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
 import { Modal, Button, Card, Media, Container, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import Avatar from '../../components/Avatar';
 import { format } from 'date-fns';
-import MemberCreateForm from './MemberCreateForm'
-import Task from './Task'
-import TaskCreateForm from '../../components/TaskCreateForm'
 import ProjectEditForm from './ProjectEditForm'
 import styles from '../../styles/Project.module.css'
-// import MemberCreateForm from './MemberCreateForm';
-// import TaskCreateForm from '../../components/TaskCreateForm'
-// import Task from './Task'
-// // import TaskCreateForm from '../../components/TaskCreateForm';
-// import ProjectEditForm from './ProjectEditForm';
-// import Task from './Task';
-import { axiosRes } from '../../api/axiosDefaults';
+import Task from './Task';
+import TaskCreateForm from './TaskCreateForm';
+import { axiosReq } from '../../api/axiosDefaults';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
 
-const Project = ({projectData, members}) => {
+const Project = ({projectData}) => {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     // const handleShow = () => setShow(true);
     const currentUser = useCurrentUser();
     const is_owner = currentUser?.username === projectData.project_owner_username
-
-    const handleDelete = async () => {  
-        try {
-            await axiosRes.delete(`/projects/${Number(projectData.project)}`)
-        } catch(err){
-            console.log(err)    
-        }
-    }
+    // const handleDelete = async () => {  
+    //     try {
+    //         await axiosRes.delete(`/projects/${Number(projectData.project)}`)
+    //     } catch(err){
+    //         console.log(err)    
+    //     }
+    // }
 
   return (
     <div>
@@ -53,7 +46,9 @@ const Project = ({projectData, members}) => {
                 <Container className={styles.ownerButtons}>
                     <Row>
                         <Col xs={4}>
-                            <MemberCreateForm projectId={projectData.project} title={projectData.title} memberProfileIds={members.map(member => member.profile)} />
+                            <Link to={`/members/add/${projectData.project}`}>
+                                <Button variant="primary">Add Members</Button>
+                            </Link>
                         </Col>
                         <Col xs={4}>
                             <ProjectEditForm data={projectData} />
@@ -67,7 +62,8 @@ const Project = ({projectData, members}) => {
                     </Row>
                 </Container>
                 <Card>
-                    Tasks
+                    <Card.Header>Tasks</Card.Header>
+                    <Card.Body>
                     <Container>
                         <Row>
                             <Col xs={2}></Col>
@@ -77,15 +73,16 @@ const Project = ({projectData, members}) => {
                             <Col xs={3}>Status</Col>
                         </Row>
                     </Container>
+                    </Card.Body>
                 </Card>
-                <Task projectData={projectData} />
-                <Task projectData={projectData} />
-                <TaskCreateForm members={members} /> 
+                 <Task projectData={projectData} />
+                 <Task projectData={projectData} />
+                 <TaskCreateForm />
                 </>
             ): (<>
+                {/* <Task projectData={projectData} />
                 <Task projectData={projectData} />
-                <Task projectData={projectData} />
-                <TaskCreateForm members={members} />
+                <TaskCreateForm members={members} /> */}
             </>)}
         </Card.Body>
     </Card>

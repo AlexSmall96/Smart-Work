@@ -10,6 +10,8 @@ import ProjectCreateForm from "./pages/projects/ProjectCreateForm";
 import ProjectDelete from "./pages/projects/ProjectDelete";
 import ProjectsPage from "./pages/projects/ProjectsPage";
 import Profile from "./pages/profiles/Profile";
+import UsersProjects from "./pages/projects/UsersProjects";
+import AddMembers from "./pages/members/AddMembers";
 // import { useCurrentUser } from "./contexts/CurrentUserContext";
 
 function App() {
@@ -22,7 +24,8 @@ function App() {
           <Container className={styles.Main}>
             <Switch>
               <Route exact path="/" render={() => <Home />} />
-              <Route exact path="/projects/" render={() => <ProjectsPage />} />
+              <Route exact path="/projects/:id" render={() => <UsersProjects />} />
+              <Route exact path="/members/add/:projectId" render={() => <AddMembers />} />
               <Route exact path="/signin" render={() => <SignInForm />} />
               <Route exact path="/signup" render={() => <SignUpForm />} />
               <Route exact path="/projects/create" render={() => <ProjectCreateForm />} />
