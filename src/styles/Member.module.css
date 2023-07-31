@@ -1,0 +1,9 @@
+/* https://stackoverflow.com/questions/43875517/react-bootstrap-remove-active-after-button-was-clicked */
+
+.btn:focus {
+    color: #007bff;
+    background-color: #fff;
+    outline: 0;
+    box-shadow: none;
+    border-color:#007bff;
+}

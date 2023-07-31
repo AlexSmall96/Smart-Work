@@ -47,6 +47,7 @@ const AddMembers = () => {
                 profiles.filter(profile => selectedProfileIds.includes(profile.id.toString()))
             )
             event.target.selected = false
+            event.target.variant = "outline-secondary"
         } else {
             selectedProfileIds.push(event.target.id)
             setSelectedProfileIds(
@@ -70,12 +71,13 @@ const AddMembers = () => {
         {profiles.map(profile => (
         <Member
             key={profile.id}
-            variant={"outline-secondary"}
+            variant={`outline-${memberProfileIds.includes(profile.id)?'secondary':'primary'}`}
             disabled={memberProfileIds.includes(profile.id)}
             src={profile.image}
             owner={profile.owner}
             onClick={selectMember}
             id={profile.id}
+            selected={selectedProfileIds.includes(profile.id.toString())}
         />
         ))}
         </Card.Body>
@@ -84,13 +86,14 @@ const AddMembers = () => {
             {selectedProfiles.map(profile => (
             <Member
             key={profile.id}
-            variant={"outline-secondary"}
+            variant={"outline-primary"}
             disabled={memberProfileIds.includes(profile.id)}
             src={profile.image}
             owner={profile.owner}
             onClick={selectMember}
             height={35}
             id={profile.id}
+            selected={selectedProfileIds.includes(profile.id.toString())}
             />))}
         </Card.Footer>
     </Card>
