@@ -15,6 +15,7 @@ const AddMembers = () => {
     const [profiles, setProfiles] = useState([])
     const [title, setTitle] = useState('')
     const [query, setQuery] = useState('');
+    const [feedback, setFeedback] = useState('');
 
     useEffect(() => {
         const fetchMembers = async () => {
@@ -62,9 +63,20 @@ const AddMembers = () => {
         }
     }
 
-    
+    const handleSubmit = async () => {
+        try {
+            await Promise.all([
+                selectedProfileIds.map(id => axiosReq.post('/members/', {'project': projectId, 'profile': Number(id)}))
+              ])
+            setFeedback('Users successfully added to project.')
+        } catch(err){
+            console.log(err.response)
+        }
+    }
+
     // On success after member add, redirect back to project page //
   return (
+    <>
     <Card>
         <Card.Header>
             {`Select users to add to ${title}`} 
@@ -112,8 +124,13 @@ const AddMembers = () => {
             id={profile.id}
             selected={selectedProfileIds.includes(profile.id.toString())}
             />))}
+            {selectedProfileIds.length?(
+                <Button onClick={handleSubmit} variant="primary">Add Users to Project</Button>
+            ):('')}
         </Card.Footer>
     </Card>
+    <Button variant="primary" onClick={() => history.goBack()}>Back to Projects</Button>
+    </>
   )
 }
 
