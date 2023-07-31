@@ -20,6 +20,12 @@
     font-size:x-small;
 }
 
+.projectHeader{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between
+}
+
 .left{
     text-align: left;
     padding-left: 10px;

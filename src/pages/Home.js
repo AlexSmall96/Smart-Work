@@ -1,44 +1,18 @@
-import React, {useEffect, useState} from 'react'
+import React, {useState} from 'react'
 import styles from '../styles/Home.module.css'
 import { Carousel } from 'react-bootstrap';
 import project from '../images/project.jpeg';
 import profile from '../images/profile.jpeg';
 import calender from '../images/calender.jpeg'
 import {Card, Button}from 'react-bootstrap';
-import { useCurrentUser } from '../contexts/CurrentUserContext';
-import { axiosReq } from '../api/axiosDefaults';
-import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+
 
 export const Home = () => {
-  const [projects, setProjects] = useState([])
-  const currentUser = useCurrentUser();
     const [index, setIndex] = useState(0);
-    const history = useHistory();
-    const [hasLoaded, setHasLoaded] = useState(false)
     const handleSelect = (selectedIndex, e) => {
       setIndex(selectedIndex);
     };
-    
-    useEffect(() => {
-      const fetchProjects = async () => {
-        try {
-            const response = await axiosReq.get(`/members/?profile=1`)
-            setProjects(response.data)
-        } catch(err){
-          console.log(err)
-        }
-      }
-      setHasLoaded(false);
-      const timer = setTimeout(() => {
-        fetchProjects();
-      }, 1000);
   
-      return () => {
-        clearTimeout(timer);
-      };
-    }, [projects])
-
-
   return (
     <div className={styles.darkBackground}>
         <Card>
@@ -89,10 +63,9 @@ indicators={false}
         <Button variant="light">
             Get Started
         </Button>
-        <p>Already have an account?<Button variant="light">
+        Already have an account?<Button variant="light">
             Login
-        </Button></p>
-        {projects.map(project => <p key={project.id}>{project.title}</p>)}
+        </Button>
     </div>
   )
 }

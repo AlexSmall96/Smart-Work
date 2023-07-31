@@ -1,32 +1,19 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react';
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
-import { Modal, Button, Card, Media, Container, Row, Col } from 'react-bootstrap';
+import {  Button, Card,  Container } from 'react-bootstrap';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import Avatar from '../../components/Avatar';
 import { format } from 'date-fns';
 import ProjectEditForm from './ProjectEditForm'
 import styles from '../../styles/Project.module.css'
-import Task from './Task';
-import TaskCreateForm from './TaskCreateForm';
 import { axiosReq } from '../../api/axiosDefaults';
-import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
-import Member from '../../components/Member';
 
 const Project = ({projectData}) => {
-    const [show, setShow] = useState(false);
-    const handleClose = () => setShow(false);
     const [members, setMembers] = useState([])
-    // const handleShow = () => setShow(true);
     const currentUser = useCurrentUser();
     const is_owner = currentUser?.username === projectData.project_owner_username
-    // const handleDelete = async () => {  
-    //     try {
-    //         await axiosRes.delete(`/projects/${Number(projectData.project)}`)
-    //     } catch(err){
-    //         console.log(err)    
-    //     }
-    // }
+    
     useEffect(() => {
         const fetchMembers = async () => {
           try {
@@ -42,19 +29,25 @@ const Project = ({projectData}) => {
   return (
     <Card>
             <Card.Header>
+                <div className={styles.left}>
                 <Link to={`/profiles/${projectData.project_owner_profile_id}`}>
                     <Avatar src={projectData.project_owner_image} height={55} />
                 </Link>{projectData.title}
+                </div>
+                {is_owner?(
+                <>
                 <Link to={`/projects/delete/${projectData.project}`}>     
                     <Button variant="primary"><i className="fa-solid fa-trash-can"></i></Button>
                 </Link>
-                <ProjectEditForm data={projectData} />
+                <ProjectEditForm data={projectData} /></>
+                ):('')}
             </Card.Header>
             <Card.Body>
-                <p>{projectData.description}</p>
-                <p>Start Date: {format(new Date(projectData.start_date.slice(0,10)), "dd-MM-yyyy")}</p>
-                <p>Due Date: {format(new Date(projectData.due_date.slice(0,10)), "dd-MM-yyyy")}</p>
+                <p className={styles.left}>{projectData.description}</p>
+                <p>Start Date: {`${format(new Date(projectData.start_date.slice(0,10)), "dd-MM-yyyy")} `}
+                    Due Date: {format(new Date(projectData.due_date.slice(0,10)), "dd-MM-yyyy")}</p>
                 <p>Complexity: {projectData.complexity}</p>
+                <p>Outstanding Tasks: 3</p>
                 </Card.Body>
                 <p className={styles.left}>
                     Members
@@ -66,7 +59,7 @@ const Project = ({projectData}) => {
                     {members.map(member =>
                 <div key={member.id}>
                  <Avatar src={member.member_image} height={30}/>
-                 <p className={styles.memberName}>{member.member_username}</p>
+                 <p className={styles.memberName}>{member.member_username}<i className="fa-solid fa-trash-can fa-sm"></i></p>
                 </div>
 )}
                 </Container>

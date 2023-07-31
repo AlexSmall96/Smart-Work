@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react'
 import { useParams, useHistory } from 'react-router-dom/cjs/react-router-dom.min'
 import { axiosReq } from '../../api/axiosDefaults';
 import { Button, Card, Form } from 'react-bootstrap';
-import Avatar from '../../components/Avatar';
 import Member from '../../components/Member';
 import styles from '../../styles/AddMembers.module.css'
 
@@ -15,7 +14,6 @@ const AddMembers = () => {
     const [profiles, setProfiles] = useState([])
     const [title, setTitle] = useState('')
     const [query, setQuery] = useState('');
-    const [feedback, setFeedback] = useState('');
 
     useEffect(() => {
         const fetchMembers = async () => {
@@ -68,7 +66,6 @@ const AddMembers = () => {
             await Promise.all([
                 selectedProfileIds.map(id => axiosReq.post('/members/', {'project': projectId, 'profile': Number(id)}))
               ])
-            setFeedback('Users successfully added to project.')
         } catch(err){
             console.log(err.response)
         }

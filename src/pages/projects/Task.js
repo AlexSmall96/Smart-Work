@@ -1,7 +1,6 @@
 import React from 'react'
 import { Container, Form, Col, Row, Button, Accordion, Card } from 'react-bootstrap'
 import Avatar from '../../components/Avatar'
-import { Link } from 'react-router-dom/cjs/react-router-dom.min'
 import styles from '../../styles/Task.module.css'
 import { format } from 'date-fns';
 
