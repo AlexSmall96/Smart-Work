@@ -38,8 +38,11 @@ const Project = ({projectData}) => {
                 <>
                 <Link to={`/projects/delete/${projectData.project}`}>     
                     <Button variant="primary"><i className="fa-solid fa-trash-can"></i></Button>
+                </Link> 
+                <Link to={`/edit/${projectData.project}`}>     
+                    <Button variant="primary"><i className="fa-solid fa-pen-to-square"></i></Button>
                 </Link>
-                <ProjectEditForm data={projectData} /></>
+                </>
                 ):('')}
             </Card.Header>
             <Card.Body>

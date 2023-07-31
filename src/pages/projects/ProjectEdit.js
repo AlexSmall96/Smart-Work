@@ -1,69 +1,82 @@
-import React, { useState } from "react";
+import React, { useEffect } from 'react'
+import { useState } from 'react';
+import { Modal, Form, Button, Row, Col, Alert } from "react-bootstrap";
 import { format } from 'date-fns';
 import styles from '../../App.module.css'
-import { Form, Button, Row, Col, Alert } from "react-bootstrap";
-import { axiosReq } from "../../api/axiosDefaults";
-import { useHistory } from "react-router";
-import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import { axiosReq, axiosRes } from '../../api/axiosDefaults';
+import { useParams, useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
-function ProjectCreateForm() {
-    const [errors, setErrors] = useState({});
-    const history = useHistory();
-    const [projectData, setProjectData] = useState({
-        title: '',
-        description: '',
-        complexity: 'Low',
-    })
-    const currentUser = useCurrentUser();
-    const [startDate, setStartDate] = useState(format(new Date(), 'yyyy-MM-dd'))
-    const [dueDate, setDueDate] = useState(format(new Date(), 'yyyy-MM-dd'))
+const ProjectEdit = ({data}) => {
+  const {id} = useParams()
+  const history = useHistory()
+  const [startDate, setStartDate] = useState(format(new Date(), 'yyyy-MM-dd'))
+  const [dueDate, setDueDate] = useState(format(new Date(), 'yyyy-MM-dd'))
+  const [project, setProject] = useState({})
+  const [projectData, setProjectData] = useState({})
+  const [errors, setErrors] = useState({});
 
-    const {title, description, complexity} = projectData
-    // https://stackoverflow.com/questions/67866155/how-to-handle-onchange-value-in-date-reactjs // 
-    const handleStartDateChange = (event) => {
-        const newStartDate = format(new Date(event.target.value), 'yyyy-MM-dd');
-        setStartDate(newStartDate)
-    }
-    const handleDueDateChange = (event) => {
-        const newDueDate = format(new Date(event.target.value), 'yyyy-MM-dd');
-        setDueDate(newDueDate)
-    }
-    const handleChange = (event) => {
-        setProjectData({
-            ...projectData,
-            [event.target.name]: event.target.value
-        })
-    }
-    const handleSubmit = async (event) => {
-        event.preventDefault()
-        const formData = new FormData();
-        
-        formData.append('title', title)
-        formData.append('description', description)
-        formData.append('complexity', complexity)
-        formData.append('start_date', startDate.concat('T00:00:00.000000Z'))
-        formData.append('due_date', dueDate.concat('T00:00:00.000000Z'))
 
+
+  useEffect(() => {
+    const fetchProject = async () => {
         try {
-            await axiosReq.post("/projects/", formData);
-            history.push(`/projects/${currentUser?.profile_id}`);
-            } catch (err) {
-            console.log(err);
-            if (err.response?.status !== 401) {
-                setErrors(err.response?.data);
-            }
+            const response = await axiosReq.get(`/projects/${id}`)
+            setProjectData({
+                title: response.data.title,
+                description: response.data.description,
+                complexity: response.data.complexity,
+            })
+            setStartDate(format(new Date(response.data.start_date), 'yyyy-MM-dd'))
+            setDueDate(format(new Date(response.data.due_date), 'yyyy-MM-dd'))
+        } catch(err){
+            console.log(err)
         }
-        };
+    }
+    fetchProject()
+  }, [id])
+
+  const handleStartDateChange = (event) => {
+    const newStartDate = format(new Date(event.target.value), 'yyyy-MM-dd');
+    setStartDate(newStartDate)
+  }
+  const handleDueDateChange = (event) => {
+  const newDueDate = format(new Date(event.target.value), 'yyyy-MM-dd');
+  setDueDate(newDueDate)
+  }
+  const handleChange = (event) => {
+  setProjectData({
+    ...projectData,
+    [event.target.name]: event.target.value
+    })
+  }
+  const handleSubmit = async (event) => {
+    event.preventDefault()
+    const formData = new FormData();
     
-    return (
-        <div>
-            <Form onSubmit={handleSubmit}>  
+    formData.append('title', projectData.title)
+    formData.append('description', projectData.description)
+    formData.append('complexity', projectData.complexity)
+    formData.append('start_date', startDate.concat('T00:00:00.000000Z'))
+    formData.append('due_date', dueDate.concat('T00:00:00.000000Z'))
+
+    try {
+        await axiosRes.put(`/projects/${id}`, formData);
+        } catch (err) {
+        console.log(err);
+        if (err.response?.status !== 401) {
+            setErrors(err.response?.data);
+        }
+    }
+    };
+  return (
+    <>
+            <Form>  
             <Form.Group controlId="title">
                 <Form.Label>Title</Form.Label>
                 <Form.Control 
                 type="text"
                 name="title"
-                value={title}
+                value={projectData.title}
                 onChange={handleChange} />
             </Form.Group>
             {errors?.title?.map((message, idx) => (
@@ -79,7 +92,7 @@ function ProjectCreateForm() {
                 size="sm"
                 type="text"
                 name="description"
-                value={description}
+                value={projectData.description}
                 onChange={handleChange} />
             </Form.Group>
             {errors?.description?.map((message, idx) => (
@@ -123,7 +136,7 @@ function ProjectCreateForm() {
                 <Form.Control 
                 as="select"
                 name="complexity"
-                value={complexity}
+                value={projectData.complexity}
                 onChange={handleChange}
                 >
                     <option>Low</option>
@@ -137,16 +150,17 @@ function ProjectCreateForm() {
              {message}
              </Alert>
              ))}
-            <Button onClick={() => history.goBack()} variant="primary" type="button">
-                Cancel
-            </Button>
-            <Button variant="primary" type="submit">
-                Create Project
-            </Button>
             </Form>
-        </div>
-    )
+          <Button variant="secondary" onClick={() => history.goBack()}>
+            Cancel
+          </Button>
+          <Button variant="primary" onClick={handleSubmit}>
+            Save Changes
+          </Button>
+
+
+    </>
+  );
 }
 
-
-export default ProjectCreateForm;
+export default ProjectEdit
