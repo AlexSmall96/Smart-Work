@@ -12,6 +12,7 @@ import ProjectsPage from "./pages/projects/ProjectsPage";
 import Profile from "./pages/profiles/Profile";
 import AddMembers from "./pages/members/AddMembers";
 import ProjectEdit from "./pages/projects/ProjectEdit";
+import ProfileEdit from "./pages/profiles/ProfileEdit";
 // import { useCurrentUser } from "./contexts/CurrentUserContext";
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
               <Route exact path="/projects/delete/:id" render={() => <ProjectDelete />} />
               <Route exact path="/edit/:id" render={() => <ProjectEdit />} />
               <Route exact path="/profiles/:id" render={() => <Profile />} />
+              <Route exact path="/profiles/edit/:id" render={() => <ProfileEdit />} />
               <Route render={() => <p>Page not found!</p>} />
             </Switch>
           </Container>

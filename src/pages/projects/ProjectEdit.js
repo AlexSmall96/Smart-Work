@@ -11,7 +11,6 @@ const ProjectEdit = ({data}) => {
   const history = useHistory()
   const [startDate, setStartDate] = useState(format(new Date(), 'yyyy-MM-dd'))
   const [dueDate, setDueDate] = useState(format(new Date(), 'yyyy-MM-dd'))
-  const [project, setProject] = useState({})
   const [projectData, setProjectData] = useState({})
   const [errors, setErrors] = useState({});
 
@@ -61,6 +60,7 @@ const ProjectEdit = ({data}) => {
 
     try {
         await axiosRes.put(`/projects/${id}`, formData);
+        history.goBack()
         } catch (err) {
         console.log(err);
         if (err.response?.status !== 401) {
@@ -157,8 +157,6 @@ const ProjectEdit = ({data}) => {
           <Button variant="primary" onClick={handleSubmit}>
             Save Changes
           </Button>
-
-
     </>
   );
 }

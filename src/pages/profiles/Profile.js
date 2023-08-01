@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from "react-router-dom/cjs/react-router-dom.min"
+import { Link, useParams } from "react-router-dom/cjs/react-router-dom.min"
 import { axiosReq } from '../../api/axiosDefaults';
 import { Card, Button } from 'react-bootstrap';
 import Avatar from '../../components/Avatar';
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
-import ProfileEditForm from './ProfileEditForm';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 const Profile = () => {
@@ -52,7 +51,9 @@ const Profile = () => {
     <Card.Footer className="text-muted">{`Joined: ${profile.created_at}`}</Card.Footer>
     </Card>
     {is_owner? (
-      <ProfileEditForm profile={profile}/>
+      <Link to={`/profiles/edit/${id}`}>
+        <Button>Edit Profile</Button>
+      </Link>
     ):(<Button onClick={() => history.goBack()}>Back</Button>)}
     </>
   )
