@@ -15,12 +15,15 @@ const ProfileEdit = () => {
             try {
             const response = await axiosReq.get(`/profiles/${id}`)
             setProfile({
+                owner:response.data.owner,
                 profId: response.data.id,
                 profName:response.data.name,
                 organisation:response.data.organisation,
                 role:response.data.role,
                 skills:response.data.skills,
-                interests:response.data.interests
+                interests:response.data.interests,
+                image:response.data.image,
+                created_at:response.data.created_at
             })
             
             } catch(err){
@@ -65,18 +68,15 @@ const ProfileEdit = () => {
     <Card.Header>{profile.owner}</Card.Header>
     <Card.Body>
     <Form>  
-      <Form.Group>
-              {profile.image && (
-                <figure>
-                  <Image src={profile.image} fluid />
-                </figure>
-              )}
+      <Form.Group> 
+            
               <div>
                 <Form.Label
                   className="btn my-auto"
                   htmlFor="image-upload"
                 >
-                  Change the image
+                  <Avatar src={profile.image} height={100} />
+                  Click to upload a new image.
                 </Form.Label>
               </div>
               <Form.File
