@@ -1,19 +1,23 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react';
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
-import {  Button, Card,  Container } from 'react-bootstrap';
+import {  Button, Card,  Container, Modal } from 'react-bootstrap';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import Avatar from '../../components/Avatar';
 import { format } from 'date-fns';
 import ProjectEditForm from './ProjectEditForm'
 import styles from '../../styles/Project.module.css'
-import { axiosReq } from '../../api/axiosDefaults';
+import { axiosReq, axiosRes } from '../../api/axiosDefaults';
+import TaskCreateForm from './TaskCreateForm'
 
 const Project = ({projectData}) => {
     const [members, setMembers] = useState([])
     const currentUser = useCurrentUser();
     const is_owner = currentUser?.username === projectData.project_owner_username
-    
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
     useEffect(() => {
         const fetchMembers = async () => {
           try {
@@ -26,6 +30,15 @@ const Project = ({projectData}) => {
         fetchMembers()
       }, [projectData])
 
+    
+      const handleDelete = async () => {
+        try {
+            await axiosRes.delete(`/projects/${projectData.project}`)
+        } catch(err){
+            console.log(err.response)
+        }
+    }
+
   return (
     <Card>
             <Card.Header>
@@ -36,9 +49,23 @@ const Project = ({projectData}) => {
                 </div>
                 {is_owner?(
                 <>
-                <Link to={`/projects/delete/${projectData.project}`}>     
-                    <Button variant="primary"><i className="fa-solid fa-trash-can"></i></Button>
-                </Link> 
+                <Button variant="primary" onClick={handleShow}>
+                    Delete Project
+                </Button>
+
+                <Modal show={show} onHide={handleClose}>
+                    <Modal.Header closeButton>
+                    <Modal.Title>{`Are you sure you want to delete ${projectData.title}? This can't be undone.` }</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Footer>
+                    <Button variant="secondary" onClick={handleClose}>
+                        No, go back.
+                    </Button>
+                    <Button variant="primary" onClick={handleDelete}>
+                        Yes, delete project.
+                    </Button>
+                    </Modal.Footer>
+                </Modal>
                 <Link to={`/edit/${projectData.project}`}>     
                     <Button variant="primary"><i className="fa-solid fa-pen-to-square"></i></Button>
                 </Link>
@@ -66,6 +93,7 @@ const Project = ({projectData}) => {
                 </div>
 )}
                 </Container>
+                <TaskCreateForm members={members} />
                 </Card>
     )
 }

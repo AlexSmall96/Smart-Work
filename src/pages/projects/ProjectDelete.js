@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-// import { useCurrentUser } from '../../contexts/CurrentUserContext';
+import { useCurrentUser } from '../../contexts/CurrentUserContext';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import { useParams } from "react-router-dom/cjs/react-router-dom.min"
 import { Card, Button } from 'react-bootstrap';
@@ -7,7 +7,7 @@ import { axiosReq, axiosRes } from '../../api/axiosDefaults';
 
 const ProjectDelete = () => {
     const [project, setProject] = useState({})
-    // const currentUser = useCurrentUser();
+    const currentUser = useCurrentUser();
     const { id } = useParams();
     const history = useHistory();
  
@@ -21,13 +21,13 @@ const ProjectDelete = () => {
             }
         }
         fetchProject()
-    },[id, history ])
+    },[id])
   
     const handleDelete = async () => {
         try {
-            await axiosRes.delete(`/projects/1`)
+            await axiosRes.delete(`/projects/${id}`)
         } catch(err){
-            console.log(err)
+            console.log(err.response)
         }
     }
 

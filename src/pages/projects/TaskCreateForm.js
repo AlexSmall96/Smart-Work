@@ -9,11 +9,11 @@ import { format } from 'date-fns';
 import { axiosReq } from '../../api/axiosDefaults'
 import styles from '../../styles/Task.module.css'
 
-const TaskCreateForm = () => {
-    // const usernameToId = {}
-    // for (let member of members){
-    //     usernameToId[member.username] = member.id
-    // }
+const TaskCreateForm = ({members}) => {
+    const usernameToId = {}
+    for (let member of members){
+        usernameToId[member.username] = member.id
+    }
     
     const [taskData, setTaskData] = useState({
         description: '',
@@ -23,7 +23,7 @@ const TaskCreateForm = () => {
     
     const [startDate, setStartDate] = useState(format(new Date(), 'yyyy-MM-dd'))
     const [dueDate, setDueDate] = useState(format(new Date(), 'yyyy-MM-dd'))
-    // const [assignedTo, setAssignedTo] = useState('')
+    const [assignedToId , setAssignedToId] = useState(49)
 
     const handleDueDateChange = (event) => {
         const newDueDate = format(new Date(event.target.value), 'yyyy-MM-dd');
@@ -41,17 +41,21 @@ const TaskCreateForm = () => {
         })
     }
 
-    // const handleAssignedToChange = (event) => {
-    //     setAssignedTo(event.target.value)
-    // }
+    const handleAssignedToChange = (event) => {
+        for (let child of event.target.children){
+            if (child.value === event.target.value){
+                console.log(child.id)
+                setAssignedToId(child.id)
+            }
+        }
+    }
 
     const handleSubmit = async (event) => {
         event.preventDefault();
         const formData = new FormData();
         formData.append('description', '')
         formData.append('status', 'Not Started')
-        // Update assigned to using project members list
-        formData.append('assigned_to', 1)
+        formData.append('assigned_to', Number(assignedToId))
         formData.append('start_date', '2023-07-20T00:00:00.000000Z')
         formData.append('due_date', '2023-07-02T00:00:00.000000Z')
         try {
@@ -121,9 +125,9 @@ const TaskCreateForm = () => {
                 <Form.Control 
                 as="select"
                 name="assigned-to"
+                onChange={handleAssignedToChange}
                 >
-                <option>User 1</option>
-                <option>User 2</option>
+                {members.map(member => <option id={member.id} key={member.id}>{member.member_username}</option>)}
                 </Form.Control> 
                 </Col>
             </Form.Group>
