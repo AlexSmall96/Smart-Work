@@ -14,6 +14,7 @@ const AddMembers = () => {
     const [profiles, setProfiles] = useState([])
     const [title, setTitle] = useState('')
     const [query, setQuery] = useState('');
+    const [membersAdded, setMembersAdded] = useState(false)
 
     useEffect(() => {
         const fetchMembers = async () => {
@@ -66,6 +67,7 @@ const AddMembers = () => {
             await Promise.all([
                 selectedProfileIds.map(id => axiosReq.post('/members/', {'project': projectId, 'profile': Number(id)}))
               ])
+            setMembersAdded(true)
         } catch(err){
             console.log(err.response)
         }
@@ -108,6 +110,8 @@ const AddMembers = () => {
             ))):('No results, please try a different search')}
             </Card.Body>
         <Card.Footer>
+        {membersAdded?('Members added to project.'):(
+            <div>
             Selected Users:
             {selectedProfiles.map(profile => (
             <Member
@@ -124,6 +128,10 @@ const AddMembers = () => {
             {selectedProfileIds.length?(
                 <Button onClick={handleSubmit} variant="primary">Add Users to Project</Button>
             ):('')}
+            </div>
+        )
+    }
+
         </Card.Footer>
     </Card>
     <Button variant="primary" onClick={() => history.goBack()}>Back to Projects</Button>
