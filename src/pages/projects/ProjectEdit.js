@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react';
-import { Modal, Form, Button, Row, Col, Alert } from "react-bootstrap";
+import { Modal, Form, Button, Row, Col, Alert, Card } from "react-bootstrap";
 import { format } from 'date-fns';
 import styles from '../../App.module.css'
 import { axiosReq, axiosRes } from '../../api/axiosDefaults';
 import { useParams, useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import { useCurrentUser } from '../../contexts/CurrentUserContext';
 
 const ProjectEdit = ({data}) => {
   const {id} = useParams()
@@ -13,7 +14,8 @@ const ProjectEdit = ({data}) => {
   const [dueDate, setDueDate] = useState(format(new Date(), 'yyyy-MM-dd'))
   const [projectData, setProjectData] = useState({})
   const [errors, setErrors] = useState({});
-
+  const [projectSaved, setProjectSaved] = useState(false)
+  const currentUser = useCurrentUser();
 
 
   useEffect(() => {
@@ -60,7 +62,7 @@ const ProjectEdit = ({data}) => {
 
     try {
         await axiosRes.put(`/projects/${id}`, formData);
-        history.goBack()
+        setProjectSaved(true)
         } catch (err) {
         console.log(err);
         if (err.response?.status !== 401) {
@@ -69,7 +71,8 @@ const ProjectEdit = ({data}) => {
     }
     };
   return (
-    <>
+    <Card>
+      <Card.Header>{projectSaved?('Project details updated.'):(`Edit details for ${projectData.title}.`)}</Card.Header>
             <Form>  
             <Form.Group controlId="title">
                 <Form.Label>Title</Form.Label>
@@ -151,13 +154,18 @@ const ProjectEdit = ({data}) => {
              </Alert>
              ))}
             </Form>
-          <Button variant="secondary" onClick={() => history.goBack()}>
-            Cancel
-          </Button>
-          <Button variant="primary" onClick={handleSubmit}>
-            Save Changes
-          </Button>
-    </>
+            {projectSaved? (
+                <Button variant="secondary" onClick={() => history.push(`/projects/${currentUser.profile_id}`)}>
+                    Back to Projects.
+                </Button>):(<>
+                <Button variant="secondary" onClick={() => history.goBack()}>
+                  Cancel
+                </Button>
+                <Button variant="primary" onClick={handleSubmit}>
+                    Save Changes
+                </Button>
+          </>)}
+    </Card>
   );
 }
 
