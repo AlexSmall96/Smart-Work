@@ -30,15 +30,6 @@ const Project = ({projectData}) => {
         fetchMembers()
       }, [projectData])
 
-    
-      const handleDelete = async () => {
-        try {
-            await axiosRes.delete(`/projects/${projectData.project}`)
-        } catch(err){
-            console.log(err.response)
-        }
-    }
-
   return (
     <Card>
             <Card.Header>
@@ -49,24 +40,10 @@ const Project = ({projectData}) => {
                 </div>
                 {is_owner?(
                 <>
-                <Button variant="primary" onClick={handleShow}>
-                    Delete Project
-                </Button>
-
-                <Modal show={show} onHide={handleClose}>
-                    <Modal.Header closeButton>
-                    <Modal.Title>{`Are you sure you want to delete ${projectData.title}? This can't be undone.` }</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}>
-                        No, go back.
-                    </Button>
-                    <Button variant="primary" onClick={handleDelete}>
-                        Yes, delete project.
-                    </Button>
-                    </Modal.Footer>
-                </Modal>
-                <Link to={`/edit/${projectData.project}`}>     
+                <Link to={`/projects/delete/${projectData.project}`}>     
+                    <Button variant="primary"><i className="fa-solid fa-trash-can"></i></Button>
+                </Link>
+                <Link to={`/projects/edit/${projectData.project}`}>     
                     <Button variant="primary"><i className="fa-solid fa-pen-to-square"></i></Button>
                 </Link>
                 </>

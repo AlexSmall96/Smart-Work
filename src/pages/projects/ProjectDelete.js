@@ -10,12 +10,15 @@ const ProjectDelete = () => {
     const currentUser = useCurrentUser();
     const { id } = useParams();
     const history = useHistory();
- 
+    const [message, setMessage] = useState('')
+    const [projectDeleted, setProjectDeleted] = useState(false)
+
     useEffect(() => {
         const fetchProject = async () => {
             try {
-                const {data} = await axiosReq.get(`/projects/${id}`)
-                setProject(data)
+                const response = await axiosReq.get(`/projects/${id}`)
+                setProject(response.data)
+                setMessage(`Are you sure you want to delete ${response.data.title}?`)
             } catch(err){
                 console.log(err.response)
             }
@@ -26,6 +29,8 @@ const ProjectDelete = () => {
     const handleDelete = async () => {
         try {
             await axiosRes.delete(`/projects/${id}`)
+            setMessage('Project deleted.')
+            setProjectDeleted(true)
         } catch(err){
             console.log(err.response)
         }
@@ -34,9 +39,13 @@ const ProjectDelete = () => {
   return (
 <Card>
   <Card.Body>
-    <Card.Title>{`Are you sure you want to delete ${project.title}`}</Card.Title>
-    <Button onClick={() => history.goBack()}>No</Button>
-    <Button onClick={handleDelete}>Yes</Button>
+    <Card.Title>{message}</Card.Title>
+    {projectDeleted? (
+        <Button onClick={() => history.push(`/projects/${currentUser.profile_id}`)}>Back to Projects</Button>
+    ):(<>
+        <Button onClick={() => history.goBack()}>No</Button>
+        <Button onClick={handleDelete}>Yes</Button>
+    </>)}
   </Card.Body>
 </Card>
   )
