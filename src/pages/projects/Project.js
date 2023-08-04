@@ -57,16 +57,19 @@ const Project = ({projectData}) => {
                 <p>Outstanding Tasks: 3</p>
                 </Card.Body>
                 <p className={styles.left}>
-                    Members
-                <Link to={`/members/add/${projectData.project}`}>
+                Members
+                {is_owner?(<><Link to={`/members/add/${projectData.project}`}>
                     <Button size="sm" variant="outline-primary"><i className="far fa-plus-square"></i></Button>
-                </Link> 
+                </Link>
+                <Link to={`/members/delete/${projectData.project}`}>
+                    <Button size="sm" variant="outline-primary"><i className="far fa-trash-can"></i></Button>
+                </Link></>):('')}
                 </p>
                 <Container className={styles.overflow}>
                     {members.map(member =>
                 <div key={member.id}>
                  <Avatar src={member.member_image} height={30}/>
-                 <p className={styles.memberName}>{member.member_username}<i className="fa-solid fa-trash-can fa-sm"></i></p>
+                 <p className={styles.memberName}>{member.member_username}</p>
                 </div>
 )}
                 </Container>

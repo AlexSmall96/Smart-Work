@@ -11,6 +11,7 @@ import ProjectDelete from "./pages/projects/ProjectDelete";
 import ProjectsPage from "./pages/projects/ProjectsPage";
 import Profile from "./pages/profiles/Profile";
 import AddMembers from "./pages/members/AddMembers";
+import DeleteMembers from "./pages/members/DeleteMembers";
 import ProjectEdit from "./pages/projects/ProjectEdit";
 import ProfileEdit from "./pages/profiles/ProfileEdit";
 // import { useCurrentUser } from "./contexts/CurrentUserContext";
@@ -27,6 +28,7 @@ function App() {
               <Route exact path="/" render={() => <Home />} />
               <Route exact path="/projects/:id" render={() => <ProjectsPage />} />
               <Route exact path="/members/add/:projectId" render={() => <AddMembers />} />
+              <Route exact path="/members/delete/:projectId" render={() => <DeleteMembers />} />
               <Route exact path="/signin" render={() => <SignInForm />} />
               <Route exact path="/signup" render={() => <SignUpForm />} />
               <Route exact path="/create" render={() => <ProjectCreateForm />} />
