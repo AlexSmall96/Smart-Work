@@ -86,7 +86,7 @@ const Project = ({projectData}) => {
 )}
                 </Container>
                 <TaskCreateForm members={members} projectData={projectData} tasks={tasks} setTasks={setTasks}/>
-                {tasks.map(task => <Task key={task.id} task={task} />)}
+                {tasks.map(task => <Task key={task.id} task={task} projectData={projectData} setTasks={setTasks} />)}
                 </Card>
     )
 }

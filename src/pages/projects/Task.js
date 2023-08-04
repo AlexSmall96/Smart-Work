@@ -1,12 +1,12 @@
 import React, {useState} from 'react'
-import { Container, Form, Col, Row, Button, Accordion, Card } from 'react-bootstrap'
+import { Container, Form, Col, Row, Button, Accordion, Card, Modal } from 'react-bootstrap'
 import Avatar from '../../components/Avatar'
 import styles from '../../styles/Task.module.css'
 import { format } from 'date-fns';
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
-import { axiosRes } from '../../api/axiosDefaults';
+import { axiosReq, axiosRes } from '../../api/axiosDefaults';
 
-const Task = ({task}) => {
+const Task = ({task, setTasks, projectData}) => {
     const currentUser = useCurrentUser()
     const profile_id = currentUser?.profile_id
     const is_task_owner = profile_id === task.assigned_to_profile_id
@@ -16,6 +16,9 @@ const Task = ({task}) => {
     const [taskDueDate, setTaskDueDate] = useState(format(new Date(task.start_date), 'yyyy-MM-dd'))
     const [taskStartDate, setTaskStartDate] = useState(format(new Date(task.due_date), 'yyyy-MM-dd'))
     const [status, setStatus] = useState(task.status)
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
     const handleDueDateChange = (event) => {
         const newDueDate = format(new Date(event.target.value), 'yyyy-MM-dd');
@@ -50,8 +53,19 @@ const Task = ({task}) => {
             console.log(err.response);
         }
         };
+
         const handleClick = () => {
             setTaskUpdated(false)
+        }
+
+        const handleDelete = async (event) => {
+            try {
+                axiosRes.delete(`/tasks/${event.target.id}`)
+                const newTasks = await axiosReq.get(`/tasks/?assigned_to__project=${projectData.project}`)
+                setTasks(newTasks.data)
+            } catch(err){
+                console.log(err)
+            }
         }
 
   return (
@@ -61,14 +75,36 @@ const Task = ({task}) => {
         <Container>
                         <Row>
                             <Col xs={2}>
-                                {is_task_owner?(<Accordion.Toggle onClick={() => setExpanded(!expanded)} as={Button} variant="link" eventKey="0">
+                                {is_task_owner?(<>
+                                <Accordion.Toggle onClick={() => setExpanded(!expanded)} as={Button} variant="link" eventKey="0">
                                 {expanded?('Hide'):(<i className="fa-solid fa-pen-to-square"></i>)}
-                                </Accordion.Toggle>):('')}
+                                </Accordion.Toggle>
+                                </>):('')}
                             </Col>
                             <Col xs={2}><Avatar  src={task.assigned_to_image} height={30}/></Col>                       
                             <Col xs={3}>{task.description}</Col>
                             <Col xs={2}>{format(new Date(task.due_date.slice(0,10)), "dd-MM-yyyy")}</Col>
-                            <Col xs={3}>{task.status}</Col>
+                            <Col xs={2}>{task.status}</Col>
+                            <Col xs={1}>
+                            {is_task_owner?(<>
+                                <Button variant="primary" onClick={handleShow}>
+                                <i className="fa-solid fa-trash-can"></i>
+                                </Button>
+                                <Modal show={show} onHide={handleClose}>
+                                    <Modal.Header closeButton>
+                                    <Modal.Title>{`Are you sure you want to delete ${task.description}`}</Modal.Title>
+                                    </Modal.Header>
+                                    <Modal.Footer>
+                                        <Button variant="secondary" onClick={handleClose}>
+                                            No
+                                        </Button>
+                                        <Button id={task.id} variant="primary" onClick={handleDelete}>
+                                            Yes
+                                        </Button>
+                                    </Modal.Footer>
+                                </Modal>
+                                </>):('')}
+                            </Col>
                         </Row>
         </Container>
 

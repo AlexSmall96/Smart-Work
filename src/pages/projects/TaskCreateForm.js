@@ -11,7 +11,7 @@ import styles from '../../styles/Task.module.css'
 import { useCurrentUser } from '../../contexts/CurrentUserContext'
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
 
-const TaskCreateForm = ({members, projectData, tasks, setTasks}) => {
+const TaskCreateForm = ({members, projectData, setTasks}) => {
     
     const currentUser = useCurrentUser()
     const history = useHistory()
