@@ -106,8 +106,8 @@ const TaskCreateForm = ({members, projectData, tasks, setTasks}) => {
     <Accordion>
     <Card>
         <Card.Header className={styles.taskHeader}>
-        <Accordion.Toggle as={Button} variant="link" eventKey="0">
-            <Button onClick={() => setExpanded(!expanded)}>{expanded?('Hide'):(<><i className="fa-solid fa-list-check"></i> Add Task</>)}</Button>
+        <Accordion.Toggle as={Button} variant="link" eventKey="0" onClick={() => setExpanded(!expanded)}>
+             {expanded?('Hide'):(<><i className="fa-solid fa-list-check"></i> Add Task</>)}
         </Accordion.Toggle>
         </Card.Header>
         <Accordion.Collapse eventKey="0">
