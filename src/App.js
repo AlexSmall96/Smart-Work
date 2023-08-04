@@ -14,6 +14,8 @@ import AddMembers from "./pages/members/AddMembers";
 import DeleteMembers from "./pages/members/DeleteMembers";
 import ProjectEdit from "./pages/projects/ProjectEdit";
 import ProfileEdit from "./pages/profiles/ProfileEdit";
+import TasksPage from "./pages/tasks/TasksPage";
+
 // import { useCurrentUser } from "./contexts/CurrentUserContext";
 
 function App() {
@@ -36,6 +38,7 @@ function App() {
               <Route exact path="/projects/edit/:id" render={() => <ProjectEdit />} />
               <Route exact path="/profiles/:id" render={() => <Profile />} />
               <Route exact path="/profiles/edit/:id" render={() => <ProfileEdit />} />
+              <Route exact path="/tasks/:id" render={() => <TasksPage />} />
               <Route render={() => <p>Page not found!</p>} />
             </Switch>
           </Container>

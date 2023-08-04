@@ -42,7 +42,7 @@ const NavBar = () => {
       <NavLink
         className={styles.NavLink}
         activeClassName={styles.Active}
-        to="/tasks"
+        to={`/tasks/${currentUser?.profile_id}`}
       > 
       <i className="fa-solid fa-list-check"></i> My Tasks
       </NavLink>
