@@ -4,14 +4,12 @@ import Avatar from '../../components/Avatar'
 import styles from '../../styles/Task.module.css'
 import { format } from 'date-fns';
 
-const Task = ({projectData}) => {
+const Task = ({task}) => {
+    
   return (
     <Accordion>
     <Card>
-        {/*Replace the projectData below with task data */}
         <Card.Header className={styles.taskHeader}>
-        
-
         <Container>
                         <Row>
                             <Col xs={2}>
@@ -20,10 +18,10 @@ const Task = ({projectData}) => {
                                 {/*Only allow edit permissions if task owner */}
                                 </Accordion.Toggle>
                             </Col>
-                            <Col xs={2}><Avatar  src={projectData.project_owner_image} height={30}/></Col>                       
-                            <Col xs={3}>Learn React</Col>
-                            <Col xs={2}>{format(new Date(projectData.due_date.slice(0,10)), "dd-MM-yyyy")}</Col>
-                            <Col xs={3}>In Progress</Col>
+                            <Col xs={2}><Avatar  src={task.assigned_to_image} height={30}/></Col>                       
+                            <Col xs={3}>{task.description}</Col>
+                            <Col xs={2}>{format(new Date(task.due_date.slice(0,10)), "dd-MM-yyyy")}</Col>
+                            <Col xs={3}>{task.status}</Col>
                         </Row>
         </Container>
 

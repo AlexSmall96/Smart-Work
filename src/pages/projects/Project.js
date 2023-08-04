@@ -9,9 +9,11 @@ import ProjectEditForm from './ProjectEditForm'
 import styles from '../../styles/Project.module.css'
 import { axiosReq, axiosRes } from '../../api/axiosDefaults';
 import TaskCreateForm from './TaskCreateForm'
+import Task from './Task';
 
 const Project = ({projectData}) => {
     const [members, setMembers] = useState([])
+    const [tasks, setTasks] = useState([])
     const currentUser = useCurrentUser();
     const is_owner = currentUser?.username === projectData.project_owner_username
     const [show, setShow] = useState(false);
@@ -27,7 +29,17 @@ const Project = ({projectData}) => {
             console.log(err.response)
           }
         }
+        
+        const fetchTasks = async () => {
+            try {
+                const response = await axiosReq.get(`/tasks/?assigned_to__project=${projectData.project}`)
+                setTasks(response.data)
+            } catch(err){
+                console.log(err.response)
+            }
+        }
         fetchMembers()
+        fetchTasks()
       }, [projectData])
 
   return (
@@ -73,7 +85,8 @@ const Project = ({projectData}) => {
                 </div>
 )}
                 </Container>
-                <TaskCreateForm members={members} />
+                <TaskCreateForm members={members} projectData={projectData} tasks={tasks} setTasks={setTasks}/>
+                {tasks.map(task => <Task key={task.id} task={task} />)}
                 </Card>
     )
 }
