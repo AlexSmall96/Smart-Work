@@ -66,7 +66,7 @@ const Project = ({projectData}) => {
                 <p>Start Date: {`${format(new Date(projectData.start_date.slice(0,10)), "dd-MM-yyyy")} `}
                     Due Date: {format(new Date(projectData.due_date.slice(0,10)), "dd-MM-yyyy")}</p>
                 <p>Complexity: {projectData.complexity}</p>
-                <p>Outstanding Tasks: 3</p>
+                <p>{`Outstanding Tasks: ${tasks.filter(task => task.status !== 'Complete').length} `}</p>
                 </Card.Body>
                 <p className={styles.left}>
                 Members
