@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react';
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
-import {  Button, Card,  Container, Modal } from 'react-bootstrap';
+import {  Button, Card,  Container, Modal, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import Avatar from '../../components/Avatar';
 import { format } from 'date-fns';
@@ -46,20 +46,31 @@ const Project = ({projectData}) => {
     <Card>
             <Card.Header>
                 <div className={styles.left}>
-                <Link to={`/profiles/${projectData.project_owner_profile_id}`}>
-                    <Avatar src={projectData.project_owner_image} height={55} />
-                </Link>{projectData.title}
-                </div>
-                {is_owner?(
+                    <Container>
+                        <Row className="justify-content-md-center">
+                            <Col xs={2}>
+                            <Link to={`/profiles/${projectData.project_owner_profile_id}`}>
+                                <Avatar src={projectData.project_owner_image} height={55} />
+                            </Link>{projectData.title}
+                            </Col>
+                            <Col xs={6}></Col>
+                            <Col xs={4}>
+                            {is_owner?(
                 <>
                 <Link to={`/projects/delete/${projectData.project}`}>     
-                    <Button variant="primary"><i className="fa-solid fa-trash-can"></i></Button>
+                    <Button variant="outline-primary" className={styles.projectButtons}><i className="fa-solid fa-trash-can"></i></Button>
                 </Link>
                 <Link to={`/projects/edit/${projectData.project}`}>     
-                    <Button variant="primary"><i className="fa-solid fa-pen-to-square"></i></Button>
+                    <Button variant="outline-primary" className={`${styles.projectButtons} ${styles.verticalMargin}`}><i className="fa-solid fa-pen-to-square"></i></Button>
                 </Link>
                 </>
                 ):('')}
+                            </Col>
+                        </Row>
+                    </Container>
+
+                </div>
+
             </Card.Header>
             <Card.Body>
                 <p className={styles.left}>{projectData.description}</p>
@@ -71,10 +82,10 @@ const Project = ({projectData}) => {
                 <p className={styles.left}>
                 Members
                 {is_owner?(<><Link to={`/members/add/${projectData.project}`}>
-                    <Button size="sm" variant="outline-primary"><i className="far fa-plus-square"></i></Button>
+                    <Button size="sm" variant="outline-primary" className={styles.projectButtons}><i className="far fa-plus-square"></i></Button>
                 </Link>
                 <Link to={`/members/delete/${projectData.project}`}>
-                    <Button size="sm" variant="outline-primary"><i className="far fa-trash-can"></i></Button>
+                    <Button size="sm" variant="outline-primary" className={styles.projectButtons}><i className="far fa-trash-can"></i></Button>
                 </Link></>):('')}
                 </p>
                 <Container className={styles.overflow}>

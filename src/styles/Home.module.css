@@ -2,6 +2,10 @@
     text-align: center;
 }
 
+.links{
+    max-width:300px;
+}
+
 .homeBox{
     width:50%;
     height:40px;

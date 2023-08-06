@@ -1,14 +1,15 @@
 import React, {useState} from 'react'
 import styles from '../styles/Home.module.css'
 import appStyles from '../App.module.css'
-import { Carousel } from 'react-bootstrap';
 import project from '../images/project.jpeg';
 import profile from '../images/profile.jpeg';
 import calender from '../images/calender.jpeg'
-import {Card, Button}from 'react-bootstrap';
-
+import {Card, Button, Row, Carousel, Container, Col}from 'react-bootstrap';
+import { Link } from 'react-router-dom/cjs/react-router-dom.min';
+import { useCurrentUser } from '../contexts/CurrentUserContext';
 
 export const Home = () => {
+  const currentUser = useCurrentUser();
     const [index, setIndex] = useState(0);
     const handleSelect = (selectedIndex, e) => {
       setIndex(selectedIndex);
@@ -62,14 +63,18 @@ indicators={false}
       <p className={styles.caption}>Never miss a deadline again with our detailed planning system.</p>
   </Carousel.Item>
 </Carousel>
-        <Button variant="light">
-            Get Started
-        </Button>
-        Already have an account?<Button variant="light">
-            Login
-        </Button>
-    </div>
-  )
+{
+  !currentUser? (<Container className={styles.links}>
+    <Row className="justify-content-md-center">
+      <Col md={4} sm={12}><Link to={`/signup/`}><Button variant="secondary">Get Started</Button></Link></Col>
+      <Col md={4} sm={12}>Already have an account?</Col>
+      <Col md={4} sm={12}><Link to={`/signin/`}><Button variant="secondary">Login</Button></Link></Col>
+    </Row>
+  </Container> ):(<Button variant="secondary">Logout</Button>)
+}
+
+</div>
+)
 }
 
 export default Home;
