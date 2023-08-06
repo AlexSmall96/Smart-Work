@@ -11,6 +11,8 @@ const Profile = () => {
   const { id } = useParams();
   const [profile, setProfile] = useState({});
   const history = useHistory();
+  const [tasks, setTasks] = useState([])
+  const [members, setMembers] = useState([])
 
   useEffect(() => {
       const fetchProfile = async () => {
@@ -21,7 +23,25 @@ const Profile = () => {
           console.log(err.response)
         }
       }
-      fetchProfile()
+      const fetchTasks = async () => {
+        try {
+            const response = await axiosReq.get(`/tasks/?assigned_to__profile=${id}`)
+            setTasks(response.data.filter(task => task.status === "Complete"))
+        } catch(err){
+            console.log(err)
+        }
+    }
+    const fetchMembers = async () => {
+      try {
+        const response = await axiosReq.get(`/members/?profile=${id}`)
+        setMembers(response.data)
+      } catch(err){
+        console.log(err)
+    }
+    }
+    fetchTasks()
+    fetchProfile()
+    fetchMembers()
     }, [id, history ])
 
     const is_owner = currentUser?.username === profile?.owner;
@@ -55,6 +75,17 @@ const Profile = () => {
         <Button>Edit Profile</Button>
       </Link>
     ):(<Button onClick={() => history.goBack()}>Back</Button>)}
+    <Card>
+      <Card.Header>
+        Stats
+      </Card.Header>
+      <Card.Header>
+        {`Total Tasks Completed: ${tasks.length}`}
+      </Card.Header>
+      <Card.Header>
+        {`Projects Currently a Member of: ${members.length}`}
+      </Card.Header>  
+    </Card>
     </>
   )
 }
