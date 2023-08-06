@@ -82,7 +82,7 @@ const NavBar = () => {
       <Container>
         <NavLink to="/">
           <Navbar.Brand>
-          Smart <i className="fa-solid fa-glasses"></i> Work
+          SMART <i className="fa-solid fa-glasses"></i> WORK
           </Navbar.Brand>
         </NavLink>
         {currentUser && newProjectIcon}
