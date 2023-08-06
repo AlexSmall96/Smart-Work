@@ -43,7 +43,7 @@ const Project = ({projectData}) => {
       }, [projectData])
 
   return (
-    <Card>
+    <Card className={styles.projectCard}>
             <Card.Header>
                 <div className={styles.left}>
                     <Container>
@@ -74,10 +74,16 @@ const Project = ({projectData}) => {
             </Card.Header>
             <Card.Body>
                 <p className={styles.left}>{projectData.description}</p>
-                <p>Start Date: {`${format(new Date(projectData.start_date.slice(0,10)), "dd-MM-yyyy")} `}
-                    Due Date: {format(new Date(projectData.due_date.slice(0,10)), "dd-MM-yyyy")}</p>
-                <p>Complexity: {projectData.complexity}</p>
-                <p>{`Outstanding Tasks: ${tasks.filter(task => task.status !== 'Complete').length} `}</p>
+                <Container>
+                    <Row>
+                        <Col md={6}>Start Date: {format(new Date(projectData.start_date.slice(0,10)), "dd-MM-yyyy")}</Col>
+                        <Col md={6}>Due Date: {format(new Date(projectData.due_date.slice(0,10)), "dd-MM-yyyy")}</Col>
+                    </Row>  
+                    <Row>
+                        <Col md={6}>Complexity: {projectData.complexity}</Col>
+                        <Col md={6}>{`Outstanding Tasks: ${tasks.filter(task => task.status !== 'Complete').length} `}</Col>
+                    </Row>
+                </Container>
                 </Card.Body>
                 <p className={styles.left}>
                 Members

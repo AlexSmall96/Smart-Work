@@ -7,6 +7,10 @@
     margin-right:5px;
 }
 
+.projectCard{
+    margin-bottom: 10px;
+}
+
 @media (max-width:477px){
     .verticalMargin{
         margin-top: 5px;
