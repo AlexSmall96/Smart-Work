@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import styles from '../styles/Home.module.css'
+import appStyles from '../App.module.css'
 import { Carousel } from 'react-bootstrap';
 import project from '../images/project.jpeg';
 import profile from '../images/profile.jpeg';
@@ -18,7 +19,8 @@ export const Home = () => {
         <Card>
             <Card.Body><em>Simple, effective project management software</em></Card.Body>
         </Card>
-<Carousel 
+<Carousel
+className={styles.carousel}
 activeIndex={index} 
 onSelect={handleSelect} 
 nextIcon={<span aria-hidden="true" className={`carousel-control-next-icon ${styles.carouselIicon}`} />}

@@ -62,3 +62,7 @@ transition: color ease-in-out 0.3s;
 input[type="file"] {
 display: none;
 }
+
+.footer{
+    background-color: #555555;
+}

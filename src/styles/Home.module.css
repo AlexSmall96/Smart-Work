@@ -21,6 +21,11 @@
     padding-top:60px;
 }
 
+.carousel{
+    max-width:400px;
+    margin:auto;
+}
+
 .carouselIicon{
    background-color:black;
 }
