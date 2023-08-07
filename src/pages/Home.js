@@ -6,13 +6,24 @@ import profile from '../images/profile.jpeg';
 import calender from '../images/calender.jpeg'
 import {Card, Button, Row, Carousel, Container, Col}from 'react-bootstrap';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
-import { useCurrentUser } from '../contexts/CurrentUserContext';
+import { useCurrentUser, useSetCurrentUser } from '../contexts/CurrentUserContext';
+import axios from 'axios';
 
 export const Home = () => {
   const currentUser = useCurrentUser();
+  const setCurrentUser = useSetCurrentUser();
     const [index, setIndex] = useState(0);
     const handleSelect = (selectedIndex, e) => {
       setIndex(selectedIndex);
+    };
+
+    const handleSignOut = async () => {
+      try {
+        await axios.post("dj-rest-auth/logout/");
+        setCurrentUser(null);
+      } catch (err) {
+        console.log(err);
+      }
     };
   
   return (
@@ -32,7 +43,7 @@ indicators={false}
   <h3 className={styles.caption}>Collaborate</h3>
     <img
       className="d-block w-100"
-      src={project}
+      src="https://res.cloudinary.com/dojzptdbc/image/upload/v1691407169/project_by7lfx.jpg"
       alt="First slide"
     />
     <Carousel.Caption className={styles.paddedCaption}>
@@ -43,7 +54,7 @@ indicators={false}
   <h3 className={styles.caption}>Customize</h3>
     <img
       className="d-block w-100"
-      src={profile}
+      src="https://res.cloudinary.com/dojzptdbc/image/upload/v1690888340/media/images/profile_ymcsnv.jpg"
       alt="Second slide"
     />
     <span aria-hidden="true" className={`carousel-control-next-icon ${styles.nextItem}`} />
@@ -54,8 +65,8 @@ indicators={false}
   <Carousel.Item>
     <h3 className={styles.caption}>Plan</h3>
     <img
-      className="d-block w-100"
-      src={calender}
+      className="d-block w-100" 
+      src="https://res.cloudinary.com/dojzptdbc/image/upload/v1690886299/media/images/calender_rrv1to.jpg"
       alt="Third slide"
     />
     <Carousel.Caption>
@@ -70,7 +81,7 @@ indicators={false}
       <Col md={4} sm={12}>Already have an account?</Col>
       <Col md={4} sm={12}><Link to={`/signin/`}><Button variant="secondary">Login</Button></Link></Col>
     </Row>
-  </Container> ):(<Button variant="secondary">Logout</Button>)
+  </Container> ):(<Button variant="secondary" onClick={handleSignOut}>Logout</Button>)
 }
 
 </div>
