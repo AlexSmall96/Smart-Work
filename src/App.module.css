@@ -3,6 +3,10 @@ font-family: 'Fira Sans Extra Condensed', sans-serif;
 min-height: 100vh;
 }
 
+.padding{
+    padding:5px;
+}
+
 .textField{
     text-align: justify;
 }

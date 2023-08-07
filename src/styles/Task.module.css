@@ -2,10 +2,17 @@
     height:50px;
     padding-top:3px;
     font-size: small;
-    background-color: orange;
+    background-color: rgb(236, 230, 230);
     opacity: 90%;
 }
 
+.inProgress{
+    background-color: orange;
+}
+
+.complete{
+    background-color: green;
+}
 
 .taskAvatar{
     padding-bottom: 50px;

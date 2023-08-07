@@ -7,6 +7,7 @@ import Avatar from '../../components/Avatar';
 import { format } from 'date-fns';
 import ProjectEditForm from './ProjectEditForm'
 import styles from '../../styles/Project.module.css'
+import appStyles from '../../App.module.css'
 import { axiosReq, axiosRes } from '../../api/axiosDefaults';
 import TaskCreateForm from './TaskCreateForm'
 import Task from './Task';
@@ -45,23 +46,23 @@ const Project = ({projectData}) => {
   return (
     <Card className={styles.projectCard}>
             <Card.Header>
-                <div className={styles.left}>
+                <div>
                     <Container>
                         <Row className="justify-content-md-center">
                             <Col xs={2}>
                             <Link to={`/profiles/${projectData.project_owner_profile_id}`}>
-                                <Avatar src={projectData.project_owner_image} height={55} />
-                            </Link>{projectData.title}
+                                <Avatar src={projectData.project_owner_image} height={40} />
+                            </Link>
                             </Col>
-                            <Col xs={6}></Col>
-                            <Col xs={4}>
+                            <Col xs={8}>{projectData.title}</Col>
+                            <Col xs={2} sm={{ span: 1, offset: 1 }}>
                             {is_owner?(
                 <>
                 <Link to={`/projects/delete/${projectData.project}`}>     
-                    <Button variant="outline-primary" className={styles.projectButtons}><i className="fa-solid fa-trash-can"></i></Button>
+                    <Button variant="outline-primary" className={styles.projectButtons} size="sm"><i className="fa-solid fa-trash-can"></i></Button>
                 </Link>
                 <Link to={`/projects/edit/${projectData.project}`}>     
-                    <Button variant="outline-primary" className={`${styles.projectButtons} ${styles.verticalMargin}`}><i className="fa-solid fa-pen-to-square"></i></Button>
+                    <Button variant="outline-primary" className={`${styles.projectButtons} ${styles.verticalMargin}`} size="sm"><i className="fa-solid fa-pen-to-square"></i></Button>
                 </Link>
                 </>
                 ):('')}

@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import { Container, Form, Col, Row, Button, Accordion, Card, Modal } from 'react-bootstrap'
 import Avatar from '../../components/Avatar'
 import styles from '../../styles/Task.module.css'
@@ -19,6 +19,19 @@ const Task = ({task, setTasks, projectData}) => {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+    const [taskClass, setTaskClass] = useState(styles.taskHeader)
+
+    useEffect(() => {
+        const colourTask = () => {
+            setTaskClass(
+                `${styles.taskHeader} ${task.status === 'In Progress'?
+                (styles.inProgress):(
+                   task.status === 'Complete'? (styles.complete):('')
+                )}`
+            )
+        }
+        colourTask()
+    }, [task])
 
     const handleDueDateChange = (event) => {
         const newDueDate = format(new Date(event.target.value), 'yyyy-MM-dd');
@@ -38,7 +51,7 @@ const Task = ({task, setTasks, projectData}) => {
         setStatus(event.target.value)
     }
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault()
         const formData = new FormData();
         formData.append('description', taskDescription)
@@ -49,6 +62,14 @@ const Task = ({task, setTasks, projectData}) => {
         try {
             axiosRes.put(`/tasks/${task.id}`, formData);
             setTaskUpdated(true)
+            const newTasks = await axiosReq.get(`/tasks/?assigned_to__project=${projectData.project}`)
+            setTasks(newTasks.data)
+            setTaskClass(
+                `${styles.taskHeader} ${task.status === 'In Progress'?
+                (styles.inProgress):(
+                   task.status === 'Complete'? (styles.complete):('')
+                )}`
+            )
             } catch (err) {
             console.log(err.response);
         }
@@ -71,23 +92,23 @@ const Task = ({task, setTasks, projectData}) => {
   return (
     <Accordion>
     <Card>
-        <Card.Header className={styles.taskHeader}>
+        <Card.Header className={taskClass}>
         <Container>
                         <Row>
-                            <Col xs={2}>
+                            <Col xs={1}>
                                 {is_task_owner?(<>
                                 <Accordion.Toggle onClick={() => setExpanded(!expanded)} as={Button} variant="link" eventKey="0">
                                 {expanded?('Hide'):(<i className="fa-solid fa-pen-to-square"></i>)}
                                 </Accordion.Toggle>
                                 </>):('')}
                             </Col>
-                            <Col xs={2}><Avatar  src={task.assigned_to_image} height={30}/></Col>                       
-                            <Col xs={3}>{task.description}</Col>
+                            <Col xs={1}><Avatar  src={task.assigned_to_image} height={30}/></Col>                       
+                            <Col xs={5}>{task.description}</Col>
                             <Col xs={2}>{format(new Date(task.due_date.slice(0,10)), "dd-MM-yyyy")}</Col>
                             <Col xs={2}>{task.status}</Col>
                             <Col xs={1}>
                             {is_task_owner?(<>
-                                <Button variant="primary" onClick={handleShow}>
+                                <Button variant="outline-primary" onClick={handleShow}>
                                 <i className="fa-solid fa-trash-can"></i>
                                 </Button>
                                 <Modal show={show} onHide={handleClose}>

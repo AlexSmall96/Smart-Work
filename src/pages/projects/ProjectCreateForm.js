@@ -137,7 +137,7 @@ function ProjectCreateForm() {
              {message}
              </Alert>
              ))}
-            <Button onClick={() => history.goBack()} variant="primary" type="button">
+            <Button className={styles.horizontalMargin} onClick={() => history.goBack()} variant="primary" type="button">
                 Cancel
             </Button>
             <Button variant="primary" type="submit">
