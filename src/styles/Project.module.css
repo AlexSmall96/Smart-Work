@@ -39,6 +39,7 @@
     justify-content: space-between
 }
 
+
 .left{
     text-align: left;
     padding-left: 10px;
@@ -48,4 +49,13 @@
     .hideSmall{
         display: none;
     }
+}
+
+.projectAccord{
+    height:80px;
+    padding-top:10px;
+}
+
+.noPadding{
+    padding:0
 }
