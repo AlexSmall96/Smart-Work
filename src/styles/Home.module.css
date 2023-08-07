@@ -31,6 +31,17 @@
     margin:auto;
 }
 
+@media (max-width:419px){
+    .carousel{
+        height:600px;
+    }
+}
+@media (min-width:420px){
+    .carousel{
+        height:650px;
+    }
+}
+
 .carouselIicon{
    background-color:rgb(125, 212, 212);
 }
