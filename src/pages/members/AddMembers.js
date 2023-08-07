@@ -4,6 +4,7 @@ import { axiosReq } from '../../api/axiosDefaults';
 import { Button, Card, Form } from 'react-bootstrap';
 import Member from './Member';
 import styles from '../../styles/AddMembers.module.css'
+import appStyles from'../../App.module.css'
 
 const AddMembers = () => {
     const { projectId } = useParams();
@@ -73,7 +74,6 @@ const AddMembers = () => {
         }
     }
 
-    // On success after member add, redirect back to project page //
   return (
     <>
     <Card>
@@ -126,7 +126,7 @@ const AddMembers = () => {
             selected={selectedProfileIds.includes(profile.id.toString())}
             />))}
             {selectedProfileIds.length?(
-                <Button onClick={handleSubmit} variant="primary">Add Users to Project</Button>
+                <Button onClick={handleSubmit} variant="primary" className={styles.horizMargin}>Add Users to Project</Button>
             ):('')}
             </div>
         )
@@ -134,7 +134,7 @@ const AddMembers = () => {
 
         </Card.Footer>
     </Card>
-    <Button variant="primary" onClick={() => history.goBack()}>Back to Projects</Button>
+    <Button variant="primary" onClick={() => history.goBack()} className={appStyles.verticalMargin}>Back to Projects</Button>
     </>
   )
 }

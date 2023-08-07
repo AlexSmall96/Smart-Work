@@ -6,6 +6,7 @@ import styles from '../../App.module.css'
 import { axiosReq, axiosRes } from '../../api/axiosDefaults';
 import { useParams, useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
+import appStyles from '../../App.module.css'
 
 const ProjectEdit = ({data}) => {
   const {id} = useParams()
@@ -71,6 +72,7 @@ const ProjectEdit = ({data}) => {
     }
     };
   return (
+  <>
     <Card>
       <Card.Header>{projectSaved?('Project details updated.'):(`Edit details for ${projectData.title}.`)}</Card.Header>
             <Form>  
@@ -154,19 +156,19 @@ const ProjectEdit = ({data}) => {
              </Alert>
              ))}
             </Form>
+            </Card>
             {projectSaved? (
-                <Button variant="secondary" onClick={() => history.push(`/projects/${currentUser.profile_id}`)}>
+                <Button className={`${appStyles.verticalMargin} ${appStyles.horizontalMargin}`} variant="secondary" onClick={() => history.push(`/projects/${currentUser.profile_id}`)}>
                     Back to Projects.
                 </Button>):(<>
-                <Button variant="secondary" onClick={() => history.goBack()}>
+                <Button className={`${appStyles.verticalMargin}`} variant="secondary" onClick={() => history.goBack()}>
                   Cancel
                 </Button>
-                <Button variant="primary" onClick={handleSubmit}>
+                <Button className={`${appStyles.verticalMargin} ${appStyles.horizontalMargin}`} variant="primary" onClick={handleSubmit}>
                     Save Changes
                 </Button>
           </>)}
-    </Card>
-  );
+</>);
 }
 
 export default ProjectEdit

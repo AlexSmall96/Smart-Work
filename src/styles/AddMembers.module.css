@@ -21,3 +21,7 @@
     height:200px;
     overflow:scroll;
 }
+
+.horizMargin{
+  margin-left:5px;
+}

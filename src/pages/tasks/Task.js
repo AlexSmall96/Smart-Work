@@ -104,7 +104,9 @@ const Task = ({task, setTasks, projectData}) => {
         <Container fluid>
                         <Row>
                             <Col xs={{span:6, order:3}} md={{span:1, order:1}}><span className={styles.hidden}>Assigned To: </span>{task.assigned_to_username}</Col>
-                            <Col xs={{span:6, order:5}} md={{span:1, order:2}}><Avatar src={task.assigned_to_image} height={30}/></Col>                      
+                            <Col xs={{span:6, order:5}} md={{span:1, order:2}}>
+                            <Link to={`/profiles/${task.assigned_to_profile_id}`}><Avatar src={task.assigned_to_image} height={30}/></Link>
+                            </Col>                      
                             <Col xs={{span:8, order:1}} md={{span:4, order:3}} className={styles.description}>{task.description}</Col>
                             <Col xs={{span:6, order:4}} md={{span:2, order:4}}><span className={styles.hidden}>Due: </span>{format(new Date(task.due_date.slice(0,10)), "dd-MM-yyyy")}</Col>
                             <Col xs={{span:4, order:2}} md={{span:2, order:5}}className={styles.description}>{task.status}</Col>

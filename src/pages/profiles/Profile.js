@@ -5,6 +5,7 @@ import { Card, Button } from 'react-bootstrap';
 import Avatar from '../../components/Avatar';
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import appStyles from '../../App.module.css'
 
 const Profile = () => {
   const currentUser = useCurrentUser();
@@ -72,10 +73,11 @@ const Profile = () => {
     </Card>
     {is_owner? (
       <Link to={`/profiles/edit/${id}`}>
-        <Button>Edit Profile</Button>
+        <Button className={appStyles.verticalMargin}>Edit Profile</Button>
+        <Button onClick={() => history.goBack()} className={`${appStyles.verticalMargin} ${appStyles.horizontalMargin}`}>Back</Button>
       </Link>
-    ):(<Button onClick={() => history.goBack()}>Back</Button>)}
-    <Card>
+    ):(<Button onClick={() => history.goBack()} className={appStyles.verticalMargin}>Back</Button>)}
+    <Card className={appStyles.verticalMargin}>
       <Card.Header>
         Stats
       </Card.Header>

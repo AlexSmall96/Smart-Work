@@ -2,9 +2,11 @@
     text-align: center;
 }
 
-.links{
+.links, .coverText{
     max-width:300px;
+    margin:auto;
 }
+
 
 .homeBox{
     width:50%;

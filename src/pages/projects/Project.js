@@ -98,7 +98,9 @@ return (
                     members.map(
                         member =>
                             <div key={member.id}>
-                                <Avatar src={member.member_image} height={30}/><p className={styles.memberName}>{member.member_username}</p>
+                                <Link to={`/profiles/${member.profile}`}>
+                                    <Avatar src={member.member_image} height={30}/><p className={styles.memberName}>{member.member_username}</p>
+                                </Link>
                             </div>
                         )
                     }

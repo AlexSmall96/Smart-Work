@@ -24,7 +24,7 @@ export const Home = () => {
   
   return (
     <div className={styles.darkBackground}>
-        <Card>
+        <Card className={styles.coverText}>
             <Card.Body><em>Simple, effective project management software</em></Card.Body>
         </Card>
 <Carousel
