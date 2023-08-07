@@ -7,7 +7,7 @@ import Form from 'react-bootstrap/Form'
 import { Row, Col } from 'react-bootstrap'
 import { format } from 'date-fns';
 import { axiosReq } from '../../api/axiosDefaults'
-import styles from '../../styles/Task.module.css'
+import styles from '../../styles/TaskCreateForm.module.css'
 
 const TaskCreateForm = ({members, projectData, setTasks}) => {
     
@@ -110,11 +110,15 @@ const TaskCreateForm = ({members, projectData, setTasks}) => {
   return (
     <Accordion>
     <Card>
-        <Card.Header className={styles.taskHeader}>
+        <div className={styles.left}>
+        Tasks: 
         <Accordion.Toggle as={Button} variant="link" eventKey="0" onClick={handleHide}>
-             {expanded?(<strong>Hide</strong>):(<><i className="fa-solid fa-list-check"></i> Add Task</>)}
+             {expanded?(
+             <strong>Hide</strong>
+             ):(<>
+            <i className="far fa-plus-square"></i></>)}
         </Accordion.Toggle>
-        </Card.Header>
+        </div>
         <Accordion.Collapse eventKey="0">
         <Card.Body>
         {taskCreated?(<div><p>Task Created Succesfully</p><Button onClick={handleClick}>Create new task</Button></div>):(

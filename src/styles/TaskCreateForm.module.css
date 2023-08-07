@@ -1,0 +1,11 @@
+.taskHeader{
+    height:60px;
+    background-color: rgb(236, 230, 230);
+}
+
+.left{
+    text-align: left;
+    padding-left: 10px;
+    padding-top: 10px;
+    height:60px;
+}

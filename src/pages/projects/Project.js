@@ -99,6 +99,15 @@ const Project = ({projectData}) => {
 )}
                 </Container>
                 <TaskCreateForm members={members} projectData={projectData} tasks={tasks} setTasks={setTasks}/>
+                <Card.Header className={styles.hideSmall}>
+                    <Row>
+                        <Col md={2}>Assigned To</Col>
+                        <Col md={4}>Description</Col>
+                        <Col md={2}>Due Date</Col>
+                        <Col md={2}>Status</Col>
+                        <Col md={2}></Col>
+                    </Row>
+                </Card.Header>
                 {tasks.map(task => <Task key={task.id} task={task} projectData={projectData} setTasks={setTasks} />)}
                 </Card>
     )

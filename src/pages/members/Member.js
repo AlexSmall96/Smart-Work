@@ -4,7 +4,7 @@ import { Button } from 'react-bootstrap'
 import styles from '../../styles/Member.module.css'
 
 const Member = ({
-  variant, disabled, src, owner, organisation, onClick, id, height=55, active, selected
+  variant="outline-secondary", disabled=false, src, owner='', organisation='', onClick={}, id=0, height=55, active=true, selected=false
 }) => {
   return (
     <Button className={styles.btn} 

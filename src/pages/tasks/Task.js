@@ -1,11 +1,12 @@
 import React, {useEffect, useState} from 'react'
-import { Container, Form, Col, Row, Button, Accordion, Card, Modal } from 'react-bootstrap'
+import { Container, Form, Col, Row, Button, Accordion, Card } from 'react-bootstrap'
 import Avatar from '../../components/Avatar'
 import styles from '../../styles/Task.module.css'
 import { format } from 'date-fns';
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
 import { axiosReq, axiosRes } from '../../api/axiosDefaults';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
+import Member from '../../pages/members/Member'
 
 const Task = ({task, setTasks, projectData}) => {
     const currentUser = useCurrentUser()
@@ -17,9 +18,6 @@ const Task = ({task, setTasks, projectData}) => {
     const [taskDueDate, setTaskDueDate] = useState(format(new Date(task.start_date), 'yyyy-MM-dd'))
     const [taskStartDate, setTaskStartDate] = useState(format(new Date(task.due_date), 'yyyy-MM-dd'))
     const [status, setStatus] = useState(task.status)
-    const [show, setShow] = useState(false);
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
     const [taskClass, setTaskClass] = useState(styles.taskHeader)
 
     useEffect(() => {
@@ -102,23 +100,20 @@ const Task = ({task, setTasks, projectData}) => {
   return (
     <Accordion>
     <Card>
-        <Card.Header className={taskClass}>
-        <Container>
+        <Card.Header className={`${taskClass}`}>
+        <Container fluid>
                         <Row>
-                            <Col xs={1}>
-                                {is_task_owner?(<>
-                                <Accordion.Toggle onClick={handleHide} as={Button} variant="link" eventKey="0">
-                                {expanded?(<strong>Hide</strong>):(<i className="fa-solid fa-pen-to-square"></i>)}
-                                </Accordion.Toggle>
-                                </>):('')}
-                            </Col>
-                            <Col xs={1}><Avatar  src={task.assigned_to_image} height={30}/></Col>                       
-                            <Col xs={5}>{task.description}</Col>
-                            <Col xs={2}>{format(new Date(task.due_date.slice(0,10)), "dd-MM-yyyy")}</Col>
-                            <Col xs={2}>{task.status}</Col>
-                            <Col xs={1}>
+                            <Col xs={{span:6, order:3}} md={{span:1, order:1}}><span className={styles.hidden}>Assigned To: </span>{task.assigned_to_username}</Col>
+                            <Col xs={{span:6, order:5}} md={{span:1, order:2}}><Avatar src={task.assigned_to_image} height={30}/></Col>                      
+                            <Col xs={{span:8, order:1}} md={{span:4, order:3}} className={styles.description}>{task.description}</Col>
+                            <Col xs={{span:6, order:4}} md={{span:2, order:4}}><span className={styles.hidden}>Due: </span>{format(new Date(task.due_date.slice(0,10)), "dd-MM-yyyy")}</Col>
+                            <Col xs={{span:4, order:2}} md={{span:2, order:5}}className={styles.description}>{task.status}</Col>
+                            <Col xs={{span:6, order:6}} md={{span:2, order:6}}>
                             {is_task_owner?(<>
                             <Link to={`/tasks/delete/${task.id}`}><i className="fa-solid fa-trash-can"></i></Link>
+                            <Accordion.Toggle onClick={handleHide} as={Button} variant="link" eventKey="0">
+                            {expanded?(<strong>Hide</strong>):(<i className="fa-solid fa-pen-to-square"></i>)}
+                            </Accordion.Toggle>
                             </>):('')}
                             </Col>
                         </Row>

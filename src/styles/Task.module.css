@@ -1,5 +1,5 @@
 .taskHeader{
-    height:50px;
+    height:110px;
     padding-top:3px;
     font-size: small;
     background-color: rgb(236, 230, 230);
@@ -17,3 +17,30 @@
 .taskAvatar{
     padding-bottom: 50px;
 }
+
+.box{
+    border-style: ridge;
+    border-width: 1px;
+    border-color: grey;
+    height:70px;
+}
+
+@media (max-width:767px){
+    .description{
+        border-bottom: 2px;
+        border-bottom-style: solid;
+        border-color: rgb(180, 175, 175);
+        font-weight:700
+    }
+}
+
+
+@media (min-width:767px){
+    .hidden{
+        display:none;
+    }
+    .taskHeader{
+        height:50px
+    }
+}
+
