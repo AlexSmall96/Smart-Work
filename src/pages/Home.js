@@ -39,7 +39,7 @@ indicators={false}
   <h3 className={styles.caption}>Collaborate</h3>
     <img
       className="d-block w-100"
-      src="https://res.cloudinary.com/dojzptdbc/image/upload/v1691407169/project_by7lfx.jpg"
+      src="https://res.cloudinary.com/dojzptdbc/image/upload/v1691443644/project_kzsven.jpg"
       alt="First slide"
     />
     <Carousel.Caption className={styles.paddedCaption}>
@@ -50,7 +50,7 @@ indicators={false}
   <h3 className={styles.caption}>Customize</h3>
     <img
       className="d-block w-100"
-      src="https://res.cloudinary.com/dojzptdbc/image/upload/v1690886199/media/images/profile_gg7xpt.jpg"
+      src="https://res.cloudinary.com/dojzptdbc/image/upload/v1691444198/profile_gm4afv.jpg"
       alt="Second slide"
     />
     <Carousel.Caption className={styles.paddedCaption}>
@@ -61,7 +61,7 @@ indicators={false}
     <h3 className={styles.caption}>Plan</h3>
     <img
       className="d-block w-100" 
-      src="https://res.cloudinary.com/dojzptdbc/image/upload/v1690886299/media/images/calender_rrv1to.jpg"
+      src="https://res.cloudinary.com/dojzptdbc/image/upload/v1691443751/calender_ldwpt4.jpg"
       alt="Third slide"
     />
     <Carousel.Caption>
