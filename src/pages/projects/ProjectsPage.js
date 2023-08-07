@@ -2,7 +2,8 @@ import React, {useState, useEffect} from 'react'
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min'
 import { axiosReq } from '../../api/axiosDefaults'
 import Project from './Project';
- 
+import appStyles from '../../App.module.css'
+
 const ProjectsPage = () => {
     const { id } = useParams();
     const [members, setMembers] = useState([])
@@ -19,7 +20,7 @@ const ProjectsPage = () => {
         fetchMembers()
       }, [id])
   return (
-    <div>
+    <div className={appStyles.background}>
         
         {members.map(member => <Project key={member.id} projectData={member} />)}
     </div>

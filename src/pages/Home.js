@@ -50,13 +50,12 @@ indicators={false}
   <h3 className={styles.caption}>Customize</h3>
     <img
       className="d-block w-100"
-      src="https://res.cloudinary.com/dojzptdbc/image/upload/v1690888340/media/images/profile_ymcsnv.jpg"
+      src="https://res.cloudinary.com/dojzptdbc/image/upload/v1690886199/media/images/profile_gg7xpt.jpg"
       alt="Second slide"
     />
-    <span aria-hidden="true" className={`carousel-control-next-icon ${styles.nextItem}`} />
-    <Carousel.Caption>
-      <p className={styles.caption}>Personalise your profile with your organisation, role, interests and skills.</p>
+    <Carousel.Caption className={styles.paddedCaption}>
     </Carousel.Caption>
+    <p className={styles.caption}> Personalise your profile with your organisation, role, interests and skills</p>
   </Carousel.Item>
   <Carousel.Item>
     <h3 className={styles.caption}>Plan</h3>

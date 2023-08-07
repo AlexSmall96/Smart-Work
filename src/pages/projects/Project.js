@@ -62,6 +62,7 @@ return (
                         </>):('')}
                         </Col>
                         <Col>Due: {format(new Date(projectData.due_date.slice(0,10)), "dd-MM-yyyy")}</Col>
+                        <Col>{`Outstanding Tasks: ${tasks.filter(task => task.status !== 'Complete').length} `}</Col>
                     </Row>
                 </Container>
             </div>
@@ -80,7 +81,7 @@ return (
                 </Row>  
                 <Row>
                     <Col md={6}>Complexity: {projectData.complexity}</Col>
-                    <Col md={6}>{`Outstanding Tasks: ${tasks.filter(task => task.status !== 'Complete').length} `}</Col>
+                    <Col md={6}></Col>
                 </Row>
             </Container>
                 <p className={styles.left}>
