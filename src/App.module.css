@@ -63,7 +63,12 @@ a:hover {
 text-decoration: none;
 }
 
-a:hover i {
+i {
+    color:black;
+}
+
+
+a:hover i, button:hover i {
 color: #2142b2;
 transition: color ease-in-out 0.3s;
 }

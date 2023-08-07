@@ -114,7 +114,6 @@ return (
                         </Row>
                 </Card.Header>
                         {tasks.map(task => <Task key={task.id} task={task} projectData={projectData} setTasks={setTasks} />)}
-                        
                     </Card.Body>
                 </Accordion.Collapse>
                 </Accordion>
