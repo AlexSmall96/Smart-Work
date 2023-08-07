@@ -102,12 +102,21 @@ const TaskCreateForm = ({members, projectData, setTasks}) => {
         setDueDate(format(new Date(), 'yyyy-MM-dd'))
     }
 
+    const handleHide = () => {
+        if (expanded){
+            setExpanded(false)
+            setTaskCreated(false)
+        } else {
+            setExpanded(true)
+        }
+    }
+
   return (
     <Accordion>
     <Card>
         <Card.Header className={styles.taskHeader}>
-        <Accordion.Toggle as={Button} variant="link" eventKey="0" onClick={() => setExpanded(!expanded)}>
-             {expanded?('Hide'):(<><i className="fa-solid fa-list-check"></i> Add Task</>)}
+        <Accordion.Toggle as={Button} variant="link" eventKey="0" onClick={handleHide}>
+             {expanded?(<strong>Hide</strong>):(<><i className="fa-solid fa-list-check"></i> Add Task</>)}
         </Accordion.Toggle>
         </Card.Header>
         <Accordion.Collapse eventKey="0">

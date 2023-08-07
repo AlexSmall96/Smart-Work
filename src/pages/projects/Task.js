@@ -79,6 +79,15 @@ const Task = ({task, setTasks, projectData}) => {
             setTaskUpdated(false)
         }
 
+        const handleHide = () => {
+            if (expanded){
+                setExpanded(false)
+                setTaskUpdated(false)
+            } else {
+                setExpanded(true)
+            }
+        }
+
         const handleDelete = async (event) => {
             try {
                 axiosRes.delete(`/tasks/${event.target.id}`)
@@ -97,8 +106,8 @@ const Task = ({task, setTasks, projectData}) => {
                         <Row>
                             <Col xs={1}>
                                 {is_task_owner?(<>
-                                <Accordion.Toggle onClick={() => setExpanded(!expanded)} as={Button} variant="link" eventKey="0">
-                                {expanded?('Hide'):(<i className="fa-solid fa-pen-to-square"></i>)}
+                                <Accordion.Toggle onClick={handleHide} as={Button} variant="link" eventKey="0">
+                                {expanded?(<strong>Hide</strong>):(<i className="fa-solid fa-pen-to-square"></i>)}
                                 </Accordion.Toggle>
                                 </>):('')}
                             </Col>
