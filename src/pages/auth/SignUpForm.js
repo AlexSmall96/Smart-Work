@@ -50,7 +50,7 @@ const SignUpForm = () => {
     <Row className={styles.Row}>
       <Col className="my-auto py-2 p-md-2" md={6}>
         <Container className={`${appStyles.Content} p-4 `}>
-          <h1 className={styles.Header}>sign up</h1>
+          <h1 className={styles.Header}>Sign up</h1>
           <Form onSubmit={handleSubmit}>
             <Form.Group controlId="username">
               <Form.Label className="d-none">username</Form.Label>
@@ -106,6 +106,7 @@ const SignUpForm = () => {
             <Button
               className={`${btnStyles.Button} ${btnStyles.Wide} ${btnStyles.Bright}`}
               type="submit"
+              variant="secondary"
             >
               Sign up
             </Button>
@@ -118,9 +119,10 @@ const SignUpForm = () => {
         </Container>
 
         <Container className={`mt-3 ${appStyles.Content}`}>
-          <Link className={styles.Link} to="/signin">
-            Already have an account? <span>Sign in</span>
-          </Link>
+        Already have an account? 
+        <Link className={styles.Link} to="/signin">
+            <Button variant="secondary" className={appStyles.horizontalMargin}>Sign in</Button>
+        </Link>
         </Container>
       </Col>
       <Col
