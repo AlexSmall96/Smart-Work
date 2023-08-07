@@ -4,31 +4,32 @@ import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import { useParams } from "react-router-dom/cjs/react-router-dom.min"
 import { Card, Button } from 'react-bootstrap';
 import { axiosReq, axiosRes } from '../../api/axiosDefaults';
+import appStyles from '../../App.module.css';
 
-const ProjectDelete = () => {
+const TaskDelete = () => {
     const currentUser = useCurrentUser();
     const { id } = useParams();
     const history = useHistory();
     const [message, setMessage] = useState('')
-    const [projectDeleted, setProjectDeleted] = useState(false)
+    const [taskDeleted, setTaskDeleted] = useState(false)
 
     useEffect(() => {
-        const fetchProject = async () => {
+        const fetchTask = async () => {
             try {
-                const response = await axiosReq.get(`/projects/${id}`)
-                setMessage(`Are you sure you want to delete ${response.data.title}?`)
+                const response = await axiosReq.get(`/tasks/${id}`)
+                setMessage(`Are you sure you want to delete ${response.data.description} from ${response.data.project_title}?`)
             } catch(err){
                 console.log(err.response)
             }
         }
-        fetchProject()
+        fetchTask()
     },[id])
   
     const handleDelete = async () => {
         try {
-            await axiosRes.delete(`/projects/${id}`)
-            setMessage('Project deleted.')
-            setProjectDeleted(true)
+            await axiosRes.delete(`/tasks/${id}`)
+            setMessage('Task deleted.')
+            setTaskDeleted(true)
         } catch(err){
             console.log(err.response)
         }
@@ -38,15 +39,15 @@ const ProjectDelete = () => {
 <Card>
   <Card.Body>
     <Card.Title>{message}</Card.Title>
-    {projectDeleted? (
+    {taskDeleted? (
         <Button onClick={() => history.push(`/projects/${currentUser.profile_id}`)}>Back to Projects</Button>
     ):(<>
         <Button onClick={() => history.goBack()}>No</Button>
-        <Button onClick={handleDelete}>Yes</Button>
+        <Button className={appStyles.horizontalMargin} onClick={handleDelete}>Yes</Button>
     </>)}
   </Card.Body>
 </Card>
   )
 }
 
-export default ProjectDelete
+export default TaskDelete

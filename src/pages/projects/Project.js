@@ -1,25 +1,20 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react';
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
-import {  Button, Card,  Container, Modal, Row, Col } from 'react-bootstrap';
+import {  Button, Card,  Container, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import Avatar from '../../components/Avatar';
 import { format } from 'date-fns';
-import ProjectEditForm from './ProjectEditForm'
 import styles from '../../styles/Project.module.css'
-import appStyles from '../../App.module.css'
-import { axiosReq, axiosRes } from '../../api/axiosDefaults';
-import TaskCreateForm from './TaskCreateForm'
-import Task from './Task';
+import { axiosReq } from '../../api/axiosDefaults';
+import TaskCreateForm from '../tasks/TaskCreateForm'
+import Task from '../tasks/Task';
 
 const Project = ({projectData}) => {
     const [members, setMembers] = useState([])
     const [tasks, setTasks] = useState([])
     const currentUser = useCurrentUser();
     const is_owner = currentUser?.username === projectData.project_owner_username
-    const [show, setShow] = useState(false);
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
 
     useEffect(() => {
         const fetchMembers = async () => {

@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react'
 import { useParams, useHistory } from 'react-router-dom/cjs/react-router-dom.min'
 import { axiosReq } from '../../api/axiosDefaults';
 import { Button, Card, Form } from 'react-bootstrap';
-import Member from '../../components/Member';
+import Member from './Member';
 import styles from '../../styles/AddMembers.module.css'
 
 const AddMembers = () => {

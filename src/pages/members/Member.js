@@ -1,7 +1,7 @@
 import React from 'react'
-import Avatar from './Avatar'
+import Avatar from '../../components/Avatar'
 import { Button } from 'react-bootstrap'
-import styles from '../styles/Member.module.css'
+import styles from '../../styles/Member.module.css'
 
 const Member = ({
   variant, disabled, src, owner, organisation, onClick, id, height=55, active, selected

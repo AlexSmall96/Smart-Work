@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { useParams, useHistory  } from 'react-router-dom/cjs/react-router-dom.min'
-import { Card, Button, Form, Image } from 'react-bootstrap';
+import { Card, Button, Form } from 'react-bootstrap';
 import Avatar from '../../components/Avatar';
 import { axiosReq } from '../../api/axiosDefaults';
 

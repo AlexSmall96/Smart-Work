@@ -1,8 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import { Button, Card } from 'react-bootstrap';
-import AddMembers from './AddMembers';
 import Avatar from '../../components/Avatar';
-import Member from '../../components/Member';
 import { axiosReq, axiosRes } from '../../api/axiosDefaults';
 import { useParams, useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 

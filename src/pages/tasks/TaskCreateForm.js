@@ -8,13 +8,9 @@ import { Row, Col } from 'react-bootstrap'
 import { format } from 'date-fns';
 import { axiosReq } from '../../api/axiosDefaults'
 import styles from '../../styles/Task.module.css'
-import { useCurrentUser } from '../../contexts/CurrentUserContext'
-import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
 
 const TaskCreateForm = ({members, projectData, setTasks}) => {
     
-    const currentUser = useCurrentUser()
-    const history = useHistory()
     const [taskCreated, setTaskCreated] = useState(false)
     const [expanded, setExpanded] = useState(false)
 

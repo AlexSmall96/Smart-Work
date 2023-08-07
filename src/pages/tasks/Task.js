@@ -5,6 +5,7 @@ import styles from '../../styles/Task.module.css'
 import { format } from 'date-fns';
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
 import { axiosReq, axiosRes } from '../../api/axiosDefaults';
+import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 
 const Task = ({task, setTasks, projectData}) => {
     const currentUser = useCurrentUser()
@@ -117,23 +118,8 @@ const Task = ({task, setTasks, projectData}) => {
                             <Col xs={2}>{task.status}</Col>
                             <Col xs={1}>
                             {is_task_owner?(<>
-                                <Button variant="outline-primary" onClick={handleShow}>
-                                <i className="fa-solid fa-trash-can"></i>
-                                </Button>
-                                <Modal show={show} onHide={handleClose}>
-                                    <Modal.Header closeButton>
-                                    <Modal.Title>{`Are you sure you want to delete ${task.description}`}</Modal.Title>
-                                    </Modal.Header>
-                                    <Modal.Footer>
-                                        <Button variant="secondary" onClick={handleClose}>
-                                            No
-                                        </Button>
-                                        <Button id={task.id} variant="primary" onClick={handleDelete}>
-                                            Yes
-                                        </Button>
-                                    </Modal.Footer>
-                                </Modal>
-                                </>):('')}
+                            <Link to={`/tasks/delete/${task.id}`}><i className="fa-solid fa-trash-can"></i></Link>
+                            </>):('')}
                             </Col>
                         </Row>
         </Container>

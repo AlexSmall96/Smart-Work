@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react';
-import { Modal, Form, Button, Row, Col, Alert, Card } from "react-bootstrap";
+import { Form, Button, Row, Col, Alert, Card } from "react-bootstrap";
 import { format } from 'date-fns';
 import styles from '../../App.module.css'
 import { axiosReq, axiosRes } from '../../api/axiosDefaults';

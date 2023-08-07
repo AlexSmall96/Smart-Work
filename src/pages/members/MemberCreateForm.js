@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import Member from '../../components/Member';
+import Member from './Member';
 import { axiosReq } from '../../api/axiosDefaults';
 import { useEffect } from 'react';
 // https://react-bootstrap.netlify.app/docs/components/modal/ //

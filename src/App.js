@@ -15,6 +15,7 @@ import DeleteMembers from "./pages/members/DeleteMembers";
 import ProjectEdit from "./pages/projects/ProjectEdit";
 import ProfileEdit from "./pages/profiles/ProfileEdit";
 import TasksPage from "./pages/tasks/TasksPage";
+import TaskDelete from "./pages/tasks/TaskDelete";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
               <Route exact path="/create" render={() => <ProjectCreateForm />} />
               <Route exact path="/projects/delete/:id" render={() => <ProjectDelete />} />
               <Route exact path="/projects/edit/:id" render={() => <ProjectEdit />} />
+              <Route exact path="/tasks/delete/:id" render={() => <TaskDelete />} />
               <Route exact path="/profiles/:id" render={() => <Profile />} />
               <Route exact path="/profiles/edit/:id" render={() => <ProfileEdit />} />
               <Route exact path="/tasks/:id" render={() => <TasksPage />} />
