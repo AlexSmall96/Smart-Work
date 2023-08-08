@@ -1,4 +1,7 @@
-/* https://stackoverflow.com/questions/43875517/react-bootstrap-remove-active-after-button-was-clicked */
+/* 
+The code for the below focus effects was taken from the following stack overflow article
+https://stackoverflow.com/questions/43875517/react-bootstrap-remove-active-after-button-was-clicked 
+*/
 
 .btn:focus {
     color: #007bff;

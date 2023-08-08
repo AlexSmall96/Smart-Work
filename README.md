@@ -45,7 +45,13 @@ Testing is detailed fully in [TESTING.MD](https://github.com/AlexSmall96/Smart-W
 
 # Deployment
 ### Deploying the Site to Heroku
-
+1. On Heroku.com, click Create New App.
+2. Select the appropriate region and choose a relevant name.
+3. Once the app is created, click on it in the dashboard and go to the deploy tab.
+4. Go to deployment methods, select GitHub.
+5. Search for the name of the repository and click connect.
+6. Go to the Manul Deploy section and click deploy main branch.
+7. Wait for the build log to complete and click View App so view site.
 ### Forking the Repository on GitHub
 1. On GitHub.com, navigate to the main page of the repository.
 2. In the top-right corner of the page, click Fork.
@@ -70,6 +76,7 @@ Testing is detailed fully in [TESTING.MD](https://github.com/AlexSmall96/Smart-W
 
 ## Code
 https://stackoverflow.com/questions/43875517/react-bootstrap-remove-active-after-button-was-clicked
+https://stackoverflow.com/questions/67866155/how-to-handle-onchange-value-in-date-reactjs
 
 ## Acknowledgements 
 This application was created as a portfolio 5 project for the Diploma in Full Stack Software Development from [Code Institute](https://codeinstitute.net/full-stack-software-development-diploma/?utm_term=code%20institute&utm_campaign=CI+-+UK+-+Search+-+Brand&utm_source=adwords&utm_medium=ppc&hsa_acc=8983321581&hsa_cam=1578649861&hsa_grp=62188641240&hsa_ad=635720257674&hsa_src=g&hsa_tgt=kwd-319867646331&hsa_kw=code%20institute&hsa_mt=e&hsa_net=adwords&hsa_ver=3&gclid=CjwKCAiA5Y6eBhAbEiwA_2ZWIUE0LRewvfAYnQS69Lujb5s2FrQjmX0Idzqj-Olbamn1DbS2D-R7gBoC-1AQAvD_BwE
