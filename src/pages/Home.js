@@ -36,37 +36,31 @@ prevIcon={<span aria-hidden="true" className={`carousel-control-prev-icon ${styl
 indicators={false}
 >
   <Carousel.Item>
-  <h3 className={styles.caption}>Collaborate</h3>
+  <h3>Collaborate</h3>
+  <p>Work on projects with your colleagues and friends.</p>
     <img
       className="d-block w-100"
       src="https://res.cloudinary.com/dojzptdbc/image/upload/v1691443644/project_kzsven.jpg"
       alt="First slide"
     />
-    <Carousel.Caption className={styles.paddedCaption}>
-    </Carousel.Caption>
-    <p className={styles.caption}>Work on projects with your colleagues and friends.</p>
   </Carousel.Item>
   <Carousel.Item>
-  <h3 className={styles.caption}>Customize</h3>
+  <h3>Customize</h3>
+  <p> Personalise your profile with your organisation, role, interests and skills</p>
     <img
       className="d-block w-100"
       src="https://res.cloudinary.com/dojzptdbc/image/upload/v1691444198/profile_gm4afv.jpg"
       alt="Second slide"
     />
-    <Carousel.Caption className={styles.paddedCaption}>
-    </Carousel.Caption>
-    <p className={styles.caption}> Personalise your profile with your organisation, role, interests and skills</p>
   </Carousel.Item>
   <Carousel.Item>
-    <h3 className={styles.caption}>Plan</h3>
+    <h3>Plan</h3>
+    <p>Never miss a deadline again with our detailed planning system.</p>
     <img
       className="d-block w-100" 
       src="https://res.cloudinary.com/dojzptdbc/image/upload/v1691443751/calender_ldwpt4.jpg"
       alt="Third slide"
     />
-    <Carousel.Caption>
-    </Carousel.Caption>
-      <p className={styles.caption}>Never miss a deadline again with our detailed planning system.</p>
   </Carousel.Item>
 </Carousel>
 {
