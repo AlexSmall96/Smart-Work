@@ -1,7 +1,7 @@
 .taskHeader{
     height:110px;
-    padding-top:3px;
     font-size: small;
+    text-align: left;
     background-color: rgb(236, 230, 230);
     opacity: 90%;
 }
