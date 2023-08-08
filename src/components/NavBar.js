@@ -7,12 +7,13 @@ import Avatar from "./Avatar";
 import axios from "axios";
 import UseClickOutsideToggle from "../hooks/UseClickOutsideToggle";
 
+/* Nav Bar to appear at the top of each page*/
 const NavBar = () => {
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
   const {expanded, setExpanded, ref} = UseClickOutsideToggle();
   
-
+  // Allow User to log out
   const handleSignOut = async () => {
     try {
       await axios.post("dj-rest-auth/logout/");
@@ -22,6 +23,7 @@ const NavBar = () => {
     }
   };
 
+  // Create Project Icon
   const newProjectIcon = (
     <NavLink
     className={styles.NavLink}
@@ -30,7 +32,9 @@ const NavBar = () => {
     >
     <i className="far fa-plus-square"></i>New Project
     </NavLink>
-  )
+  );
+
+  // Change the icons that appear when user is logged in
   const loggedInIcons = <>
       <NavLink
         className={styles.NavLink}
@@ -59,7 +63,8 @@ const NavBar = () => {
       >
       <Avatar src={currentUser?.profile_image} text='Profile' height={40} />
       </NavLink>
-  </>
+  </>;
+
   const loggedOutIcons = <>
     <NavLink
       className={styles.NavLink}
@@ -75,8 +80,9 @@ const NavBar = () => {
     >
       <i className="fas fa-user-plus"></i> Sign up
     </NavLink> 
-  </>
-
+  </>;
+  
+  // Render nav bar with icons based on logged in state
   return (
     <Navbar expanded={expanded} className={styles.NavBar} expand="md" fixed="top">
       <Container>

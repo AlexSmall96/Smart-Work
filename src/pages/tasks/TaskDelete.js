@@ -1,41 +1,45 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
-import { useParams } from "react-router-dom/cjs/react-router-dom.min"
+import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { Card, Button } from 'react-bootstrap';
 import { axiosReq, axiosRes } from '../../api/axiosDefaults';
 import appStyles from '../../App.module.css';
 
+/* Allow the task assigned to user to delete task*/
 const TaskDelete = () => {
+    // Initialize variables
     const currentUser = useCurrentUser();
     const { id } = useParams();
     const history = useHistory();
-    const [message, setMessage] = useState('')
-    const [taskDeleted, setTaskDeleted] = useState(false)
+    const [message, setMessage] = useState('');
+    const [taskDeleted, setTaskDeleted] = useState(false);
 
+    // Get task data
     useEffect(() => {
         const fetchTask = async () => {
             try {
-                const response = await axiosReq.get(`/tasks/${id}`)
-                setMessage(`Are you sure you want to delete ${response.data.description} from ${response.data.project_title}?`)
+                const response = await axiosReq.get(`/tasks/${id}`);
+                setMessage(`Are you sure you want to delete ${response.data.description} from ${response.data.project_title}?`);
             } catch(err){
-                console.log(err.response)
+                console.log(err.response);
             }
         }
-        fetchTask()
-    },[id])
-  
+        fetchTask();
+    },[id]);
+    
+    // Handle task deletiono
     const handleDelete = async () => {
         try {
-            await axiosRes.delete(`/tasks/${id}`)
-            setMessage('Task deleted.')
-            setTaskDeleted(true)
+            await axiosRes.delete(`/tasks/${id}`);
+            setMessage('Task deleted.');
+            setTaskDeleted(true);
         } catch(err){
-            console.log(err.response)
+            console.log(err.response);
         }
-    }
+    };
 
-  return (
+return (
 <Card>
   <Card.Body>
     <Card.Title>{message}</Card.Title>
@@ -47,7 +51,7 @@ const TaskDelete = () => {
     </>)}
   </Card.Body>
 </Card>
-  )
-}
+  );
+};
 
-export default TaskDelete
+export default TaskDelete;

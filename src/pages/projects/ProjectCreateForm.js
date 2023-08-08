@@ -6,43 +6,49 @@ import { axiosReq } from "../../api/axiosDefaults";
 import { useHistory } from "react-router";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
+/* Allow users to create a new project */
 function ProjectCreateForm() {
+    // Initialize state variables
     const [errors, setErrors] = useState({});
     const history = useHistory();
     const [projectData, setProjectData] = useState({
         title: '',
         description: '',
         complexity: 'Low',
-    })
+    });
     const currentUser = useCurrentUser();
-    const [startDate, setStartDate] = useState(format(new Date(), 'yyyy-MM-dd'))
-    const [dueDate, setDueDate] = useState(format(new Date(), 'yyyy-MM-dd'))
+    const [startDate, setStartDate] = useState(format(new Date(), 'yyyy-MM-dd'));
+    const [dueDate, setDueDate] = useState(format(new Date(), 'yyyy-MM-dd'));
 
-    const {title, description, complexity} = projectData
-    // https://stackoverflow.com/questions/67866155/how-to-handle-onchange-value-in-date-reactjs // 
+    const {title, description, complexity} = projectData;
+    /*
+    Handle change for date inputs. The below code was taken from the following stack overflow forum
+    https://stackoverflow.com/questions/67866155/how-to-handle-onchange-value-in-date-reactjs
+    */
     const handleStartDateChange = (event) => {
         const newStartDate = format(new Date(event.target.value), 'yyyy-MM-dd');
-        setStartDate(newStartDate)
+        setStartDate(newStartDate);
     }
     const handleDueDateChange = (event) => {
         const newDueDate = format(new Date(event.target.value), 'yyyy-MM-dd');
-        setDueDate(newDueDate)
+        setDueDate(newDueDate);
     }
+    // Handle change for text inputs
     const handleChange = (event) => {
         setProjectData({
             ...projectData,
             [event.target.name]: event.target.value
-        })
-    }
+        });
+    };
+    // Handle submit function
     const handleSubmit = async (event) => {
-        event.preventDefault()
+        event.preventDefault();
         const formData = new FormData();
-        
-        formData.append('title', title)
-        formData.append('description', description)
-        formData.append('complexity', complexity)
-        formData.append('start_date', startDate.concat('T00:00:00.000000Z'))
-        formData.append('due_date', dueDate.concat('T00:00:00.000000Z'))
+        formData.append('title', title);
+        formData.append('description', description);
+        formData.append('complexity', complexity);
+        formData.append('start_date', startDate.concat('T00:00:00.000000Z'));
+        formData.append('due_date', dueDate.concat('T00:00:00.000000Z'));
 
         try {
             await axiosReq.post("/projects/", formData);
@@ -53,11 +59,13 @@ function ProjectCreateForm() {
                 setErrors(err.response?.data);
             }
         }
-        };
+    };
     
     return (
         <div>
-            <Form onSubmit={handleSubmit}>  
+            {/* Form to input chosen project details */}
+            <Form onSubmit={handleSubmit}> 
+            {/* Title */} 
             <Form.Group controlId="title">
                 <Form.Label>Title</Form.Label>
                 <Form.Control 
@@ -71,6 +79,7 @@ function ProjectCreateForm() {
              {message}
              </Alert>
              ))}
+            {/* Description */}
             <Form.Group controlId="description">
                 <Form.Label>Description</Form.Label>
                 <Form.Control
@@ -87,6 +96,7 @@ function ProjectCreateForm() {
              {message}
              </Alert>
              ))}
+            {/* Start Date */}
             <Form.Group as={Row} controlId="start-date">
                 <Form.Label column xs="6">Start Date</Form.Label>
                 <Col xs="6">
@@ -102,6 +112,7 @@ function ProjectCreateForm() {
              {message}
              </Alert>
              ))}
+            {/* Due Date */}
             <Form.Group as={Row} controlId="due-date">
                 <Form.Label column xs="6">Due Date</Form.Label>
                 <Col xs="6">
@@ -117,6 +128,7 @@ function ProjectCreateForm() {
              {message}
              </Alert>
              ))}
+            {/* Complexity */}
             <Form.Group as={Row} controlId="complexity">
                 <Form.Label column xs="6">Complexity</Form.Label>
                 <Col xs="6">
@@ -137,6 +149,7 @@ function ProjectCreateForm() {
              {message}
              </Alert>
              ))}
+            {/* Cancel and create buttons */}
             <Button className={styles.horizontalMargin} onClick={() => history.goBack()} variant="primary" type="button">
                 Cancel
             </Button>
@@ -145,8 +158,8 @@ function ProjectCreateForm() {
             </Button>
             </Form>
         </div>
-    )
-}
+    );
+};
 
 
 export default ProjectCreateForm;

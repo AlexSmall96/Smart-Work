@@ -1,42 +1,47 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
-import { useParams } from "react-router-dom/cjs/react-router-dom.min"
+import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { Card, Button } from 'react-bootstrap';
 import { axiosReq, axiosRes } from '../../api/axiosDefaults';
 
+/* Allows user to delete a project */
 const ProjectDelete = () => {
+    // Initialize variables
     const currentUser = useCurrentUser();
     const { id } = useParams();
     const history = useHistory();
-    const [message, setMessage] = useState('')
-    const [projectDeleted, setProjectDeleted] = useState(false)
+    const [message, setMessage] = useState('');
+    const [projectDeleted, setProjectDeleted] = useState(false);
 
+    // Get project data when component mounts or updates
     useEffect(() => {
         const fetchProject = async () => {
             try {
-                const response = await axiosReq.get(`/projects/${id}`)
-                setMessage(`Are you sure you want to delete ${response.data.title}?`)
+                const response = await axiosReq.get(`/projects/${id}`);
+                setMessage(`Are you sure you want to delete ${response.data.title}?`);
             } catch(err){
-                console.log(err.response)
+                console.log(err.response);
             }
         }
-        fetchProject()
-    },[id])
-  
+        fetchProject();
+    },[id]);
+    
+    // Delete project based on id
     const handleDelete = async () => {
         try {
             await axiosRes.delete(`/projects/${id}`)
             setMessage('Project deleted.')
             setProjectDeleted(true)
         } catch(err){
-            console.log(err.response)
+            console.log(err.response);
         }
-    }
+    };
 
-  return (
+return (
 <Card>
   <Card.Body>
+    {/* Get user to confirm project deletion or go back*/}
     <Card.Title>{message}</Card.Title>
     {projectDeleted? (
         <Button onClick={() => history.push(`/projects/${currentUser.profile_id}`)}>Back to Projects</Button>
@@ -46,7 +51,7 @@ const ProjectDelete = () => {
     </>)}
   </Card.Body>
 </Card>
-  )
-}
+);
+};
 
-export default ProjectDelete
+export default ProjectDelete;

@@ -1,8 +1,9 @@
-import React from 'react'
-import Avatar from '../../components/Avatar'
-import { Button } from 'react-bootstrap'
-import styles from '../../styles/Member.module.css'
+import React from 'react';
+import Avatar from '../../components/Avatar';
+import { Button } from 'react-bootstrap';
+import styles from '../../styles/Member.module.css';
 
+/* Member component to be used in project data and member creation form */
 const Member = ({
   variant, disabled, src, owner, organisation, onClick, id, height=55, active, selected
 }) => {
@@ -18,7 +19,7 @@ const Member = ({
     <br></br>
     {disabled? (<small>Existing Member</small>):('')}
   </Button> 
-  )
-}
+  );
+};
 
-export default Member
+export default Member;

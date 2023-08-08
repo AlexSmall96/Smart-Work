@@ -7,37 +7,38 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Image from "react-bootstrap/Image";
 import Container from "react-bootstrap/Container";
-
 import { Link, useHistory } from "react-router-dom";
 import styles from "../../styles/SignInUpForm.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
 import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
 
+/* Allows user to sign in once registered */
 function SignInForm() {
-  
+  // Get current user data
   const setCurrentUser = useSetCurrentUser();
-
+  // Initialize state variables
   const [signInData, setSignInData] = useState({
     username: "",
     password: "",
   });
   const { username, password } = signInData;
-
   const [errors, setErrors] = useState({});
-
   const history = useHistory();
+  // Define handle sign in data with form
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
+      // Post form data
       const {data} = await axios.post("/dj-rest-auth/login/", signInData);
-      setCurrentUser(data.user)
+      setCurrentUser(data.user);
       history.push("/");
     } catch (err) {
+      // Save any errors
       setErrors(err.response?.data);
     }
   };
-
+  // Handle change when user inputs data
   const handleChange = (event) => {
     setSignInData({
       ...signInData,
@@ -50,7 +51,9 @@ function SignInForm() {
       <Col className="my-auto p-0 p-md-2" md={6}>
         <Container className={`${appStyles.Content} p-4 `}>
           <h1 className={styles.Header}>Sign in</h1>
+          {/* Create form for user to input login data*/ }
           <Form onSubmit={handleSubmit}>
+            {/* Username */}
             <Form.Group controlId="username">
               <Form.Label className="d-none">Username</Form.Label>
               <Form.Control
@@ -67,7 +70,7 @@ function SignInForm() {
                 {message}
               </Alert>
             ))}
-
+            {/* Password */}
             <Form.Group controlId="password">
               <Form.Label className="d-none">Password</Form.Label>
               <Form.Control
@@ -84,6 +87,7 @@ function SignInForm() {
                 {message}
               </Alert>
             ))}
+            {/* Sign in button */}
             <Button
               className={`${btnStyles.Button} ${btnStyles.Wide} ${btnStyles.Bright}`}
               type="submit"
@@ -98,6 +102,7 @@ function SignInForm() {
             ))}
           </Form>
         </Container>
+        {/* Link to sign up page*/}
         <Container className={`mt-3 ${appStyles.Content}`}>
             Don't have an account? 
             <Link className={styles.Link} to="/signup">
@@ -116,6 +121,6 @@ function SignInForm() {
       </Col>
     </Row>
   );
-}
+};
 
 export default SignInForm;

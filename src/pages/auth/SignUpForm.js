@@ -15,25 +15,25 @@ import {
 } from "react-bootstrap";
 import axios from "axios";
 
+/* Allows user to create an account */
 const SignUpForm = () => {
+  // Initialize state variables
   const [signUpData, setSignUpData] = useState({
     username: "",
     password1: "",
     password2: "",
   });
   const { username, password1, password2 } = signUpData;
-
   const [errors, setErrors] = useState({});
-
   const history = useHistory();
-
+  // Handle change when user inputs data
   const handleChange = (event) => {
     setSignUpData({
       ...signUpData,
       [event.target.name]: event.target.value,
     });
   };
-
+  // Define handle register
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
@@ -49,7 +49,9 @@ const SignUpForm = () => {
       <Col className="my-auto py-2 p-md-2" md={6}>
         <Container className={`${appStyles.Content} p-4 `}>
           <h1 className={styles.Header}>Sign up</h1>
+          {/* Create form for user to register with details */ }
           <Form onSubmit={handleSubmit}>
+            {/* Username */}
             <Form.Group controlId="username">
               <Form.Label className="d-none">username</Form.Label>
               <Form.Control
@@ -66,7 +68,7 @@ const SignUpForm = () => {
                 {message}
               </Alert>
             ))}
-
+            {/* Password */}
             <Form.Group controlId="password1">
               <Form.Label className="d-none">Password</Form.Label>
               <Form.Control
@@ -100,7 +102,7 @@ const SignUpForm = () => {
                 {message}
               </Alert>
             ))}
-
+            {/* Sign up button */}
             <Button
               className={`${btnStyles.Button} ${btnStyles.Wide} ${btnStyles.Bright}`}
               type="submit"
@@ -115,7 +117,7 @@ const SignUpForm = () => {
             ))}
           </Form>
         </Container>
-
+        {/* Link to sign in page*/}
         <Container className={`mt-3 ${appStyles.Content}`}>
         Already have an account? 
         <Link className={styles.Link} to="/signin">

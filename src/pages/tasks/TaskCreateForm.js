@@ -1,112 +1,112 @@
-import React from 'react'
-import { useState, useEffect } from 'react'
-import Accordion from 'react-bootstrap/Accordion'
-import Card from 'react-bootstrap/Card'
-import Button from 'react-bootstrap/Button'
-import Form from 'react-bootstrap/Form'
-import { Row, Col } from 'react-bootstrap'
+import React from 'react';
+import { useState, useEffect } from 'react';
+import Accordion from 'react-bootstrap/Accordion';
+import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import { Row, Col } from 'react-bootstrap';
 import { format } from 'date-fns';
-import { axiosReq } from '../../api/axiosDefaults'
-import styles from '../../styles/TaskCreateForm.module.css'
+import { axiosReq } from '../../api/axiosDefaults';
+import styles from '../../styles/TaskCreateForm.module.css';
 import Alert from "react-bootstrap/Alert";
 
+/* Allows any member of a project to create a task */
 const TaskCreateForm = ({members, projectData, setTasks}) => {
+    // Initialize variables
     const [errors, setErrors] = useState({});
-    const [taskCreated, setTaskCreated] = useState(false)
-    const [expanded, setExpanded] = useState(false)
-
-    const usernameToId = {}
-    for (let member of members){
-        usernameToId[member.username] = member.id
-    }
-    
+    const [taskCreated, setTaskCreated] = useState(false);
+    const [expanded, setExpanded] = useState(false);
     const [taskData, setTaskData] = useState({
         description: '',
         status: 'Not Started',
-    })
-    const {description, status} = taskData
-    
-    const [startDate, setStartDate] = useState(format(new Date(), 'yyyy-MM-dd'))
-    const [dueDate, setDueDate] = useState(format(new Date(), 'yyyy-MM-dd'))
-    const [assignedToId, setAssignedToId] = useState(0)
+    });
+    const {description, status} = taskData;
+    const [startDate, setStartDate] = useState(format(new Date(), 'yyyy-MM-dd'));
+    const [dueDate, setDueDate] = useState(format(new Date(), 'yyyy-MM-dd'));
+    const [assignedToId, setAssignedToId] = useState(0);
 
+    // Set default assigned to as first member in list
     useEffect(() => {
         const fetchDefaultId = async () => {
           try {
-            const response = await axiosReq.get(`/members/?project=${projectData.project}`)
-            setAssignedToId(response.data[0].id)
+            const response = await axiosReq.get(`/members/?project=${projectData.project}`);
+            setAssignedToId(response.data[0].id);
           } catch(err){
-            console.log(err.response)
+            console.log(err.response);
           }
         }
-        fetchDefaultId()
-      }, [projectData])
+        fetchDefaultId();
+      }, [projectData]);
 
+    /*
+    Handle change for date inputs. The below code was taken from the following stack overflow forum
+    https://stackoverflow.com/questions/67866155/how-to-handle-onchange-value-in-date-reactjs
+    */
     const handleDueDateChange = (event) => {
         const newDueDate = format(new Date(event.target.value), 'yyyy-MM-dd');
-        setDueDate(newDueDate)
+        setDueDate(newDueDate);
     }
-
     const handleStartDateChange = (event) => {
         const newStartDate = format(new Date(event.target.value), 'yyyy-MM-dd');
-        setStartDate(newStartDate)
+        setStartDate(newStartDate);
     }
+    // Handle text field changes
     const handleChange = (event) => {
         setTaskData({
             ...taskData,
             [event.target.name]: event.target.value
-        })
-    }
-
+        });
+    };
+    // Handle assigned to change
     const handleAssignedToChange = (event) => {
         for (let child of event.target.children){
             if (child.value === event.target.value){
-                console.log(child.id)
-                setAssignedToId(child.id)
+                console.log(child.id);
+                setAssignedToId(child.id);
             }
         }
-    }
-
+    };
+    // Handle form submit
     const handleSubmit = async (event) => {
         event.preventDefault();
         const formData = new FormData();
-        formData.append('description', description)
-        formData.append('status', status)
-        formData.append('assigned_to', Number(assignedToId))
-        formData.append('start_date', startDate.concat('T00:00:00.000000Z'))
-        formData.append('due_date', dueDate.concat('T00:00:00.000000Z'))
+        formData.append('description', description);
+        formData.append('status', status);
+        formData.append('assigned_to', Number(assignedToId));
+        formData.append('start_date', startDate.concat('T00:00:00.000000Z'));
+        formData.append('due_date', dueDate.concat('T00:00:00.000000Z'));
         try {
-            await axiosReq.post("/tasks/", formData)
-            setTaskCreated(true)
+            await axiosReq.post("/tasks/", formData);
+            setTaskCreated(true);
             } catch (err) {
                 setErrors(err.response?.data);
         }
         try {
-            const newTasks = await axiosReq.get(`/tasks/?assigned_to__project=${projectData.project}`)
-            setTasks(newTasks.data)
+            const newTasks = await axiosReq.get(`/tasks/?assigned_to__project=${projectData.project}`);
+            setTasks(newTasks.data);
             } catch (err) {
             console.log(err.response);
         }
     }
 
+    // Set expanded and task created variables
     const handleClick = () => {
         setTaskCreated(false)
         setTaskData({
             description: '',
             status: 'Not Started',
-        })
-        setStartDate(format(new Date(), 'yyyy-MM-dd'))
-        setDueDate(format(new Date(), 'yyyy-MM-dd'))
-    }
-
+        });
+        setStartDate(format(new Date(), 'yyyy-MM-dd'));
+        setDueDate(format(new Date(), 'yyyy-MM-dd'));
+    };
     const handleHide = () => {
         if (expanded){
-            setExpanded(false)
-            setTaskCreated(false)
+            setExpanded(false);
+            setTaskCreated(false);
         } else {
-            setExpanded(true)
+            setExpanded(true);
         }
-    }
+    };
 
   return (
     <Accordion>
@@ -123,7 +123,8 @@ const TaskCreateForm = ({members, projectData, setTasks}) => {
         <Accordion.Collapse eventKey="0">
         <Card.Body>
         {taskCreated?(<div><p>Task Created Succesfully</p><Button onClick={handleClick}>Create new task</Button></div>):(
-        <Form onSubmit={handleSubmit}>  
+        <Form onSubmit={handleSubmit}>
+        {/* Description */}
         <Form.Group controlId="description">
             <Form.Label>Description</Form.Label>
             <Form.Control 
@@ -137,6 +138,7 @@ const TaskCreateForm = ({members, projectData, setTasks}) => {
                 {message}
               </Alert>
             ))}
+        {/* Start Date */}
         <Form.Group as={Row} controlId="start-date">
             <Form.Label column xs="6">Start Date</Form.Label>
             <Col xs="6">
@@ -147,6 +149,7 @@ const TaskCreateForm = ({members, projectData, setTasks}) => {
             onChange={handleStartDateChange} />
             </Col>
         </Form.Group>
+        {/* Due Date */}
         <Form.Group as={Row} controlId="due-date">
             <Form.Label column xs="6">Due Date</Form.Label>
             <Col xs="6">
@@ -157,6 +160,7 @@ const TaskCreateForm = ({members, projectData, setTasks}) => {
             onChange={handleDueDateChange} />
             </Col>
         </Form.Group>
+        {/* Status */}
         <Form.Group as={Row} controlId="status">
             <Form.Label column xs="6">Status</Form.Label>
             <Col xs="6">
@@ -172,6 +176,7 @@ const TaskCreateForm = ({members, projectData, setTasks}) => {
             </Form.Control>
             </Col>
         </Form.Group>
+        {/* Assigned to */}
         <Form.Group as={Row} controlId="assigned-to">
             <Form.Label column xs="6">Assigned To:</Form.Label>
             <Col xs="6">
@@ -184,17 +189,17 @@ const TaskCreateForm = ({members, projectData, setTasks}) => {
             </Form.Control> 
             </Col>
         </Form.Group>
+        {/* Submit button */}
         <Button variant="primary" type="submit">
             Create Task
         </Button>
         </Form>
         )}
-
         </Card.Body>
         </Accordion.Collapse>
     </Card>
     </Accordion>
-  )
-}
+  );
+};
 
-export default TaskCreateForm
+export default TaskCreateForm;

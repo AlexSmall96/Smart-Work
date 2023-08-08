@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
 import {  Accordion, Button, Card,  Container, Row, Col } from 'react-bootstrap';
@@ -10,40 +10,43 @@ import { axiosReq } from '../../api/axiosDefaults';
 import TaskCreateForm from '../tasks/TaskCreateForm'
 import Task from '../tasks/Task';
 
+/* Project component to display all project data */
 const Project = ({projectData}) => {
-    const [members, setMembers] = useState([])
-    const [expanded, setExpanded] = useState(false)
-    const [tasks, setTasks] = useState([])
+    // Initialize state variables
+    const [members, setMembers] = useState([]);
+    const [expanded, setExpanded] = useState(false);
+    const [tasks, setTasks] = useState([]);
     const currentUser = useCurrentUser();
-    const is_owner = currentUser?.username === projectData.project_owner_username
+    const is_owner = currentUser?.username === projectData.project_owner_username;
 
+    // Fetch members and tasks associated with project
     useEffect(() => {
         const fetchMembers = async () => {
           try {
-            const response = await axiosReq.get(`/members/?project=${projectData.project}`)
-            setMembers(response.data)
+            const response = await axiosReq.get(`/members/?project=${projectData.project}`);
+            setMembers(response.data);
           } catch(err){
-            console.log(err.response)
+            console.log(err.response);
           }
-        }
-        
+        };
         const fetchTasks = async () => {
             try {
-                const response = await axiosReq.get(`/tasks/?assigned_to__project=${projectData.project}`)
-                setTasks(response.data)
+                const response = await axiosReq.get(`/tasks/?assigned_to__project=${projectData.project}`);
+                setTasks(response.data);
             } catch(err){
-                console.log(err.response)
+                console.log(err.response);
             }
-        }
-        fetchMembers()
-        fetchTasks()
-      }, [projectData])
+        };
+        fetchMembers();
+        fetchTasks();
+      }, [projectData]);
 
 return (
     <Card className={styles.projectCard}>
         <Card.Header>
             <div>
                 <Container>
+                    {/* Header */}
                     <Row className="justify-content-md-center">
                         <Col xs={2}>
                             <Link to={`/profiles/${projectData.project_owner_profile_id}`}>
@@ -52,6 +55,7 @@ return (
                         </Col>
                         <Col xs={8}><strong>{projectData.title}</strong></Col>
                         <Col xs={2} sm={{ span: 1, offset: 1 }}>
+                        {/* Edit and delete buttons if project owner */}
                         {is_owner?(<>
                             <Link to={`/projects/delete/${projectData.project}`}>     
                                 <Button variant="outline-primary" className={styles.projectButtons} size="sm"><i className="fa-solid fa-trash-can"></i></Button>
@@ -68,6 +72,7 @@ return (
             </div>
         </Card.Header>
         <Accordion>
+                {/* Project details in expandable body */}
                 <Accordion.Toggle as={Button} variant="link" eventKey="0" className={styles.projectAccord} onClick={() => setExpanded(!expanded)}>
                     {expanded?('Hide Details'):('View Details')}
                 </Accordion.Toggle>
@@ -84,6 +89,7 @@ return (
                     <Col md={6}>{`Outstanding Tasks: ${tasks.filter(task => task.status !== 'Complete').length} `}</Col>
                 </Row>
             </Container>
+                    {/* Members of project */}
                 <p className={styles.left}>
                     Members
                     {is_owner?(<>
@@ -106,6 +112,7 @@ return (
                         )
                     }
                 </Container>
+                {/* Project tasks */}
                 <TaskCreateForm members={members} projectData={projectData} tasks={tasks} setTasks={setTasks}/>
                 {tasks.length?(
                 <Card.Header className={styles.hideSmall}>
@@ -125,7 +132,6 @@ return (
                 </Accordion.Collapse>
                 </Accordion>
     </Card>
-    )
-
-}
-export default Project
+    );
+};
+export default Project;

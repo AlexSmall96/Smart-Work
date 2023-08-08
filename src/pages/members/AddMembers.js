@@ -6,77 +6,85 @@ import Member from './Member';
 import styles from '../../styles/AddMembers.module.css'
 import appStyles from'../../App.module.css'
 
+/* Form to add members to a project */
 const AddMembers = () => {
+    // Initialize state variables
     const { projectId } = useParams();
     const history = useHistory();
-    const [memberProfileIds, setMemberProfileIds] = useState([])
-    const [selectedProfileIds, setSelectedProfileIds] = useState([])
-    const [selectedProfiles, setSelectedProfiles] = useState([])
-    const [profiles, setProfiles] = useState([])
-    const [title, setTitle] = useState('')
+    const [memberProfileIds, setMemberProfileIds] = useState([]);
+    const [selectedProfileIds, setSelectedProfileIds] = useState([]);
+    const [selectedProfiles, setSelectedProfiles] = useState([]);
+    const [profiles, setProfiles] = useState([]);
+    const [title, setTitle] = useState('');
     const [query, setQuery] = useState('');
-    const [membersAdded, setMembersAdded] = useState(false)
+    const [membersAdded, setMembersAdded] = useState(false);
 
+    // Load data when component mounts or updates
     useEffect(() => {
+        // Get current members of project
         const fetchMembers = async () => {
           try {
-            const response = await axiosReq.get(`/members/?project=${projectId}`)
-            setMemberProfileIds(response.data.map(member => member.profile))
-            setTitle(response.data[0].title)
+            const response = await axiosReq.get(`/members/?project=${projectId}`);
+            setMemberProfileIds(response.data.map(member => member.profile));
+            setTitle(response.data[0].title);
           } catch(err){
-            console.log(err.response)
+            console.log(err.response);
           }
-        }
+        };
+        // Get all profiles with search
         const fetchProfiles = async () => {
             try {
-                const response = await axiosReq.get(`/profiles/?search=${query}`)
-                setProfiles(response.data)
+                const response = await axiosReq.get(`/profiles/?search=${query}`);
+                setProfiles(response.data);
             } catch(err) {
-                console.log(err.response)
+                console.log(err.response);
             }
-        }
-        fetchMembers()
-        fetchProfiles()
-      }, [projectId, query])
-
+        };
+        // Call both data fetching functions
+        fetchMembers();
+        fetchProfiles();
+      }, [projectId, query]);
+    
+    // Add selected members to array
     const selectMember = (event) => {
         if (selectedProfileIds.includes(event.target.id)){
-            let index = selectedProfileIds.indexOf(event.target.id)
-            selectedProfileIds.splice(index, 1)
+            let index = selectedProfileIds.indexOf(event.target.id);
+            selectedProfileIds.splice(index, 1);
             setSelectedProfileIds(
                 selectedProfileIds
-            )
+            );
             setSelectedProfiles(
                 profiles.filter(profile => selectedProfileIds.includes(profile.id.toString()))
-            )
-            event.target.selected = false
-            event.target.variant = "outline-secondary"
+            );
+            event.target.selected = false;
+            event.target.variant = "outline-secondary";
         } else {
             selectedProfileIds.push(event.target.id)
             setSelectedProfileIds(
                 selectedProfileIds
-            )
+            );
             setSelectedProfiles(
                 profiles.filter(profile => selectedProfileIds.includes(profile.id.toString()))
-            )
-            event.target.selected = true
+            );
+            event.target.selected = true;
         }
-    }
-
+    };
+    // Post the selected member to the database
     const handleSubmit = async () => {
         try {
             await Promise.all([
                 selectedProfileIds.map(id => axiosReq.post('/members/', {'project': projectId, 'profile': Number(id)}))
-              ])
-            setMembersAdded(true)
+              ]);
+            setMembersAdded(true);
         } catch(err){
-            console.log(err.response)
+            console.log(err.response);
         }
-    }
+    };
 
   return (
     <>
     <Card>
+        {/* Form Header */}
         <Card.Header>
             {`Select users to add to ${title}`} 
         </Card.Header>
@@ -93,7 +101,7 @@ const AddMembers = () => {
             placeholder="Search profiles by username, name or organsation"
           />
         </Form>
-        
+        {/* Display all profiles based on search */}
         {profiles.length?(
         profiles.map(profile => (
             <Member
@@ -109,6 +117,7 @@ const AddMembers = () => {
             />
             ))):('No results, please try a different search')}
             </Card.Body>
+        {/* Show which members have been selected */}
         <Card.Footer>
         {membersAdded?('Members added to project.'):(
             <div>
@@ -125,18 +134,19 @@ const AddMembers = () => {
             id={profile.id}
             selected={selectedProfileIds.includes(profile.id.toString())}
             />))}
-            {selectedProfileIds.length?(
+            {/* Submit button */}
+            {selectedProfileIds.length?(     
                 <Button onClick={handleSubmit} variant="primary" className={styles.horizMargin}>Add Users to Project</Button>
             ):('')}
             </div>
         )
     }
-
         </Card.Footer>
     </Card>
+    {/* Back button */}
     <Button variant="primary" onClick={() => history.goBack()} className={appStyles.verticalMargin}>Back to Projects</Button>
     </>
-  )
-}
+  );
+};
 
-export default AddMembers
+export default AddMembers;

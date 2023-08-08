@@ -1,6 +1,7 @@
-import React from 'react'
+import React from 'react';
 import styles from '../styles/Avatar.module.css';
 
+/* Customizable profile image component */
 const Avatar = ({src, height=45, text}) => {
   return (
     <span>
@@ -12,7 +13,7 @@ const Avatar = ({src, height=45, text}) => {
         alt="avatar" 
         /> {text}
     </span>
-  )
-}
+  );
+};
 
-export default Avatar
+export default Avatar;
