@@ -1,7 +1,7 @@
 # Smart Work
 
 ## Live Sites
-[https://classbooking.herokuapp.com/](https://classbooking.herokuapp.com/)https://smart-work-api-c3503744e915.herokuapp.com/
+[https://smart-work-3d4938feb378.herokuapp.com/](https://smart-work-3d4938feb378.herokuapp.com/)
 [https://smart-work-api-c3503744e915.herokuapp.com/](https://smart-work-api-c3503744e915.herokuapp.com)
 
 
