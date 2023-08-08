@@ -40,10 +40,10 @@ const TasksPage = () => {
                     <Col>{task.due_date}</Col>
                     <Col>{task.status}</Col>
                 </Row>)
-            ):('No results')}
+            ):("You're not currently assigned to any tasks.")}
         </Card.Body>
     </Card>
-      <Link to={`/projects/${id}`}><Button className={appStyles.verticalMargin}>Go to My Projects to edit your tasks.</Button></Link>
+      <Link to={`/projects/${id}`}><Button className={appStyles.verticalMargin}>Go to My Projects to create and update tasks.</Button></Link>
     </>
   )
 }

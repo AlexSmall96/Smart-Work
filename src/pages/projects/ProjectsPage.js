@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom/cjs/react-router-dom.min'
 import { axiosReq } from '../../api/axiosDefaults'
 import Project from './Project';
 import appStyles from '../../App.module.css'
+import { Link } from 'react-router-dom/cjs/react-router-dom.min';
+import { Button } from 'react-bootstrap';
 
 const ProjectsPage = () => {
     const { id } = useParams();
@@ -21,8 +23,11 @@ const ProjectsPage = () => {
       }, [id])
   return (
     <div className={appStyles.background}>
-        
-        {members.map(member => <Project key={member.id} projectData={member} />)}
+        {members.length?(
+            members.map(member => <Project key={member.id} projectData={member} />
+        )
+        ):(<>You're not currently a member of any projects. <Link to='/create'><Button variant="primary">Create a Project</Button></Link></>)
+        }
     </div>
   )
 }

@@ -3,6 +3,7 @@ import { useParams, useHistory  } from 'react-router-dom/cjs/react-router-dom.mi
 import { Card, Button, Form } from 'react-bootstrap';
 import Avatar from '../../components/Avatar';
 import { axiosReq } from '../../api/axiosDefaults';
+import appStyles from '../../App.module.css'
 
 const ProfileEdit = () => {
     const {id} = useParams()
@@ -138,7 +139,8 @@ const ProfileEdit = () => {
 </Card.Body>
 <Card.Footer className="text-muted">{`Joined: ${profile.created_at}`}</Card.Footer>
 </Card>
-<Button variant="primary" onClick={handleSubmit}>Save Changes</Button>
+<Button variant="primary" onClick={() => history.goBack()} className={appStyles.verticalMargin}>Back</Button>
+<Button variant="primary" onClick={handleSubmit} className={`${appStyles.verticalMargin} ${appStyles.horizontalMargin}`}>Save Changes</Button>
 </>
   )
 }
