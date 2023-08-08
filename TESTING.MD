@@ -29,6 +29,22 @@ This section has been divided into subsections based on each page of the site. F
 |2.6          |Component Interactivity |The icon corresponding to the current page stays blue| Pass
 
 [Navigation Bar Tests Screenshots](https://github.com/AlexSmall96/Smart-Work/blob/main/documentation/testing/NavBar.pdf)
+
+### Signin Page
+| Test No.    | Category    | Pass Criteria | Pass/Fail |
+| ----------- | ----------- |---------------|-----------|
+|3.1          |Loading Data |Form loads with sign in button below| Pass
+|3.2          |Loading Data |Button with sign up link appears below form| Pass
+|3.3          |Loading Data |Image appears next to form on screens >768px in width| Pass
+|3.4          |Site Navigation |Sign up button takes user to sign up page| Pass
+|3.5          |Site Navigation |Submitting the form with username blank gives an error message stating 'Must include "username" and "password"| Pass
+|3.6          |Input Validation |Submitting the form with password blank gives an error message stating 'This field may not be blank'| Pass
+|3.7          |Input Validation |Submitting the form with incorrect login details gives an error message stating 'Unable to login in with provided credentials' | Pass
+|3.8          |Input Validation |Submitting the form with correct login details directs the user to the home page | Pass
+
+[SignIn Page Tests Screenshots](https://github.com/AlexSmall96/Smart-Work/blob/main/documentation/testing/SignIn.pdf)
 ## User Stories Testing
+
+## Responsiveness
 
 ## Validation Testing
