@@ -18,6 +18,17 @@ This section has been divided into subsections based on each page of the site. F
 
 [Home Page Tests Screenshots](https://github.com/AlexSmall96/Smart-Work/blob/main/documentation/testing/HomePage.pdf)
 
+### Navigation Bar
+| Test No.    | Category    | Pass Criteria | Pass/Fail |
+| ----------- | ----------- |---------------|-----------|
+|2.1          |Loading Data |Logo loads in top left corner| Pass
+|2.2          |Loading Data |When user isn't logged in, the home, signup and signin icons appear| Pass
+|2.3          |Loading Data |When user is logged in, the home, my projects, my tasks, sign out and profile icons appear, with the new project icon appearing next to the logo| Pass
+|2.4          |Component Interactivity |When the icons are hovered over, they turn blue| Pass
+|2.5          |Site Navigation |All the links in the nav bar take the user to the correct page| Pass
+|2.6          |Component Interactivity |The icon corresponding to the current page stays blue| Pass
+
+[Navigation Bar Tests Screenshots](https://github.com/AlexSmall96/Smart-Work/blob/main/documentation/testing/NavBar.pdf)
 ## User Stories Testing
 
 ## Validation Testing
