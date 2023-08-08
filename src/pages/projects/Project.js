@@ -81,7 +81,7 @@ return (
                 </Row>  
                 <Row>
                     <Col md={6}>Complexity: {projectData.complexity}</Col>
-                    <Col md={6}></Col>
+                    <Col md={6}>{`Outstanding Tasks: ${tasks.filter(task => task.status !== 'Complete').length} `}</Col>
                 </Row>
             </Container>
                 <p className={styles.left}>
@@ -107,20 +107,23 @@ return (
                     }
                 </Container>
                 <TaskCreateForm members={members} projectData={projectData} tasks={tasks} setTasks={setTasks}/>
+                {tasks.length?(
                 <Card.Header className={styles.hideSmall}>
-                        <Row>
-                            <Col md={2}>Assigned To</Col>
-                            <Col md={4}>Description</Col>
-                            <Col md={2}>Due Date</Col>
-                            <Col md={2}>Status</Col>
-                            <Col md={2}></Col>
-                        </Row>
+                <Row>
+                    <Col md={3}>Assigned To</Col>
+                    <Col md={3}>Description</Col>
+                    <Col md={2}>Due Date</Col>
+                    <Col md={2}>Status</Col>
+                    <Col md={2}></Col>
+                </Row>
                 </Card.Header>
+                ):(<Card.Header>
+                    No Tasks yet
+                </Card.Header>)}
                         {tasks.map(task => <Task key={task.id} task={task} projectData={projectData} setTasks={setTasks} />)}
                     </Card.Body>
                 </Accordion.Collapse>
                 </Accordion>
-
     </Card>
     )
 

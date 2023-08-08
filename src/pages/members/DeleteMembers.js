@@ -3,6 +3,7 @@ import { Button, Card } from 'react-bootstrap';
 import Avatar from '../../components/Avatar';
 import { axiosReq, axiosRes } from '../../api/axiosDefaults';
 import { useParams, useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import appStyles from '../../App.module.css'
 
 const DeleteMembers = () => {
     const { projectId } = useParams();
@@ -57,7 +58,7 @@ const DeleteMembers = () => {
             :(
               <p key={member.id}>
                 <Avatar src={member.member_image} height={30}/>{member.member_username}
-                <Button onClick={handleClick} size="sm" variant="outline-primary"><i id={`${member.id}-${member.member_username}`} className="far fa-trash-can"></i></Button>
+                <Button onClick={handleClick} size="sm" variant="outline-primary" className={appStyles.horizontalMargin}><i id={`${member.id}-${member.member_username}`} className="far fa-trash-can"></i></Button>
               </p>
             )
           ) 
@@ -66,7 +67,7 @@ const DeleteMembers = () => {
         <Card.Footer>
             {message}
             {memberSelected? (
-            <><Button onClick={handleDelete}>Yes</Button><Button onClick={() => history.goBack()}>No, back to projects.</Button></>
+            <><Button onClick={handleDelete} className={appStyles.horizontalMargin}>Yes</Button><Button onClick={() => history.goBack()}>No, back to projects.</Button></>
             ):(
             <Button onClick={() => history.goBack()}>Back to projects.</Button>
             )}
