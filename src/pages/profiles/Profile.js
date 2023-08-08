@@ -74,7 +74,6 @@ const Profile = () => {
     {is_owner? (
       <Link to={`/profiles/edit/${id}`}>
         <Button className={appStyles.verticalMargin}>Edit Profile</Button>
-        <Button onClick={() => history.goBack()} className={`${appStyles.verticalMargin} ${appStyles.horizontalMargin}`}>Back</Button>
       </Link>
     ):(<Button onClick={() => history.goBack()} className={appStyles.verticalMargin}>Back</Button>)}
     <Card className={appStyles.verticalMargin}>

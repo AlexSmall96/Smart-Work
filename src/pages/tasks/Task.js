@@ -6,7 +6,7 @@ import { format } from 'date-fns';
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
 import { axiosReq, axiosRes } from '../../api/axiosDefaults';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
-
+import Alert from "react-bootstrap/Alert";
 
 const Task = ({task, setTasks, projectData}) => {
     const currentUser = useCurrentUser()
@@ -19,6 +19,7 @@ const Task = ({task, setTasks, projectData}) => {
     const [taskStartDate, setTaskStartDate] = useState(format(new Date(task.due_date), 'yyyy-MM-dd'))
     const [status, setStatus] = useState(task.status)
     const [taskClass, setTaskClass] = useState(styles.taskHeader)
+    const [errors, setErrors] = useState({});
 
     useEffect(() => {
         const colourTask = () => {
@@ -59,8 +60,12 @@ const Task = ({task, setTasks, projectData}) => {
         formData.append('status', status)
         formData.append('assigned_to', task.assigned_to)
         try {
-            axiosRes.put(`/tasks/${task.id}`, formData);
+            await axiosRes.put(`/tasks/${task.id}`, formData);
             setTaskUpdated(true)
+        } catch(err){
+            setErrors(err.response?.data);
+        }
+        try {
             const newTasks = await axiosReq.get(`/tasks/?assigned_to__project=${projectData.project}`)
             setTasks(newTasks.data)
             setTaskClass(
@@ -69,10 +74,10 @@ const Task = ({task, setTasks, projectData}) => {
                    task.status === 'Complete'? (styles.complete):('')
                 )}`
             )
-            } catch (err) {
-            console.log(err.response);
-        }
-        };
+        } catch (err) {
+            console.log(err.response)
+        }   
+    };
 
         const handleClick = () => {
             setTaskUpdated(false)
@@ -128,6 +133,11 @@ const Task = ({task, setTasks, projectData}) => {
                 />
                 </Col>
             </Form.Group>
+            {errors.description?.map((message, idx) => (
+              <Alert key={idx} variant="warning">
+                {message}
+              </Alert>
+            ))}
             <Form.Group as={Row} controlId="due-date">
                 <Form.Label column xs="6">Start Date:</Form.Label>
                 <Col xs="6">

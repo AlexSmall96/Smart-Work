@@ -8,9 +8,10 @@ import { Row, Col } from 'react-bootstrap'
 import { format } from 'date-fns';
 import { axiosReq } from '../../api/axiosDefaults'
 import styles from '../../styles/TaskCreateForm.module.css'
+import Alert from "react-bootstrap/Alert";
 
 const TaskCreateForm = ({members, projectData, setTasks}) => {
-    
+    const [errors, setErrors] = useState({});
     const [taskCreated, setTaskCreated] = useState(false)
     const [expanded, setExpanded] = useState(false)
 
@@ -76,13 +77,13 @@ const TaskCreateForm = ({members, projectData, setTasks}) => {
         formData.append('due_date', dueDate.concat('T00:00:00.000000Z'))
         try {
             await axiosReq.post("/tasks/", formData)
+            setTaskCreated(true)
             } catch (err) {
-            console.log(err.response);
+                setErrors(err.response?.data);
         }
         try {
             const newTasks = await axiosReq.get(`/tasks/?assigned_to__project=${projectData.project}`)
             setTasks(newTasks.data)
-            setTaskCreated(true)
             } catch (err) {
             console.log(err.response);
         }
@@ -131,6 +132,11 @@ const TaskCreateForm = ({members, projectData, setTasks}) => {
             value={description}
             onChange={handleChange} />
         </Form.Group>
+        {errors.description?.map((message, idx) => (
+              <Alert key={idx} variant="warning">
+                {message}
+              </Alert>
+            ))}
         <Form.Group as={Row} controlId="start-date">
             <Form.Label column xs="6">Start Date</Form.Label>
             <Col xs="6">
