@@ -1,6 +1,5 @@
 import React, {useState} from 'react'
 import styles from '../styles/Home.module.css'
-import appStyles from '../App.module.css'
 import {Card, Button, Row, Carousel, Container, Col}from 'react-bootstrap';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import { useCurrentUser, useSetCurrentUser } from '../contexts/CurrentUserContext';

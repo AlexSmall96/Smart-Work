@@ -6,7 +6,7 @@ import { format } from 'date-fns';
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
 import { axiosReq, axiosRes } from '../../api/axiosDefaults';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
-import Member from '../../pages/members/Member'
+
 
 const Task = ({task, setTasks, projectData}) => {
     const currentUser = useCurrentUser()
@@ -87,15 +87,6 @@ const Task = ({task, setTasks, projectData}) => {
             }
         }
 
-        const handleDelete = async (event) => {
-            try {
-                axiosRes.delete(`/tasks/${event.target.id}`)
-                const newTasks = await axiosReq.get(`/tasks/?assigned_to__project=${projectData.project}`)
-                setTasks(newTasks.data)
-            } catch(err){
-                console.log(err)
-            }
-        }
 
   return (
     <Accordion>
