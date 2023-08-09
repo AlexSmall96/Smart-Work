@@ -10,6 +10,8 @@ import { useCurrentUser } from "../../contexts/CurrentUserContext";
 function ProjectCreateForm() {
     // Initialize state variables
     const [errors, setErrors] = useState({});
+    const [dueDateFeedback, setDueDateFeedback] = useState('')
+    const [startDateFeedback, setStartDateFeedback] = useState('')
     const history = useHistory();
     const [projectData, setProjectData] = useState({
         title: '',
@@ -27,11 +29,21 @@ function ProjectCreateForm() {
     */
     const handleStartDateChange = (event) => {
         const newStartDate = format(new Date(event.target.value), 'yyyy-MM-dd');
-        setStartDate(newStartDate);
+        if (newStartDate >= format(new Date(), 'yyyy-MM-dd')){
+            setStartDate(newStartDate);
+            setStartDateFeedback('')
+        } else {
+            setStartDateFeedback('Start Date cannot be in the past.')
+        } 
     }
     const handleDueDateChange = (event) => {
         const newDueDate = format(new Date(event.target.value), 'yyyy-MM-dd');
-        setDueDate(newDueDate);
+        if (newDueDate >= startDate){
+            setDueDate(newDueDate);
+            setDueDateFeedback('')
+        } else {
+            setDueDateFeedback('Due Date must be ahead of Start Date.')
+        }
     }
     // Handle change for text inputs
     const handleChange = (event) => {
@@ -49,7 +61,6 @@ function ProjectCreateForm() {
         formData.append('complexity', complexity);
         formData.append('start_date', startDate.concat('T00:00:00.000000Z'));
         formData.append('due_date', dueDate.concat('T00:00:00.000000Z'));
-
         try {
             await axiosReq.post("/projects/", formData);
             history.push(`/projects/${currentUser?.profile_id}`);
@@ -107,9 +118,14 @@ function ProjectCreateForm() {
                 onChange={handleStartDateChange} />
                 </Col>
             </Form.Group>
+            {startDateFeedback?(
+            <Alert variant="warning">
+                {startDateFeedback}
+            </Alert>
+            ):('')}
             {errors?.startDate?.map((message, idx) => (
             <Alert variant="warning" key={idx}>
-             {message}
+                {message}
              </Alert>
              ))}
             {/* Due Date */}
@@ -123,6 +139,11 @@ function ProjectCreateForm() {
                 onChange={handleDueDateChange} />
                 </Col>
             </Form.Group>
+            {dueDateFeedback?(
+            <Alert variant="warning">
+                {dueDateFeedback}
+            </Alert>
+            ):('')}
             {errors?.dueDate?.map((message, idx) => (
             <Alert variant="warning" key={idx}>
              {message}

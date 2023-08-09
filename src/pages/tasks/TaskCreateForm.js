@@ -23,6 +23,8 @@ const TaskCreateForm = ({members, projectData, setTasks}) => {
     const {description, status} = taskData;
     const [startDate, setStartDate] = useState(format(new Date(), 'yyyy-MM-dd'));
     const [dueDate, setDueDate] = useState(format(new Date(), 'yyyy-MM-dd'));
+    const [dueDateFeedback, setDueDateFeedback] = useState('')
+    const [startDateFeedback, setStartDateFeedback] = useState('')
     const [assignedToId, setAssignedToId] = useState(0);
 
     // Set default assigned to as first member in list
@@ -44,11 +46,21 @@ const TaskCreateForm = ({members, projectData, setTasks}) => {
     */
     const handleDueDateChange = (event) => {
         const newDueDate = format(new Date(event.target.value), 'yyyy-MM-dd');
-        setDueDate(newDueDate);
+        if (newDueDate >= startDate){
+            setDueDate(newDueDate);
+            setDueDateFeedback('')
+        } else {
+            setDueDateFeedback('Due Date must be ahead of Start Date.')
+        }
     }
     const handleStartDateChange = (event) => {
         const newStartDate = format(new Date(event.target.value), 'yyyy-MM-dd');
-        setStartDate(newStartDate);
+        if (newStartDate >= format(new Date(), 'yyyy-MM-dd')){
+            setStartDate(newStartDate);
+            setStartDateFeedback('')
+        } else {
+            setStartDateFeedback('Start Date cannot be in the past.')
+        } 
     }
     // Handle text field changes
     const handleChange = (event) => {
@@ -148,6 +160,11 @@ const TaskCreateForm = ({members, projectData, setTasks}) => {
             onChange={handleStartDateChange} />
             </Col>
         </Form.Group>
+        {startDateFeedback?(
+            <Alert variant="warning">
+                {startDateFeedback}
+            </Alert>
+            ):('')}
         {/* Due Date */}
         <Form.Group as={Row} controlId="due-date">
             <Form.Label column xs="6">Due Date</Form.Label>
@@ -159,6 +176,11 @@ const TaskCreateForm = ({members, projectData, setTasks}) => {
             onChange={handleDueDateChange} />
             </Col>
         </Form.Group>
+        {dueDateFeedback?(
+            <Alert variant="warning">
+                {dueDateFeedback}
+            </Alert>
+            ):('')}
         {/* Status */}
         <Form.Group as={Row} controlId="status">
             <Form.Label column xs="6">Status</Form.Label>

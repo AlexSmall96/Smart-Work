@@ -15,6 +15,8 @@ const ProjectEdit = () => {
   const history = useHistory();
   const [startDate, setStartDate] = useState(format(new Date(), 'yyyy-MM-dd'));
   const [dueDate, setDueDate] = useState(format(new Date(), 'yyyy-MM-dd'));
+  const [dueDateFeedback, setDueDateFeedback] = useState('')
+  const [startDateFeedback, setStartDateFeedback] = useState('')
   const [projectData, setProjectData] = useState({});
   const [errors, setErrors] = useState({});
   const [projectSaved, setProjectSaved] = useState(false);
@@ -44,12 +46,22 @@ const ProjectEdit = () => {
   */
   const handleStartDateChange = (event) => {
     const newStartDate = format(new Date(event.target.value), 'yyyy-MM-dd');
-    setStartDate(newStartDate);
-  };
-  const handleDueDateChange = (event) => {
-  const newDueDate = format(new Date(event.target.value), 'yyyy-MM-dd');
-  setDueDate(newDueDate);
-  };
+    if (newStartDate >= format(new Date(), 'yyyy-MM-dd')){
+        setStartDate(newStartDate);
+        setStartDateFeedback('')
+    } else {
+        setStartDateFeedback('Start Date cannot be in the past.')
+    } 
+}
+const handleDueDateChange = (event) => {
+    const newDueDate = format(new Date(event.target.value), 'yyyy-MM-dd');
+    if (newDueDate >= startDate){
+        setDueDate(newDueDate);
+        setDueDateFeedback('')
+    } else {
+        setDueDateFeedback('Due Date must be ahead of Start Date.')
+    }
+}
   // Handle change for text inputs
   const handleChange = (event) => {
   setProjectData({
@@ -124,6 +136,11 @@ const ProjectEdit = () => {
                 onChange={handleStartDateChange} />
                 </Col>
             </Form.Group>
+            {startDateFeedback?(
+            <Alert variant="warning">
+                {startDateFeedback}
+            </Alert>
+            ):('')}
             {errors?.startDate?.map((message, idx) => (
             <Alert variant="warning" key={idx}>
              {message}
@@ -140,6 +157,11 @@ const ProjectEdit = () => {
                 onChange={handleDueDateChange} />
                 </Col>
             </Form.Group>
+            {dueDateFeedback?(
+            <Alert variant="warning">
+                {dueDateFeedback}
+            </Alert>
+            ):('')}
             {errors?.dueDate?.map((message, idx) => (
             <Alert variant="warning" key={idx}>
              {message}

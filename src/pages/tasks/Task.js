@@ -21,6 +21,8 @@ const Task = ({task, setTasks, projectData}) => {
     const [taskStartDate, setTaskStartDate] = useState(format(new Date(task.due_date), 'yyyy-MM-dd'));
     const [status, setStatus] = useState(task.status);
     const [taskClass, setTaskClass] = useState(styles.taskHeader);
+    const [dueDateFeedback, setDueDateFeedback] = useState('')
+    const [startDateFeedback, setStartDateFeedback] = useState('')
     const [errors, setErrors] = useState({});
 
     // Colour tasks based on status when component updates
@@ -42,12 +44,22 @@ const Task = ({task, setTasks, projectData}) => {
     */
     const handleDueDateChange = (event) => {
         const newDueDate = format(new Date(event.target.value), 'yyyy-MM-dd');
-        setTaskDueDate(newDueDate);
-    };
+        if (newDueDate >= taskStartDate){
+            setTaskDueDate(newDueDate);
+            setDueDateFeedback('')
+        } else {
+            setDueDateFeedback('Due Date must be ahead of Start Date.')
+        }
+    }
     const handleStartDateChange = (event) => {
         const newStartDate = format(new Date(event.target.value), 'yyyy-MM-dd');
-        setTaskStartDate(newStartDate);
-    };
+        if (newStartDate >= format(new Date(), 'yyyy-MM-dd')){
+            setTaskStartDate(newStartDate);
+            setStartDateFeedback('')
+        } else {
+            setStartDateFeedback('Start Date cannot be in the past.')
+        } 
+    }
     // Handle text field changes
     const handleDescriptionChange = (event) => {
         setTaskDescription(event.target.value);
@@ -156,8 +168,14 @@ const Task = ({task, setTasks, projectData}) => {
             onChange={handleStartDateChange} 
             />
             </Col>
-        {/* Due Date */}
+        
         </Form.Group>
+        {startDateFeedback?(
+            <Alert variant="warning">
+                {startDateFeedback}
+            </Alert>
+            ):('')}
+        {/* Due Date */}
         <Form.Group as={Row} controlId="due-date">
             <Form.Label column xs="6">Due Date:</Form.Label>
             <Col xs="6">
@@ -168,8 +186,13 @@ const Task = ({task, setTasks, projectData}) => {
             onChange={handleDueDateChange} 
             />
             </Col>
-        {/* Status */}
         </Form.Group>
+        {dueDateFeedback?(
+            <Alert variant="warning">
+                {dueDateFeedback}
+            </Alert>
+            ):('')}
+        {/* Status */}
         <Form.Group as={Row} controlId="status">
             <Form.Label column xs="6">Status</Form.Label>
             <Col xs="6">
