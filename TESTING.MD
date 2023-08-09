@@ -57,7 +57,22 @@ This section has been divided into subsections based on each page of the site. F
 |4.8          |Input Validation |Submitting the form with an already taken username gives error message stating the problem| Pass
 |4.9          |Input Validation |Submitting successful sign up details directs the user to the sign in page| Pass
 
-[SignIn Page Tests Screenshots](https://github.com/AlexSmall96/Smart-Work/blob/main/documentation/testing/SignUp.pdf)
+[Signup Page Tests Screenshots](https://github.com/AlexSmall96/Smart-Work/blob/main/documentation/testing/SignUp.pdf)
+
+### Profile Page
+| Test No.    | Category    | Pass Criteria | Pass/Fail |
+| ----------- | ----------- |---------------|-----------|
+|5.1          |Loading Data |When new profile is created, profile page loads with username, default image, and date joined| Pass
+|5.2           |Loading Data |If the user is viewing their own profile, edit profile button appears below below profile card, with stats at the bottom of page| Pass
+|5.3           |Loading Data |If the user is viewing another users profile, go back button appears below below profile card, with stats at the bottom of page| Pass
+|5.4           |Loading Data |Edit profile button appears below below profile card, with stats at the bottom of page| Pass
+|5.5           |Site Navigation |Clicking edit profile button takes user to form with profile details| Pass
+|5.6           |Site Navigation |Clicking go back button takes user to previously visited page| Pass
+|5.7           |Loading Data |Each field can be edited with any text value| Pass
+|5.8           |Loading Data |Each field can be edited with any text value and chosen value stays in input field| Pass
+|5.9           |Loading Data |User can upload a new profile image by clicking 'Click to upload image' and new image is displayed in form | Pass
+|5.10           |Input Validation |Any chosen information can be submitted, once form is submitted user is redirected back to profile page and new information is shown | Pass
+
 
 ## User Stories Testing
 
