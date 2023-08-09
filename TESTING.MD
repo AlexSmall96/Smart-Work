@@ -73,6 +73,24 @@ This section has been divided into subsections based on each page of the site. F
 |5.9           |Loading Data |Correct numbers appear in stats section | Pass
 
 [Profile Page Tests Screenshots](https://github.com/AlexSmall96/Smart-Work/blob/main/documentation/testing/ProfilePage.pdf)
+
+### Project Create Page
+| Test No.    | Category    | Pass Criteria | Pass/Fail |
+| ----------- | ----------- |---------------|-----------|
+|6.1          |Loading Data |Form loads with text fields blank, dates set to todays date and complexity set to low| Pass
+|6.2          |Loading Data |Cancel and create project buttons appear below form| Pass
+|6.3          |Site Navigation|Cancel button takes user back to previous page| Pass 
+|6.5          |Input Validation|Submitting the form with title field blank gives an error   | Pass 
+|6.6          |Input Validation|Trying to change the start date to a date iin the past gives an error  | Pass
+|6.7          |Input Validation|Trying to change the due date to a date before the start date gives an error  | Pass
+|6.8          |Input Validation|Any value can be inputted into text fields, complexity can be changed to any value | Pass
+|6.9          |Site Navigation|Submitting the form with correct data directs the user to the projects page and new project appears | Pass
+
+[Create Project Page Tests Screenshots](https://github.com/AlexSmall96/Smart-Work/blob/main/documentation/testing/CreateProjectPage.pdf)
+### Projects Page
+
+### Tasks Page
+
 ## User Stories Testing
 
 ## Responsiveness
