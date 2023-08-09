@@ -37,12 +37,28 @@ This section has been divided into subsections based on each page of the site. F
 |3.2          |Loading Data |Button with sign up link appears below form| Pass
 |3.3          |Loading Data |Image appears next to form on screens >768px in width| Pass
 |3.4          |Site Navigation |Sign up button takes user to sign up page| Pass
-|3.5          |Site Navigation |Submitting the form with username blank gives an error message stating 'Must include "username" and "password"| Pass
+|3.5          |Input Validation |Submitting the form with username blank gives an error message stating 'Must include "username" and "password"| Pass
 |3.6          |Input Validation |Submitting the form with password blank gives an error message stating 'This field may not be blank'| Pass
 |3.7          |Input Validation |Submitting the form with incorrect login details gives an error message stating 'Unable to login in with provided credentials' | Pass
 |3.8          |Input Validation |Submitting the form with correct login details directs the user to the home page | Pass
 
 [SignIn Page Tests Screenshots](https://github.com/AlexSmall96/Smart-Work/blob/main/documentation/testing/SignIn.pdf)
+
+### Signup Page
+| Test No.    | Category    | Pass Criteria | Pass/Fail |
+| ----------- | ----------- |---------------|-----------|
+|4.1          |Loading Data |Form loads with sign up button below| Pass
+|4.2          |Loading Data |Button with sign in link appears below form| Pass
+|4.3          |Loading Data |Image appears next to form on screens >768px in width| Pass
+|4.4          |Site Navigation |Sign in button takes user to sign in page| Pass
+|4.5          |Input Validation |Submitting the form with username or password blank gives an error message stating 'This field may not be blank| Pass
+|4.6          |Input Validation |Submitting the form with an insecure password gives messages stating it is not secure enough (too short, too common, entirly numeric)| Pass
+|4.7          |Input Validation |Submitting the form with the two password fields not matching gives error message stating the problem| Pass
+|4.8          |Input Validation |Submitting the form with an already taken username gives error message stating the problem| Pass
+|4.9          |Input Validation |Submitting successful sign up details directs the user to the sign in page| Pass
+
+[SignIn Page Tests Screenshots](https://github.com/AlexSmall96/Smart-Work/blob/main/documentation/testing/SignUp.pdf)
+
 ## User Stories Testing
 
 ## Responsiveness

@@ -28,7 +28,7 @@ const ProjectsPage = () => {
         fetchMembers();
       }, [id]);
 
-  {/* Load all project data using project component */}
+  /* Load all project data using project component */
   return (
     hasLoaded?(
       <div className={appStyles.background}>
