@@ -7,6 +7,7 @@ import { useCurrentUser } from '../../contexts/CurrentUserContext';
 import { axiosReq, axiosRes } from '../../api/axiosDefaults';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import Alert from "react-bootstrap/Alert";
+import appStyles from '../../App.module.css';
 
 /* Task component to be attached to the corresponding project */
 const Task = ({task, setTasks, projectData}) => {
@@ -148,7 +149,8 @@ const Task = ({task, setTasks, projectData}) => {
                 type="text"
                 name="description"
                 value={taskDescription}
-                onChange={handleDescriptionChange} 
+                onChange={handleDescriptionChange}
+                className={appStyles.strongBorder}
                 />
                 </Col>
             </Form.Group>
@@ -165,10 +167,10 @@ const Task = ({task, setTasks, projectData}) => {
             type="date"
             name="start-date"
             value={taskStartDate}
-            onChange={handleStartDateChange} 
+            onChange={handleStartDateChange}
+            className={appStyles.strongBorder}
             />
             </Col>
-        
         </Form.Group>
         {startDateFeedback?(
             <Alert variant="warning">
@@ -183,7 +185,8 @@ const Task = ({task, setTasks, projectData}) => {
             type="date"
             name="due-date"
             value={taskDueDate}
-            onChange={handleDueDateChange} 
+            onChange={handleDueDateChange}
+            className={appStyles.strongBorder}
             />
             </Col>
         </Form.Group>
@@ -201,6 +204,7 @@ const Task = ({task, setTasks, projectData}) => {
             name="status"
             value={status}
             onChange={handleStatusChange}
+            className={appStyles.strongBorder}
             >
                 <option>Not Started</option>
                 <option>In Progress</option>

@@ -5,6 +5,7 @@ import { Form, Button, Row, Col, Alert } from "react-bootstrap";
 import { axiosReq } from "../../api/axiosDefaults";
 import { useHistory } from "react-router";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import appStyles from '../../App.module.css';
 
 /* Allow users to create a new project */
 function ProjectCreateForm() {
@@ -83,7 +84,8 @@ function ProjectCreateForm() {
                 type="text"
                 name="title"
                 value={title}
-                onChange={handleChange} />
+                onChange={handleChange}
+                className={appStyles.strongBorder} />
             </Form.Group>
             {errors?.title?.map((message, idx) => (
             <Alert variant="warning" key={idx}>
@@ -100,7 +102,8 @@ function ProjectCreateForm() {
                 type="text"
                 name="description"
                 value={description}
-                onChange={handleChange} />
+                onChange={handleChange}
+                className={appStyles.strongBorder} />
             </Form.Group>
             {errors?.description?.map((message, idx) => (
             <Alert variant="warning" key={idx}>
@@ -115,7 +118,8 @@ function ProjectCreateForm() {
                 type="date"
                 name="start-date"
                 value={startDate}
-                onChange={handleStartDateChange} />
+                onChange={handleStartDateChange}
+                className={appStyles.strongBorder} />
                 </Col>
             </Form.Group>
             {startDateFeedback?(
@@ -136,7 +140,8 @@ function ProjectCreateForm() {
                 type="date"
                 name="due-date"
                 value={dueDate}
-                onChange={handleDueDateChange} />
+                onChange={handleDueDateChange}
+                className={appStyles.strongBorder} />
                 </Col>
             </Form.Group>
             {dueDateFeedback?(
@@ -158,6 +163,7 @@ function ProjectCreateForm() {
                 name="complexity"
                 value={complexity}
                 onChange={handleChange}
+                className={appStyles.strongBorder}
                 >
                     <option>Low</option>
                     <option>Medium</option>

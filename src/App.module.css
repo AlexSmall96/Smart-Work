@@ -84,3 +84,9 @@ display: none;
 .footer{
     background-color: #555555;
 }
+
+.strongBorder{
+    border-style: solid;
+    border-color: rgb(185, 178, 178);
+    border-width:2px;
+}

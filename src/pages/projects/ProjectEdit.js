@@ -101,7 +101,8 @@ const handleDueDateChange = (event) => {
                 type="text"
                 name="title"
                 value={projectData.title}
-                onChange={handleChange} />
+                onChange={handleChange}
+                className={appStyles.strongBorder} />
             </Form.Group>
             {errors?.title?.map((message, idx) => (
             <Alert variant="warning" key={idx}>
@@ -112,13 +113,14 @@ const handleDueDateChange = (event) => {
             <Form.Group controlId="description">
                 <Form.Label>Description</Form.Label>
                 <Form.Control
-                className={styles.textField}
+                className={`${styles.textField} ${appStyles.strongBorder}`}
                 as="textarea" rows={3}
                 size="sm"
                 type="text"
                 name="description"
                 value={projectData.description}
-                onChange={handleChange} />
+                onChange={handleChange}
+                />
             </Form.Group>
             {errors?.description?.map((message, idx) => (
             <Alert variant="warning" key={idx}>
@@ -133,7 +135,8 @@ const handleDueDateChange = (event) => {
                 type="date"
                 name="start-date"
                 value={startDate}
-                onChange={handleStartDateChange} />
+                onChange={handleStartDateChange}
+                className={appStyles.strongBorder} />
                 </Col>
             </Form.Group>
             {startDateFeedback?(
@@ -154,7 +157,8 @@ const handleDueDateChange = (event) => {
                 type="date"
                 name="due-date"
                 value={dueDate}
-                onChange={handleDueDateChange} />
+                onChange={handleDueDateChange}
+                className={appStyles.strongBorder} />
                 </Col>
             </Form.Group>
             {dueDateFeedback?(
@@ -176,6 +180,7 @@ const handleDueDateChange = (event) => {
                 name="complexity"
                 value={projectData.complexity}
                 onChange={handleChange}
+                className={appStyles.strongBorder}
                 >
                     <option>Low</option>
                     <option>Medium</option>

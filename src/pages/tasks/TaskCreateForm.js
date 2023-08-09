@@ -8,6 +8,7 @@ import { Row, Col } from 'react-bootstrap';
 import { format } from 'date-fns';
 import { axiosReq } from '../../api/axiosDefaults';
 import styles from '../../styles/TaskCreateForm.module.css';
+import appStyles from '../../App.module.css';
 import Alert from "react-bootstrap/Alert";
 
 /* Allows any member of a project to create a task */
@@ -126,7 +127,7 @@ const TaskCreateForm = ({members, projectData, setTasks}) => {
         Tasks: 
         <Accordion.Toggle as={Button} variant="link" eventKey="0" onClick={handleHide}>
              {expanded?(
-             <strong>Hide</strong>
+             <strong>Hide Form</strong>
              ):(<>
             <i className="far fa-plus-square"></i></>)}
         </Accordion.Toggle>
@@ -142,7 +143,8 @@ const TaskCreateForm = ({members, projectData, setTasks}) => {
             type="text"
             name="description"
             value={description}
-            onChange={handleChange} />
+            onChange={handleChange}
+            className={appStyles.strongBorder} />
         </Form.Group>
         {errors.description?.map((message, idx) => (
               <Alert key={idx} variant="warning">
@@ -157,7 +159,8 @@ const TaskCreateForm = ({members, projectData, setTasks}) => {
             type="date"
             name="start-date"
             value={startDate}
-            onChange={handleStartDateChange} />
+            onChange={handleStartDateChange}
+            className={appStyles.strongBorder} />
             </Col>
         </Form.Group>
         {startDateFeedback?(
@@ -173,7 +176,8 @@ const TaskCreateForm = ({members, projectData, setTasks}) => {
             type="date"
             name="due-date"
             value={dueDate}
-            onChange={handleDueDateChange} />
+            onChange={handleDueDateChange}
+            className={appStyles.strongBorder} />
             </Col>
         </Form.Group>
         {dueDateFeedback?(
@@ -190,6 +194,7 @@ const TaskCreateForm = ({members, projectData, setTasks}) => {
             name="status"
             value={status}
             onChange={handleChange}
+            className={appStyles.strongBorder}
             >
                 <option>Not Started</option>
                 <option>In Progress</option>
@@ -205,6 +210,7 @@ const TaskCreateForm = ({members, projectData, setTasks}) => {
             as="select"
             name="assigned-to"
             onChange={handleAssignedToChange}
+            className={appStyles.strongBorder}
             >
             {members.map(member => <option id={member.id} key={member.id}>{member.member_username}</option>)}
             </Form.Control> 
