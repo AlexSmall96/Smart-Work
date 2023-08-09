@@ -96,14 +96,13 @@ function ProjectCreateForm() {
             <Form.Group controlId="description">
                 <Form.Label>Description</Form.Label>
                 <Form.Control
-                className={styles.textField}
+                className={`${styles.textField} ${appStyles.strongBorder}`}
                 as="textarea" rows={3}
                 size="sm"
                 type="text"
                 name="description"
                 value={description}
-                onChange={handleChange}
-                className={appStyles.strongBorder} />
+                onChange={handleChange}/>
             </Form.Group>
             {errors?.description?.map((message, idx) => (
             <Alert variant="warning" key={idx}>
