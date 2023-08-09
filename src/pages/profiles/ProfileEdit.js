@@ -106,6 +106,7 @@ return (
         name="profName"
         value={profile.profName}
         onChange={handleChange}
+        className={appStyles.strongBorder}
      />
      {/* Organisation */}
     </Form.Group>
@@ -115,7 +116,8 @@ return (
         type="text"
         name="organisation"
         value={profile.organisation}
-        onChange={handleChange} />
+        onChange={handleChange}
+        className={appStyles.strongBorder} />
     </Form.Group>
      {/* Role */}
     <Form.Group controlId="role">
@@ -124,7 +126,8 @@ return (
         type="text"
         name="role"
         value={profile.role}
-        onChange={handleChange} />
+        onChange={handleChange}
+        className={appStyles.strongBorder} />
     </Form.Group>
      {/* Skills */}
     <Form.Group controlId="skills">
@@ -133,7 +136,8 @@ return (
         type="text"
         name="skills"
         value={profile.skills}
-        onChange={handleChange} />
+        onChange={handleChange}
+        className={appStyles.strongBorder} />
     </Form.Group>
      {/* Interests */}
     <Form.Group controlId="interests">
@@ -142,7 +146,8 @@ return (
         type="text"
         name="interests"
         value={profile.interests}
-        onChange={handleChange} />
+        onChange={handleChange}
+        className={appStyles.strongBorder} />
     </Form.Group>
     </Form>
   </Card.Body>
