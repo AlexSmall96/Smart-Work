@@ -25,7 +25,7 @@ const Profile = () => {
           const {data} = await axiosReq.get(`/profiles/${id}`);
           setProfile(data);
         } catch(err){
-          console.log(err.response);
+          // console.log(err.response);
         }
       };
       // Get users tasks
@@ -34,7 +34,7 @@ const Profile = () => {
             const response = await axiosReq.get(`/tasks/?assigned_to__profile=${id}`);
             setTasks(response.data.filter(task => task.status === "Complete"));
         } catch(err){
-            console.log(err);
+            // console.log(err);
         }
     };
     // Get members data to determine which projects user is a member of
@@ -43,7 +43,7 @@ const Profile = () => {
         const response = await axiosReq.get(`/members/?profile=${id}`);
         setMembers(response.data);
       } catch(err){
-        console.log(err);
+        // console.log(err);
       }
     };
     // Call all data fetching functions

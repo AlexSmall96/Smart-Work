@@ -21,7 +21,7 @@ const ProjectDelete = () => {
                 const response = await axiosReq.get(`/projects/${id}`);
                 setMessage(`Are you sure you want to delete ${response.data.title}?`);
             } catch(err){
-                console.log(err.response);
+                // console.log(err.response);
             }
         }
         fetchProject();
@@ -34,7 +34,7 @@ const ProjectDelete = () => {
             setMessage('Project deleted.')
             setProjectDeleted(true)
         } catch(err){
-            console.log(err.response);
+            // console.log(err.response);
         }
     };
 

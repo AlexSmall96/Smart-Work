@@ -33,7 +33,7 @@ const ProjectEdit = () => {
             setStartDate(format(new Date(response.data.start_date), 'yyyy-MM-dd'));
             setDueDate(format(new Date(response.data.due_date), 'yyyy-MM-dd'));
         } catch(err){
-            console.log(err);
+            // console.log(err);
         }
     };
     fetchProject();
@@ -70,7 +70,7 @@ const ProjectEdit = () => {
         await axiosRes.put(`/projects/${id}`, formData);
         setProjectSaved(true);
         } catch (err) {
-        console.log(err);
+        // console.log(err);
         if (err.response?.status !== 401) {
             setErrors(err.response?.data);
         }

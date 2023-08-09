@@ -31,7 +31,7 @@ const ProfileEdit = () => {
             });
             
           } catch(err){
-            console.log(err.response)
+            // console.log(err.response)
           }
       };
         fetchProfile()
@@ -61,7 +61,7 @@ const ProfileEdit = () => {
             await axiosReq.put(`/profiles/${id}/`, formData);
             history.push(`/profiles/${id}`);
         } catch (err) {
-            console.log(err);
+            // console.log(err);
         }
     };
 

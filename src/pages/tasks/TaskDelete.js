@@ -22,7 +22,7 @@ const TaskDelete = () => {
                 const response = await axiosReq.get(`/tasks/${id}`);
                 setMessage(`Are you sure you want to delete ${response.data.description} from ${response.data.project_title}?`);
             } catch(err){
-                console.log(err.response);
+                // console.log(err.response);
             }
         }
         fetchTask();
@@ -35,7 +35,7 @@ const TaskDelete = () => {
             setMessage('Task deleted.');
             setTaskDeleted(true);
         } catch(err){
-            console.log(err.response);
+            // console.log(err.response);
         }
     };
 

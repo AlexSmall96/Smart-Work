@@ -26,7 +26,7 @@ const DeleteMembers = () => {
             setMembers(response.data)
             setTitle(response.data[0].title)
           } catch(err){
-            console.log(err.response)
+            // console.log(err.response)
           }
         };
         // Call data fetching function
@@ -50,7 +50,7 @@ const DeleteMembers = () => {
             deletedMembers.push(Number(idSelected));
             setDeletedMembers(deletedMembers);
         } catch(err) {
-            console.log(err);
+            // console.log(err);
         }
     };
 

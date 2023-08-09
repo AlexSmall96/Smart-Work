@@ -26,7 +26,7 @@ const Project = ({projectData}) => {
             const response = await axiosReq.get(`/members/?project=${projectData.project}`);
             setMembers(response.data);
           } catch(err){
-            console.log(err.response);
+            // console.log(err.response);
           }
         };
         const fetchTasks = async () => {
@@ -34,7 +34,7 @@ const Project = ({projectData}) => {
                 const response = await axiosReq.get(`/tasks/?assigned_to__project=${projectData.project}`);
                 setTasks(response.data);
             } catch(err){
-                console.log(err.response);
+                // console.log(err.response);
             }
         };
         fetchMembers();

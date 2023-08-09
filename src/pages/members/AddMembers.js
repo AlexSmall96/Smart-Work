@@ -28,7 +28,7 @@ const AddMembers = () => {
             setMemberProfileIds(response.data.map(member => member.profile));
             setTitle(response.data[0].title);
           } catch(err){
-            console.log(err.response);
+            // console.log(err.response);
           }
         };
         // Get all profiles with search
@@ -37,7 +37,7 @@ const AddMembers = () => {
                 const response = await axiosReq.get(`/profiles/?search=${query}`);
                 setProfiles(response.data);
             } catch(err) {
-                console.log(err.response);
+                // console.log(err.response);
             }
         };
         // Call both data fetching functions
@@ -77,7 +77,7 @@ const AddMembers = () => {
               ]);
             setMembersAdded(true);
         } catch(err){
-            console.log(err.response);
+            // console.log(err.response);
         }
     };
 

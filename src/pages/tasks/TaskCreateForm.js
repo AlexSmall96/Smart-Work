@@ -32,7 +32,7 @@ const TaskCreateForm = ({members, projectData, setTasks}) => {
             const response = await axiosReq.get(`/members/?project=${projectData.project}`);
             setAssignedToId(response.data[0].id);
           } catch(err){
-            console.log(err.response);
+            // console.log(err.response);
           }
         }
         fetchDefaultId();
@@ -61,7 +61,6 @@ const TaskCreateForm = ({members, projectData, setTasks}) => {
     const handleAssignedToChange = (event) => {
         for (let child of event.target.children){
             if (child.value === event.target.value){
-                console.log(child.id);
                 setAssignedToId(child.id);
             }
         }
@@ -85,7 +84,7 @@ const TaskCreateForm = ({members, projectData, setTasks}) => {
             const newTasks = await axiosReq.get(`/tasks/?assigned_to__project=${projectData.project}`);
             setTasks(newTasks.data);
             } catch (err) {
-            console.log(err.response);
+            // console.log(err.response);
         }
     }
 

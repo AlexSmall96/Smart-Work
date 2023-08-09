@@ -81,7 +81,7 @@ const Task = ({task, setTasks, projectData}) => {
                 )}`
             );
         } catch (err) {
-            console.log(err.response);
+            // console.log(err.response);
         }   
     };
         // Set expanded and updated flags

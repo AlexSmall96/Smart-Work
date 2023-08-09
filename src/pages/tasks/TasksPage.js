@@ -18,7 +18,7 @@ const TasksPage = () => {
             const response = await axiosReq.get(`/tasks/?assigned_to__profile=${id}`);
             setTasks(response.data);
         } catch(err){
-            console.log(err);
+            // console.log(err);
         }
     }
     fetchTasks();

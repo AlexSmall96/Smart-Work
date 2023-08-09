@@ -22,7 +22,7 @@ const ProjectsPage = () => {
             setMembers(response.data);
             setHasLoaded(true);
           } catch(err){
-            console.log(err.response);
+            // console.log(err.response);
           }
         }
         fetchMembers();
