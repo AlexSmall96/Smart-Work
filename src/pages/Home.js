@@ -4,6 +4,7 @@ import {Card, Button, Row, Carousel, Container, Col}from 'react-bootstrap';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import { useCurrentUser, useSetCurrentUser } from '../contexts/CurrentUserContext';
 import axios from 'axios';
+import { removeTokenTimestamp } from '../utils/utils';
 
 /* Home page with pictures and links to signin/signup */
 export const Home = () => {
@@ -20,6 +21,7 @@ export const Home = () => {
       try {
         await axios.post("dj-rest-auth/logout/");
         setCurrentUser(null);
+        removeTokenTimestamp()
       } catch (err) {
         console.log(err);
       }
