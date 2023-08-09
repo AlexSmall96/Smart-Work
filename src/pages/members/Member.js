@@ -8,7 +8,7 @@ const Member = ({
   variant, disabled, src, owner, organisation, onClick, id, height=55, active, selected
 }) => {
   return (
-    <Button className={`${styles.btn} ${styles.horizMargin}`} 
+    <Button className={`${styles.btn} ${styles.horizMargin} ${styles.verticalMargin}`} 
       id={id} variant={variant} disabled={disabled} onClick={onClick} active={active}
     >
       <Avatar src={src} height={height}/>
