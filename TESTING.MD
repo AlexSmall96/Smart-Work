@@ -15,7 +15,7 @@ This section has been divided into subsections based on each page of the site. F
 | 1.6         | Component Interactivity | Hovering over Get Started button or login in button makes them darker |Pass
 | 1.7         | Site Navigation| Clicking Get Started Button loads sign up page |Pass
 | 1.8         | Site Navigation| Clicking Log in Button loads sign in page |Pass    
-
+| 1.9         | Site Navigation| Clicking sign out successfully signs the user out and appropriate icons appear in navbar 
 [Home Page Tests Screenshots](https://github.com/AlexSmall96/Smart-Work/blob/main/documentation/testing/HomePage.pdf)
 
 ### Navigation Bar
@@ -145,6 +145,7 @@ This section is divided into further subsections based on which data model is be
 |7.43              |Site Navigation|Clicking no redirects user to projects page | Pass
 |7.44 |Form Handling|Clicking yes results in message stating 'Task Deleted' with 'Back to projects' button appearing| Pass
 |7.45 |Site Navigation|Clicking back to projects redirects user to projects page and deleted task is now gone| Pass
+
 [Projects Page Tests Screenshots](https://github.com/AlexSmall96/Smart-Work/blob/main/documentation/testing/ProjectsPage.pdf)
 ### Tasks Page
 | Test No.    | Category    | Pass Criteria | Pass/Fail |
@@ -155,8 +156,16 @@ This section is divided into further subsections based on which data model is be
 Screenshot for test 8.1
 ![Tasks Page Tests](documentation/testing/TasksPage.png)
 
-## User Stories Testing
-
 ## Responsiveness
+The full site has been tested across all browser sizes, and every page has been confirmed as presentable and user friendly at each size. Beyond this, below is a list of specific feautures that were tested when changing browser sizes, all of which have passed.
 
+- The Sign in and Sign up pages show the image next to form on screens with >=768px width.
+- The image disappears when width goes below 768px, with form moving to center
+- On the project component, project details display in two columns at screens with >=768px, and in one column when width is <768px
+- Again at the breakpoint of 768px, the task data changes from displaying on one row to two. 
+- The Navigation bar collapses into a burger menu at 767px   
+
+Screenshots of these tests along with the full view of the site at different browser sizes is saved in the below link.
+
+[Responsiveness Screenshots](https://github.com/AlexSmall96/Smart-Work/blob/main/documentation/testing/Responsiveness.pdf)
 ## Validation Testing
