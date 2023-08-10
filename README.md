@@ -1,5 +1,5 @@
 # Smart Work
-Smart Work is a project manager app built using the Javascript React framework. The app uses an API created with the Django-Rest Framework to load, create, edit and delete data. The purpose of the site is to collaborate on projects with colleagues or friends, where users can add, update and delete tasks from projects, as well as viewing users profiles and customizing their own.
+Smart Work is a project manager app built using the Javascript React framework. The app uses an API created with the Django-Rest Framework to load, create, edit, and delete data. The purpose of the site is to collaborate on projects with colleagues or friends, where users can add, update and delete tasks from projects, as well as view users' profiles and customize their own.
 
 ![Database Schema](documentation/images/amiresponsive.jpg) 
 ## Live Site
@@ -13,23 +13,46 @@ Smart Work is a project manager app built using the Javascript React framework. 
 ## Author 
 Alex Small
 ## Table of Contents
-
+- [Smart Work](#smart-work)
+  * [Live Site](#live-site)
+      - [Backend API Site](#backend-api-site)
+  * [Repository](#repository)
+      - [Backend API Repository](#backend-api-repository)
+  * [Author](#author)
+  * [Table of Contents](#table-of-contents)
+  * [Project Goals and Planning](#project-goals-and-planning)
+  * [UX](#ux)
+    + [Target Audience](#target-audience)
+    + [Site Logic](#site-logic)
+    + [Colours](#colours)
+    + [Fonts](#fonts)
+    + [Images](#images)
+  * [React Architecture](#react-architecture)
+  * [User Stories](#user-stories)
+  * [Testing](#testing)
+  * [Programming Languages, Frameworks, and Libraries used](#programming-languages--frameworks--and-libraries-used)
+  * [Other programs used](#other-programs-used)
+- [Deployment](#deployment)
+    + [Deploying the Site to Heroku](#deploying-the-site-to-heroku)
+    + [Forking the Repository on GitHub](#forking-the-repository-on-github)
+    + [Cloning the Repository on GitHub](#cloning-the-repository-on-github)
+- [Credits](#credits)
+  * [Content](#content)
+  * [Media](#media)
+  * [Code](#code)
+  * [Acknowledgements](#acknowledgements)
 ## Project Goals and Planning
 The goals of the project are as follows:
 
-- Create a modern, professional looking project manager app
+- Create a modern, professional-looking project manager app
 - Allow users to easily navigate throughout the site
 - Allow users to collaborate on projects and tasks
 - Create a simple effective planning system to help meet deadlines
-- Allow users to cusomize their own profile, and view others
-
-### Database Schema
-To plan the structure of the database models, the following diagram was used. 
-![Database Schema](documentation/images/Smart-Work-db-schema.png)
+- Allow users to customize their profile, and view others
 
 ## UX
 ### Target Audience
-Although Smart Work is a project management app, it is intended to be used by anyone who requires a simple, effective planning and collaboration tool. This could range from professionals working on complex projects, to university students working on group assignments, or even in a more informal setting such as planning a holiday or family chores.
+Although Smart Work is a project management app, it is intended to be used by anyone who requires a simple, effective planning and collaboration tool. This could range from professionals working on complex projects to university students working on group assignments, or even in a more informal setting such as planning a holiday or family chores.
 ### Site Logic
 To plan the flow of logic throughout the site, and the interaction between pages, the following diagram was used.
 
@@ -37,31 +60,31 @@ To plan the flow of logic throughout the site, and the interaction between pages
 
 See [TESTING.MD](https://github.com/AlexSmall96/Smart-Work/blob/main/TESTING.MD) for details of the implementation of this logic.
 ### Colours
-- The main colours used throughout the site are shown in the below diagram. These were chosen to create a professional clean look, yet with enough vibrancy and variety that they create an informal feel, which would appeal to all of the target audience; those who are looking for a sleek design, as well as those intending to use the app for more hobbie or holiday planning. 
+- The main colors used throughout the site are shown in the below diagram. These were chosen to create a professional clean look, yet with enough vibrancy and variety that they create an informal feel, which would appeal to all of the target audience; those who are looking for a sleek design, as well as those intending to use the app for more hobbies or holiday planning. 
 
-- The most widely used colour on the site is the background colour of Middle Blue Green, this choice satisfies the requirements above as well as ensuring the main components such as the project and profile components stand out.
+- The most widely used color on the site is the background color of Middle Blue Green, this choice satisfies the requirements above as well as ensures the main components such as the project and profile components stand out.
 
 ![Colours](documentation/images/Colours.png)
 ### Fonts
 The font used on the site is Fira Sans Extra Condensed from google fonts. This was chosen again to appeal to the target audience as it has a professional clean look with an informal edge.
 ### Images
-The images chosen were modern cartoon style images of work situations. This fit well with the theme of the project, as creates ideas of organised workflow and optimized work environments, something Smart Work can help to achieve.
+The images chosen were modern cartoon-style images of work situations. This fits well with the theme of the project, as creates ideas of organized workflow and optimized work environments, something Smart Work can help to achieve.
 
 ![Images](documentation/images/AllImages.jpeg)
 ## React Architecture
-Severeal React components were used in the site. The architecture used to build the site using the components is documentated below.
+Several React components were used in the site. The architecture used to build the site using the components is documented below.
 - App is the highest level component, which all other components are nested under.
-- Top level components are indicated in orange, level two components are green etc.
-- Top level components which have no subcomponents are displayed above the app component in opaque orange.
+- Top-level components are indicated in orange, level two components are green, etc.
+- Top-level components which have no subcomponents are displayed above the app component in opaque orange.
 - Arrow connectors have been used to show the relationship between the components.
 
 ![React Architecture](documentation/images/ReactArchitecture.png)
 ## User Stories
-- User stories were linked to issues on Github (see the above link to view the repository). This was used as an agile tool to help plan and develop the project.
+- User stories were linked to issues on GitHub (see the above link to view the repository). This was used as an agile tool to help plan and develop the project.
 - Below is the full list of user stories, each mapped to a project goal. 
 - See [TESTING.MD](https://github.com/AlexSmall96/Smart-Work/blob/main/TESTING.MD) for details of the acceptance criteria for each user story.
 
-- Create a modern, professional looking project manager app
+- Create a modern, professional-looking project manager app
   - As a User, I would like to be taken to a home page upon sign-in, where it is clear what the function and purpose of the site are.
   - As a User, I would like to quickly tell which tab corresponds to Smart Work when I have multiple tabs open.
 - Allow users to easily navigate throughout the site
@@ -73,28 +96,28 @@ Severeal React components were used in the site. The architecture used to build 
 - Create a simple effective planning system to help meet deadlines
   - As a user, I would like to add tasks to my projects and update them based on their due date and status.
   - As a user, I would like to delete a task that I added to a project if I no longer feel it is appropriate.
-- Allow users to cusomize their own profile, and view others
+- Allow users to customize their profile, and view others
   - As a User, I can register an account so I can access all the features available to signed-up users.
   - As a user, I would like to view my profile and add personal details such as a profile image, interests, and skills.
-  - As a user, I can click on a users profile image when displayed on relevant pages, and I am taken to their profile page.
+  - As a user, I can click on a user's profile image when displayed on relevant pages, and I am taken to their profile page.
 
 ## Testing
 Testing is detailed fully in [TESTING.MD](https://github.com/AlexSmall96/Smart-Work/blob/main/TESTING.MD).
 
 ## Programming Languages, Frameworks, and Libraries used
-- The frontend site was built using the Javascript React Framework, along with css.
+- The frontend site was built using the Javascript React Framework, along with CSS.
 - To aid in component functionality and styling, React-Bootstrap was used.
 - React Router Dom was used to link all the components to a path.
-- Axios was used to aid in API requests
+- Axios were used to aid in API requests
 - jwt-decode was used to remove and refresh access tokens
 - The JS library date-fns was used to aid in formatting dates for project and task creation and updating.
 ## Other programs used
-- [https://cloudinary.com/](cloudinary) was used to store the site images.
-- [https://dbdiagram.io/home](dbdiagram) was used to create the database schema diagram.
+- [https://cloudinary.com/](Cloudinary) was used to store the site images.
+- [https://dbdiagram.io/home](DB diagram) was used to create the database schema diagram.
 - [https://www.figma.com](Figma) was used to create site logic and react architecture
 diagrams.
-- [http://amiresponsive.blogspot.com/](Colours.co) Am I responsive was used to create responsive diagram.
-- [https://coolors.co/](Colours.co) was used to create the colour pallete diagram
+- [http://amiresponsive.blogspot.com/](Colours.co) Am I responsive was used to create a responsive diagram.
+- [https://coolors.co/](Colours.co) was used to create the colour pallet diagram
 - Github was used as a version control system.
 - Gitpod was used as a development environment.
 
@@ -103,10 +126,10 @@ diagrams.
 1. On Heroku.com, click Create New App.
 2. Select the appropriate region and choose a relevant name.
 3. Once the app is created, click on it in the dashboard and go to the deploy tab.
-4. Go to deployment methods, select GitHub.
+4. Go to deployment methods, and select GitHub.
 5. Search for the name of the repository and click connect.
-6. Go to the Manul Deploy section and click deploy main branch.
-7. Wait for the build log to complete and click View App so view site.
+6. Go to the Manual Deploy section and click deploy main branch.
+7. Wait for the build log to complete and click View App to view the site.
 ### Forking the Repository on GitHub
 1. On GitHub.com, navigate to the main page of the repository.
 2. In the top-right corner of the page, click Fork.
@@ -126,12 +149,12 @@ diagrams.
 
 # Credits
 ## Content
-The site was built with inspiration from the Code Institute moments walkthrough project. Several components have been created with the walkthrough project as source material, however, custom code was required to deal with deviations in the site functionality and database schema.
+The site was built with inspiration from the Code Institute Moments walkthrough project. Several components have been created with the walkthrough project as source material, however, custom code was required to deal with deviations in the site functionality and database schema.
 ## Media
 The images used on the home page and sign up / sign up pages were taken from 
 [https://pixelied.com/home](pixelid)
 ## Code
-Several external resorces were used in the code. The link to the resources are given below, along with the file and line they were used at.
+Several external resources were used in the code. The links to the resources are given below, along with the file and line they were used at.
 
 - Member.Module.css, line 6: The code used to remove the active display after a button is clicked was taken from [https://stackoverflow.com/questions/43875517/react-bootstrap-remove-active-after-button-was-clicked]().
 - TaskCreateForm.js, line 48, Task.js, line 46, Task.js, line 46, ProjectCreateForm.js, line 31, ProjectEdit.js, line 47 : The code to handle data formatting was taken from
