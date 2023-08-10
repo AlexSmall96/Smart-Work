@@ -88,7 +88,22 @@ This section has been divided into subsections based on each page of the site. F
 
 [Create Project Page Tests Screenshots](https://github.com/AlexSmall96/Smart-Work/blob/main/documentation/testing/CreateProjectPage.pdf)
 ### Projects Page
-
+| Test No.    | Category    | Pass Criteria | Pass/Fail |
+| ----------- | ----------- |---------------|-----------|
+|7.1          |Loading Data | Projects created by the user appear in projects page, with users profile image in top right corner of the project component        | Pass
+|7.2         |Loading Data | Projects created by other users that the current user is a member of appear in projects page, with the project owner image appearing in the top right corner of the project component | Pass
+|7.3         |Component Interactivity | Clicking view details on each project component expands the body, showing its data, members and tasks | Pass
+|7.4         |Loading Data | All the current members of the project appear in the members list, displayed by thier profile images | Pass
+|7.5         |Loading Data | If the current user is the owner of the project, edit and delete buttons appear at the top of the comonent, and add and delete buttons appear above members list | Pass
+|7.6         |Component Interactivity |Clicking the edit project button directs the user to a form on a seperate page, showing project details | Pass
+|7.7         |Input validation |The title field cannot be changed to blank | Pass
+|7.8         |Input Validation|Trying to change the start date to a date iin the past gives an error  | Pass
+|7.9              |Input Validation|Trying to change the due date to a date before the start date gives an error  | Pass
+|7.10                 |Input Validation|Submitting the form with correct information gives a message stating 'Project Details Updated' and save changes button dissapears  | Pass
+|7.11                 |Input Validation|Before form is submitted, clicking go back button takes user back to the projects page | Pass
+|7.12                 |Input Validation|Submitting the form with correct information gives a message stating 'Project Details Updated' and save changes button dissapears  | Pass
+|7.13                 |Clicking the delete project button directs the user to a seperate page with message stating 'Are you sure you want to delete project' with project name appearing in message | Pass
+|7.14                 | | Pass
 ### Tasks Page
 
 ## User Stories Testing

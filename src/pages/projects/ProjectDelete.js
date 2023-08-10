@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { Card, Button } from 'react-bootstrap';
 import { axiosReq, axiosRes } from '../../api/axiosDefaults';
+import appStyles from '../../App.module.css';
 
 /* Allows user to delete a project */
 const ProjectDelete = () => {
@@ -47,7 +48,7 @@ return (
         <Button onClick={() => history.push(`/projects/${currentUser.profile_id}`)}>Back to Projects</Button>
     ):(<>
         <Button onClick={() => history.goBack()}>No</Button>
-        <Button onClick={handleDelete}>Yes</Button>
+        <Button onClick={handleDelete} className={appStyles.horizontalMargin}>Yes</Button>
     </>)}
   </Card.Body>
 </Card>
