@@ -88,6 +88,8 @@ This section has been divided into subsections based on each page of the site. F
 
 [Create Project Page Tests Screenshots](https://github.com/AlexSmall96/Smart-Work/blob/main/documentation/testing/CreateProjectPage.pdf)
 ### Projects Page
+This section is divided into further subsections based on which data model is being tests: projects, members or tasks.
+#### Projects
 | Test No.    | Category    | Pass Criteria | Pass/Fail |
 | ----------- | ----------- |---------------|-----------|
 |7.1          |Loading Data | Projects created by the user appear in projects page, with users profile image in top right corner of the project component        | Pass
@@ -100,10 +102,50 @@ This section has been divided into subsections based on each page of the site. F
 |7.8         |Input Validation|Trying to change the start date to a date iin the past gives an error  | Pass
 |7.9              |Input Validation|Trying to change the due date to a date before the start date gives an error  | Pass
 |7.10                 |Input Validation|Submitting the form with correct information gives a message stating 'Project Details Updated' and save changes button dissapears  | Pass
-|7.11                 |Input Validation|Before form is submitted, clicking go back button takes user back to the projects page | Pass
-|7.12                 |Input Validation|Submitting the form with correct information gives a message stating 'Project Details Updated' and save changes button dissapears  | Pass
-|7.13                 |Clicking the delete project button directs the user to a seperate page with message stating 'Are you sure you want to delete project' with project name appearing in message | Pass
-|7.14                 | | Pass
+|7.11                 |Site navigation|Before form is submitted, clicking go back button takes user back to the projects page | Pass
+|7.12 |Component interactivity               |Clicking the delete project button directs the user to a seperate page with message stating 'Are you sure you want to delete project' with project name appearing in message | Pass
+|7.12|Site navigation                 |Clicking the delete project button directs the user to a seperate page with message stating 'Are you sure you want to delete project' with project name appearing in message, and yes and no buttons appearing below | Pass
+|7.13|Site navigation                 |Clicking no redirects the user to projects page, clicking yes makes message appear stating 'Project deleted' with back to projects button appearing below | Pass
+|7.14|Site navigation                 |Clicking back to projects button redirects user to projecs page, with deleted project now gone | Pass
+#### Members
+| Test No.    | Category    | Pass Criteria | Pass/Fail |
+| ----------- | ----------- |---------------|-----------|
+|7.15|Component Interactivity |Clicking add members button directs the user to a seperate page with list of members | Pass
+|7.16|Component Interactivity |Searching by username in the top search bar filters the results appropriately | Pass
+|7.17|Loading Data |Existing members of the project cannot be selected| Pass
+|7.18|Component Interactivity |Clicking on a members button creates a tick mark next to thier name, highlights their box in blue and their name appears at bottom of card| Pass
+|7.19|Component Interactivity |Clicking on users name at bottom of card removes them from footer and removes tick box in body| Pass
+|7.20|Form Handling|Clicking add users to project results in a message stating 'Members added to project' and add users button disspears| Pass
+|7.21|Site Navigation|Clicking delete members button takes the user to a seperate page, with all the members of the project appearing with a delete button next to their name | Pass
+|7.22|Component Interactivity|Clicking one of the delete buttons makes are you sure message appear at bottom of card, with users name | Pass
+|7.23|Site Navigation|Clicking No takes the user back to the projects page | Pass
+|7.24|Site Navigation|Clicking yes results in a confirmation message, and deleted member is now gone from list, with back to projects button appearing | Pass
+|7.25|Site Navigation|Clicking back to projects takes user back to projects page, and delted member is now gone from members list in project component | Pass
+#### Tasks
+| Test No.    | Category    | Pass Criteria | Pass/Fail |
+| ----------- | ----------- |---------------|-----------|
+|7.26|Component Interactivity|Clicking the add tasks button reveals a form below, with the add tasks button being replaced with 'Hide Form' | Pass 
+|7.27|Input Validation|Submitting the form with description field blank gives an error|Pass
+|7.28         |Input Validation|Trying to change the start date to a date iin the past gives an error  | Pass
+|7.29              |Input Validation|Trying to change the due date to a date before the start date gives an error  | Pass
+|7.30              |Input Validation|All members of the project apppear in dropdown for 'Assigned to' field and any can be selected | Pass
+|7.31                 |Form Handling|Submitting the form with correct data results in 'Task Created Successfully' message appearing, with create new task button below | Pass  
+|7.32                 |Loading Data|When task is created it appears at bottom of project component | Pass 
+|7.33                 |Loading Data|If the current user is assigned to the task, they can see edit and delete buttons | Pass
+|7.34                 |Component Interactivity|Clicking the edit task button reveals a form below, with edit task button replaced with 'hide' | Pass
+|7.35|Input Validation|Submitting the form with description field blank gives an error|Pass
+|7.36         |Input Validation|Trying to change the start date to a date iin the past gives an error  | Pass
+|7.37              |Input Validation|Trying to change the due date to a date before the start date gives an error  | Pass
+|7.38              |Input Validation|Submitting a form with correct data shows 'Task updated successfully' message, with 'Update more details' button appearing.  | Pass
+|7.39              |Loading Data|New Task details appear in task list  | Pass
+|7.40              |Loading Data|Updating a tasks status to In Progress colours it amber, updating the status to Complete colours it green  | Pass
+|7.41              |Site Navigation|Clicking the delete task button directs the user to a seperate page showing are you sure message, with yes and no buttons appearing | Pass
+|7.42              |Loading Data|Task description and project title appear in message | Pass
+|7.42              |Loading Data|Task description and project title appear in message | Pass
+|7.43              |Site Navigation|Clicking no redirects user to projects page | Pass
+|7.44 |Form Handling|Clicking yes results in message stating 'Task Deleted' with 'Back to projects' button appearing| Pass
+|7.45 |Site Navigation|Clicking back to projects redirects user to projects page and deleted task is now gone| Pass
+[Projects Page Tests Screenshots](https://github.com/AlexSmall96/Smart-Work/blob/main/documentation/testing/ProjectsPage.pdf)
 ### Tasks Page
 
 ## User Stories Testing
