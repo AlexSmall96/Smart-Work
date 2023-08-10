@@ -1,31 +1,41 @@
 # Smart Work
-
-## Live Sites
+Smart Work is a project manager app built using the Javascript React framework. The app uses an API created with the Django-Rest Framework to load, create, edit and delete data. The purpose of the site is to collaborate on projects with colleagues or friends, where users can add, update and delete tasks from projects, as well as viewing users profiles and customizing their own. 
+## Live Site
 [https://smart-work-3d4938feb378.herokuapp.com/](https://smart-work-3d4938feb378.herokuapp.com/)
-
+#### Backend API Site
 [https://smart-work-api-c3503744e915.herokuapp.com/](https://smart-work-api-c3503744e915.herokuapp.com)
-
-
-## Repositories 
+## Repository
 [https://github.com/AlexSmall96/Smart-Work](https://github.com/AlexSmall96/Smart-Work)
-
+#### Backend API Repository
 [https://github.com/AlexSmall96/Smart-Work-API](https://github.com/AlexSmall96/Smart-Work-API)
-
 ## Author 
 Alex Small
 ## Table of Contents
-
-
-
-# UX
-## Target Audience
-
 
 ## Project Goals and Planning
 
 ### Database Schema
 To plan the structure of the database models, the following diagram was used. 
 ![Database Schema](documentation/images/Smart-Work-db-schema.png)
+
+## UX
+### Target Audience
+Although Smart Work is a project management app, it is intended to be used by anyone who requires a simple, effective planning and collaboration tool. This could range from professionals working on complex projects, to university students working on group assignments, or even in a more informal setting such as planning a holiday or family chores.
+### Site Logic
+To plan the flow of logic throughout the site, and the interaction between pages, the following diagram was used.
+
+![Site Logic](documentation/images/SiteLogic.png)
+
+See [TESTING.MD](https://github.com/AlexSmall96/Smart-Work/blob/main/TESTING.MD) for details of the implementation of this logic.
+### Colours
+- The main colours used throughout the site are shown in the below diagram. These were chosen to create a professional clean look, yet with enough vibrancy and variety that they create an informal feel, which would appeal to all of the target audience; those who are looking for a sleek design, as well as those intending to use the app for more hobbie or holiday planning. 
+
+- The most widely used colour on the site is the background colour of Middle Blue Green, this choice satisfies the requirements above as well as ensuring the main components such as the project and profile components stand out.
+
+![Colours](documentation/images/Colours.png)
+### Fonts
+
+### Images
 
 ## React Architecture
 Severeal React components were used in the site. The architecture used to build the site using the components is documentated below.
@@ -51,8 +61,13 @@ Testing is detailed fully in [TESTING.MD](https://github.com/AlexSmall96/Smart-W
 
 ## Other programs used
 - [https://dbdiagram.io/home](dbdiagram) was used to create the database schema diagram.
+- [https://www.figma.com](Figma) was used to create site logic and react architecture
+diagrams.
+- Am i responsive
+- Colour pallete
 - Github
 - Gitpod
+-
 
 
 # Deployment
@@ -83,7 +98,7 @@ Testing is detailed fully in [TESTING.MD](https://github.com/AlexSmall96/Smart-W
 
 # Credits
 ## Content
- 
+
 ## Media
 
 ## Code
