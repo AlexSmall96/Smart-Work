@@ -34,9 +34,11 @@ See [TESTING.MD](https://github.com/AlexSmall96/Smart-Work/blob/main/TESTING.MD)
 
 ![Colours](documentation/images/Colours.png)
 ### Fonts
-
+The font used on the site is Fira Sans Extra Condensed from google fonts. This was chosen again to appeal to the target audience as it has a professional clean look with an informal edge.
 ### Images
+The images chosen were modern cartoon style images of work situations. This fit well with the theme of the project, as creates ideas of organised workflow and optimized work environments, something Smart Work can help to achieve.
 
+![Images](documentation/images/AllImages.jpeg)
 ## React Architecture
 Severeal React components were used in the site. The architecture used to build the site using the components is documentated below.
 - App is the highest level component, which all other components are nested under.
