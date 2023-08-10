@@ -147,6 +147,13 @@ This section is divided into further subsections based on which data model is be
 |7.45 |Site Navigation|Clicking back to projects redirects user to projects page and deleted task is now gone| Pass
 [Projects Page Tests Screenshots](https://github.com/AlexSmall96/Smart-Work/blob/main/documentation/testing/ProjectsPage.pdf)
 ### Tasks Page
+| Test No.    | Category    | Pass Criteria | Pass/Fail |
+| ----------- | ----------- |---------------|-----------|
+|8.1 |Loading Data| All users tasks appear in card with correct data, button appears with text 'Go to my projects to create and update tasks'| Pass
+|8.2 |Site Navigation| Clicking button directs the user to projects page| Pass
+
+Screenshot for test 8.1
+![Tasks Page Tests](documentation/testing/TasksPage.png)
 
 ## User Stories Testing
 
