@@ -1,5 +1,7 @@
 # Smart Work
-Smart Work is a project manager app built using the Javascript React framework. The app uses an API created with the Django-Rest Framework to load, create, edit and delete data. The purpose of the site is to collaborate on projects with colleagues or friends, where users can add, update and delete tasks from projects, as well as viewing users profiles and customizing their own. 
+Smart Work is a project manager app built using the Javascript React framework. The app uses an API created with the Django-Rest Framework to load, create, edit and delete data. The purpose of the site is to collaborate on projects with colleagues or friends, where users can add, update and delete tasks from projects, as well as viewing users profiles and customizing their own.
+
+![Database Schema](documentation/images/amiresponsive.jpg) 
 ## Live Site
 [https://smart-work-3d4938feb378.herokuapp.com/](https://smart-work-3d4938feb378.herokuapp.com/)
 #### Backend API Site
@@ -13,6 +15,13 @@ Alex Small
 ## Table of Contents
 
 ## Project Goals and Planning
+The goals of the project are as follows:
+
+- Create a modern, professional looking project manager app
+- Allow users to easily navigate throughout the site
+- Allow users to collaborate on projects and tasks
+- Create a simple effective planning system to help meet deadlines
+- Allow users to cusomize their own profile, and view others
 
 ### Database Schema
 To plan the structure of the database models, the following diagram was used. 
@@ -48,29 +57,46 @@ Severeal React components were used in the site. The architecture used to build 
 
 ![React Architecture](documentation/images/ReactArchitecture.png)
 ## User Stories
+- User stories were linked to issues on Github (see the above link to view the repository). This was used as an agile tool to help plan and develop the project.
+- Below is the full list of user stories, each mapped to a project goal. 
+- See [TESTING.MD](https://github.com/AlexSmall96/Smart-Work/blob/main/TESTING.MD) for details of the acceptance criteria for each user story.
 
-## Features
-
-| Feature | Value to User|
-|------|------------------|
-
-## Future Features
+- Create a modern, professional looking project manager app
+  - As a User, I would like to be taken to a home page upon sign-in, where it is clear what the function and purpose of the site are.
+  - As a User, I would like to quickly tell which tab corresponds to Smart Work when I have multiple tabs open.
+- Allow users to easily navigate throughout the site
+  - As a User, I can view a navbar on every page of the site, and easily navigate to any other accessible page.
+- Allow users to collaborate on projects and tasks
+   - As a User, I can create a new project and add members to it.
+   - As a User, I can select a project I am a member of and view its details.
+   - As a user, I would like to edit the details of the projects that I created or delete them.
+- Create a simple effective planning system to help meet deadlines
+  - As a user, I would like to add tasks to my projects and update them based on their due date and status.
+  - As a user, I would like to delete a task that I added to a project if I no longer feel it is appropriate.
+- Allow users to cusomize their own profile, and view others
+  - As a User, I can register an account so I can access all the features available to signed-up users.
+  - As a user, I would like to view my profile and add personal details such as a profile image, interests, and skills.
+  - As a user, I can click on a users profile image when displayed on relevant pages, and I am taken to their profile page.
 
 ## Testing
 Testing is detailed fully in [TESTING.MD](https://github.com/AlexSmall96/Smart-Work/blob/main/TESTING.MD).
 
 ## Programming Languages, Frameworks, and Libraries used
-
+- The frontend site was built using the Javascript React Framework, along with css.
+- To aid in component functionality and styling, React-Bootstrap was used.
+- React Router Dom was used to link all the components to a path.
+- Axios was used to aid in API requests
+- jwt-decode was used to remove and refresh access tokens
+- The JS library date-fns was used to aid in formatting dates for project and task creation and updating.
 ## Other programs used
+- [https://cloudinary.com/](cloudinary) was used to store the site images.
 - [https://dbdiagram.io/home](dbdiagram) was used to create the database schema diagram.
 - [https://www.figma.com](Figma) was used to create site logic and react architecture
 diagrams.
-- Am i responsive
-- Colour pallete
-- Github
-- Gitpod
--
-
+- [http://amiresponsive.blogspot.com/](Colours.co) Am I responsive was used to create responsive diagram.
+- [https://coolors.co/](Colours.co) was used to create the colour pallete diagram
+- Github was used as a version control system.
+- Gitpod was used as a development environment.
 
 # Deployment
 ### Deploying the Site to Heroku
@@ -100,14 +126,17 @@ diagrams.
 
 # Credits
 ## Content
-
+The site was built with inspiration from the Code Institute moments walkthrough project. Several components have been created with the walkthrough project as source material, however, custom code was required to deal with deviations in the site functionality and database schema.
 ## Media
-
+The images used on the home page and sign up / sign up pages were taken from 
+[https://pixelied.com/home](pixelid)
 ## Code
-https://stackoverflow.com/questions/43875517/react-bootstrap-remove-active-after-button-was-clicked
-https://stackoverflow.com/questions/67866155/how-to-handle-onchange-value-in-date-reactjs
+Several external resorces were used in the code. The link to the resources are given below, along with the file and line they were used at.
 
+- Member.Module.css, line 6: The code used to remove the active display after a button is clicked was taken from [https://stackoverflow.com/questions/43875517/react-bootstrap-remove-active-after-button-was-clicked]().
+- TaskCreateForm.js, line 48, Task.js, line 46, Task.js, line 46, ProjectCreateForm.js, line 31, ProjectEdit.js, line 47 : The code to handle data formatting was taken from
+[https://stackoverflow.com/questions/67866155/how-to-handle-onchange-value-in-date-reactjs]().
 ## Acknowledgements 
 This application was created as a portfolio 5 project for the Diploma in Full Stack Software Development from [Code Institute](https://codeinstitute.net/full-stack-software-development-diploma/?utm_term=code%20institute&utm_campaign=CI+-+UK+-+Search+-+Brand&utm_source=adwords&utm_medium=ppc&hsa_acc=8983321581&hsa_cam=1578649861&hsa_grp=62188641240&hsa_ad=635720257674&hsa_src=g&hsa_tgt=kwd-319867646331&hsa_kw=code%20institute&hsa_mt=e&hsa_net=adwords&hsa_ver=3&gclid=CjwKCAiA5Y6eBhAbEiwA_2ZWIUE0LRewvfAYnQS69Lujb5s2FrQjmX0Idzqj-Olbamn1DbS2D-R7gBoC-1AQAvD_BwE
 )
-I would like to thank my mentor mentor_name for his/her encouraging support and detailed feedback throughout this project.
+I would like to thank my mentor Gareth McGirr for his encouraging support and detailed feedback throughout this project. I would also like to thank the tutor support team for their helpful advice.
