@@ -168,4 +168,7 @@ The full site has been tested across all browser sizes, and every page has been 
 Screenshots of these tests along with the full view of the site at different browser sizes is saved in the below link.
 
 [Responsiveness Screenshots](https://github.com/AlexSmall96/Smart-Work/blob/main/documentation/testing/Responsiveness.pdf)
+
+## User Stories Testing
+
 ## Validation Testing

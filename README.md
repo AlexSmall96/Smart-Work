@@ -2,19 +2,24 @@
 
 ## Live Sites
 [https://smart-work-3d4938feb378.herokuapp.com/](https://smart-work-3d4938feb378.herokuapp.com/)
+
 [https://smart-work-api-c3503744e915.herokuapp.com/](https://smart-work-api-c3503744e915.herokuapp.com)
 
 
 ## Repositories 
 [https://github.com/AlexSmall96/Smart-Work](https://github.com/AlexSmall96/Smart-Work)
+
 [https://github.com/AlexSmall96/Smart-Work-API](https://github.com/AlexSmall96/Smart-Work-API)
 
 ## Author 
 Alex Small
 ## Table of Contents
 
+
+
 # UX
 ## Target Audience
+
 
 ## Project Goals and Planning
 
@@ -22,7 +27,14 @@ Alex Small
 To plan the structure of the database models, the following diagram was used. 
 ![Database Schema](documentation/images/Smart-Work-db-schema.png)
 
+## React Architecture
+Severeal React components were used in the site. The architecture used to build the site using the components is documentated below.
+- App is the highest level component, which all other components are nested under.
+- Top level components are indicated in orange, level two components are green etc.
+- Top level components which have no subcomponents are displayed above the app component in opaque orange.
+- Arrow connectors have been used to show the relationship between the components.
 
+![React Architecture](documentation/images/ReactArchitecture.png)
 ## User Stories
 
 ## Features
