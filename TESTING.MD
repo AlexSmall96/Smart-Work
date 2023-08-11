@@ -154,6 +154,7 @@ This section is divided into further subsections based on which data model is be
 |8.2 |Site Navigation| Clicking button directs the user to projects page| Pass
 
 Screenshot for test 8.1
+
 ![Tasks Page Tests](documentation/testing/TasksPage.png)
 
 ## Responsiveness
@@ -170,5 +171,114 @@ Screenshots of these tests along with the full view of the site at different bro
 [Responsiveness Screenshots](https://github.com/AlexSmall96/Smart-Work/blob/main/documentation/testing/Responsiveness.pdf)
 
 ## User Stories Testing
+Each of the user stories are given below, along with their acceptance criteria and necessary tasks. User stories are divided based on project goals. All user stories have been followed through to implementation and have passed the acceptance criteria. 
+
+- Create a modern, professional-looking project manager app
+  - As a User, I would like to be taken to a home page upon sign-in, where it is clear what the function and purpose of the site are.
+    - Acceptance Criteria:
+        - User is redirected to home page after sign in
+        - Home page has engaging pictures and text, clearly describing the websites purpose.
+    - Tasks:
+        - Redirect user to home page after signing in
+        - Include several engaging pictures related to the theme of productivity, project management and social media.
+        - Ensure there is a text area describing the role of the site.
+        - Inlude links to sign in and sign up on the home page.
+  - As a User, I would like to quickly tell which tab corresponds to Smart Work when I have multiple tabs open.
+    - Acceptance Criteria
+        - Favicon is appropriately chosen to represent the theme of the site
+        - Favicon loads correctly when site is opened.
+    - Tasks:
+        - Choose appropriate favicon
+        - Load into index.html file.
+
+- Allow users to easily navigate throughout the site
+  - As a User, I can view a navbar on every page of the site, and easily navigate to any other accessible page.
+    - Acceptance Criteria :
+        - Navbar is present on every page.
+        - User can click on links in Navbar and is taken to the correct page.
+    - Tasks:
+        - Create Nav bar and link each icon to the relevant page.
+        - Ensure Nav bar is visible on every page and stays fixed at the top of each page.
+        - Only show sign in/sign up icons when user is not logged in.
+        - Show all icons when user successfully logs in.
+
+- Allow users to collaborate on projects and tasks
+   - As a User, I can create a new project and add members to it.
+        - Acceptance Criteria :
+            - User can create project and add team members to it
+            - Members of project can view in their feed
+            - Only owner of project can edit details
+            - Users who are not members of the projects cannot view it
+        - Tasks:
+            - Add a project create page, where users are taken to a form to select project details.
+            - Post form data to API.
+            - Automatically add user to the members of the project.
+            - Redirect user to projects page, ensuring the newly created project is displayed in the feed.
+   - As a User, I can select a project I am a member of and view its details.
+        - Acceptance Criteria :
+            - User can see project in feed and view details.
+            - User can't edit project unless they are the owner.
+        - Tasks:
+            - Get all projects the user is a member of from the API.
+            - Display projects on project page.
+            - If user is project owner, show edit, delete, add member, and add task buttons.
+            - If user is not project owner, only show add task buttons.
+   - As a user, I would like to edit the details of the projects that I created or delete them.
+        - Acceptance Criteria
+            - Project owner can edit all details of project, including adding or removing members. Project owner can delete the project.
+            - Members of the project that are not the project owner can only add tasks to it.
+        - Tasks:
+            - Direct user to edit or delete form when they click on the edit or delete buttons.
+            - Post the new data to the API, or use a delete request to delete the project.
+            - Ensure the deletion of the project also deletes associated members and tasks data in the backend.
+            - Redirect the user back to the projects page, showing the updated data.
+
+- Create a simple effective planning system to help meet deadlines
+  - As a user, I would like to add tasks to my projects and update them based on their due date and status.
+    - Acceptance Criteria
+        - Any member of project can add a task to it.
+        - Task has a due date, start date, status and an assigned member.
+        - Only the assigned member can edit the task details or delete the task.
+    - Tasks
+        - On the project view, include an add task button for all members to access.
+        - Add a form for the user to select the task details, ensuring the task can only be assigned to members of the project.
+        - Post the form data to the API, if successful display the new task in the projects page.
+        - Allow the task assigned to member to edit details of the task or remove the task from the project.
+  - As a user, I would like to delete a task that I added to a project if I no longer feel it is appropriate.
+    - Acceptance Criteria:
+        - If user is task owner, they can delete the task.
+        - Members of the project that aren't the task owner don't have delete access.
+    - Tasks:
+        - Include a delete button on the task, only visible to task owner.
+        - When selected, delete the task in the backend, and update the project with new data.
+- Allow users to customize their profile, and view others
+  - As a User, I can register an account so I can access all the features available to signed-up users.
+    - Acceptance Criteria
+        - User can register account with chosen details.
+        - Once registered and signed in, user can access all features available to standard site members.
+    - Tasks:
+        - Create a sign-up page with a sign-up form.    
+        - Display relevant errors in form data to user.
+        - If form data is correct, post to the API to create account.
+        - If successful, redirect the user to log in page.
+        - Update Nav Bar icons to show features available to signed in users.
+  - As a user, I would like to view my profile and add personal details such as a profile image, interests, and skills.
+    - Acceptance Criteria
+        - User can navigate to their profile page and see their details
+        - User can edit any of the details of their profile and their updated details are shown to them.
+    - Tasks:
+        - Create a profile page for the user, with an edit button.
+        - Add a from to allow user to select their name, organisation, role, skills, interests and profile image.
+        - Post form data to the API.
+        - Update user's profile with new data.
+  - As a user, I can click on a user's profile image when displayed on relevant pages, and I am taken to their profile page.
+        - Acceptance Criteria
+        - Where appropriate, where other users names are displayed throughout the site, the user can click on their name to be taken to their profile page.
+        - Display the relevant users profile details on their page, but allow read-only access if not the current users profile.
+    - Tasks:
+        - When a users name features on the site, eg. on the projects page, include a link to that users profile.
+        - Ensure link directs user to the correct page.
+        - Get the relevant users profile details from the API
+        - Display the users details on the profile page, ensuring the appropriate access is given to the current user.
 
 ## Validation Testing
