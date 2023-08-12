@@ -59,6 +59,18 @@ To plan the flow of logic throughout the site, and the interaction between pages
 ![Site Logic](documentation/images/SiteLogic.png)
 
 See [TESTING.MD](https://github.com/AlexSmall96/Smart-Work/blob/main/TESTING.MD) for details of the implementation of this logic.
+
+### Wireframes
+
+To plan the basic layout of each page, the below diagrams were created. A wireframe for each page has been provided, on desktop and mobile.
+#### Home Page
+![Home Page](documentation/images/WireFramesHome.jpg)
+#### Projects Page
+![ProjectsPage](documentation/images/WireFramesProjectsPage.jpg)
+#### Tasks Page
+![Tasks](documentation/images/WireFramesTasks.jpg)
+#### Profile Page
+![Profiles](documentation/images/WireFramesProfile.jpg)
 ### Colours
 - The main colors used throughout the site are shown in the below diagram. These were chosen to create a professional clean look, yet with enough vibrancy and variety that they create an informal feel, which would appeal to all of the target audience; those who are looking for a sleek design, as well as those intending to use the app for more hobbies or holiday planning. 
 

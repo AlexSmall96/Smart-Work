@@ -171,7 +171,7 @@ Screenshots of these tests along with the full view of the site at different bro
 [Responsiveness Screenshots](https://github.com/AlexSmall96/Smart-Work/blob/main/documentation/testing/Responsiveness.pdf)
 
 ## User Stories Testing
-Each of the user stories are given below, along with their acceptance criteria and necessary tasks. User stories are divided based on project goals. All user stories have been followed through to implementation and have passed the acceptance criteria. 
+Each of the user stories are given below, along with their acceptance criteria and necessary tasks. User stories are divided based on project goals. All user stories have been followed through to implementation with acceptance criteria passed and required tasks implemented.
 
 - Create a modern, professional-looking project manager app
   - As a User, I would like to be taken to a home page upon sign-in, where it is clear what the function and purpose of the site are.
