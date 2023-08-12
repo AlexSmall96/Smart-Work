@@ -24,11 +24,20 @@ Alex Small
   * [UX](#ux)
     + [Target Audience](#target-audience)
     + [Site Logic](#site-logic)
+    + [Wireframes](#wireframes)
+      - [Home Page](#home-page)
+      - [Projects Page](#projects-page)
+      - [Tasks Page](#tasks-page)
+      - [Profile Page](#profile-page)
     + [Colours](#colours)
     + [Fonts](#fonts)
     + [Images](#images)
   * [React Architecture](#react-architecture)
+    + [Reuse of Components](#reuse-of-components)
   * [User Stories](#user-stories)
+    + [Create a modern, professional-looking project manager app](#create-a-modern--professional-looking-project-manager-app)
+    + [Create a simple effective planning system to help meet deadlines](#create-a-simple-effective-planning-system-to-help-meet-deadlines)
+    + [Allow users to customize their profile, and view others](#allow-users-to-customize-their-profile--and-view-others)
   * [Testing](#testing)
   * [Programming Languages, Frameworks, and Libraries used](#programming-languages--frameworks--and-libraries-used)
   * [Other programs used](#other-programs-used)
@@ -91,12 +100,24 @@ Several React components were used in the site. The architecture used to build t
 - Arrow connectors have been used to show the relationship between the components.
 
 ![React Architecture](documentation/images/ReactArchitecture.png)
+
+### Reuse of Components
+Below is a summary of the react components which are used multiple times in their corresponding parent component (See above diagram). For each component, its purpose and parent is given. 
+
+| Component    | Purpose     | Parent Component | Use in Parent Component
+| -----------  | ----------- |-----------------|-----------------|
+|Project|Loads the individual project data along with its members|Projects Page|Each project the user is currently a member of is represented by a project component. 
+|Task|Loads the individual task data|Project|Each project component has a list of associated tasks, which are represented by the task components.
+|Avatar|Displays the users profile image with added style and optional text with their username|Project|The projects members are displayed in a list, each represented by the avatar component.
+|Member|A button element with the users profile image, name and organisation, to add or remove a member to a project.|AddMembers|The AddMembers component contains a list of all users, each represented by a Member component. 
+|Avatar|Displays the users profile image with added style and optional text with their username|DeleteMembers|The DeleteMembers component contains a list of all users with the option to remove them from the project, each represented by an Avatar component.
+
 ## User Stories
 - User stories were linked to issues on GitHub (see the above link to view the repository). This was used as an agile tool to help plan and develop the project.
-- Below is the full list of user stories, each mapped to a project goal. 
+- Below is the full list of user stories, divided by project goals. 
 - See [TESTING.MD](https://github.com/AlexSmall96/Smart-Work/blob/main/TESTING.MD) for details of the acceptance criteria for each user story.
 
-- Create a modern, professional-looking project manager app
+### Create a modern, professional-looking project manager app
   - As a User, I would like to be taken to a home page upon sign-in, where it is clear what the function and purpose of the site are.
   - As a User, I would like to quickly tell which tab corresponds to Smart Work when I have multiple tabs open.
 - Allow users to easily navigate throughout the site
@@ -105,10 +126,10 @@ Several React components were used in the site. The architecture used to build t
    - As a User, I can create a new project and add members to it.
    - As a User, I can select a project I am a member of and view its details.
    - As a user, I would like to edit the details of the projects that I created or delete them.
-- Create a simple effective planning system to help meet deadlines
+### Create a simple effective planning system to help meet deadlines
   - As a user, I would like to add tasks to my projects and update them based on their due date and status.
   - As a user, I would like to delete a task that I added to a project if I no longer feel it is appropriate.
-- Allow users to customize their profile, and view others
+### Allow users to customize their profile, and view others
   - As a User, I can register an account so I can access all the features available to signed-up users.
   - As a user, I would like to view my profile and add personal details such as a profile image, interests, and skills.
   - As a user, I can click on a user's profile image when displayed on relevant pages, and I am taken to their profile page.
@@ -174,4 +195,5 @@ Several external resources were used in the code. The links to the resources are
 ## Acknowledgements 
 This application was created as a portfolio 5 project for the Diploma in Full Stack Software Development from [Code Institute](https://codeinstitute.net/full-stack-software-development-diploma/?utm_term=code%20institute&utm_campaign=CI+-+UK+-+Search+-+Brand&utm_source=adwords&utm_medium=ppc&hsa_acc=8983321581&hsa_cam=1578649861&hsa_grp=62188641240&hsa_ad=635720257674&hsa_src=g&hsa_tgt=kwd-319867646331&hsa_kw=code%20institute&hsa_mt=e&hsa_net=adwords&hsa_ver=3&gclid=CjwKCAiA5Y6eBhAbEiwA_2ZWIUE0LRewvfAYnQS69Lujb5s2FrQjmX0Idzqj-Olbamn1DbS2D-R7gBoC-1AQAvD_BwE
 )
-I would like to thank my mentor Gareth McGirr for his encouraging support and detailed feedback throughout this project. I would also like to thank the tutor support team for their helpful advice.
+I would like to thank my mentor [Gareth McGirr](https://github.com/Gareth-McGirr ) for his encouraging support and detailed feedback throughout this project. I would also like to thank the tutor support team for their helpful advice.
+
