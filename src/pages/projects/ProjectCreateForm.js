@@ -8,7 +8,7 @@ import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import appStyles from '../../App.module.css';
 
 /* Allow users to create a new project */
-function ProjectCreateForm() {
+const ProjectCreateForm = () => {
     // Initialize state variables
     const [errors, setErrors] = useState({});
     const [dueDateFeedback, setDueDateFeedback] = useState('')

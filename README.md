@@ -1,7 +1,7 @@
 # Smart Work
-Smart Work is a project manager app built using the Javascript React framework. The app uses an API created with the Django-Rest Framework to load, create, edit, and delete data. The purpose of the site is to collaborate on projects with colleagues or friends, where users can add, update and delete tasks from projects, as well as view users' profiles and customize their own.
+Smart Work is a project manager app built using the Javascript React framework. The app uses an API created with the Django-Rest Framework to load, create, edit, and delete data. The purpose of the site is to collaborate on projects with colleagues or friends, where users can add, update and delete tasks from projects, as well as view users' profiles and customize their own. The app is split into two seperate sites. This repository is the front end JS React section of the app.
 
-![Database Schema](documentation/images/amiresponsive.jpg) 
+![responsive](documentation/images/amiresponsive.jpg) 
 ## Live Site
 [https://smart-work-3d4938feb378.herokuapp.com/](https://smart-work-3d4938feb378.herokuapp.com/)
 #### Backend API Site
@@ -146,7 +146,7 @@ Testing is detailed fully in [TESTING.MD](https://github.com/AlexSmall96/Smart-W
 - The JS library date-fns was used to aid in formatting dates for project and task creation and updating.
 ## Other programs used
 - [https://cloudinary.com/](Cloudinary) was used to store the site images.
-- [https://dbdiagram.io/home](DB diagram) was used to create the database schema diagram.
+
 - [https://www.figma.com](Figma) was used to create site logic and react architecture
 diagrams.
 - [http://amiresponsive.blogspot.com/](Colours.co) Am I responsive was used to create a responsive diagram.
