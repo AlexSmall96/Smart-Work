@@ -1,5 +1,5 @@
 # Smart Work
-Smart Work is a project manager app built using the Javascript React framework. The app uses an API created with the Django-Rest Framework to load, create, edit, and delete data. The purpose of the site is to collaborate on projects with colleagues or friends, where users can add, update and delete tasks from projects, as well as view users' profiles and customize their own. The app is split into two seperate sites. This repository is the front end JS React section of the app.
+Smart Work is a project manager app built using the Javascript React framework. The app uses an API created with the Django-Rest Framework to load, create, edit, and delete data. The purpose of the site is to collaborate on projects with colleagues or friends, where users can add, update and delete tasks from projects, as well as view users' profiles and customize their own. The app is split into two separate sites. This repository is the front-end JS React section of the app.
 
 ![responsive](documentation/images/amiresponsive.jpg) 
 ## Live Site
@@ -102,14 +102,14 @@ Several React components were used in the site. The architecture used to build t
 ![React Architecture](documentation/images/ReactArchitecture.png)
 
 ### Reuse of Components
-Below is a summary of the react components which are used multiple times in their corresponding parent component (See above diagram). For each component, its purpose and parent is given. 
+Below is a summary of the react components which are used multiple times in their corresponding parent component (See above diagram). For each component, its purpose and parent are given. 
 
 | Component    | Purpose     | Parent Component | Use in Parent Component
 | -----------  | ----------- |-----------------|-----------------|
 |Project|Loads the individual project data along with its members|Projects Page|Each project the user is currently a member of is represented by a project component. 
 |Task|Loads the individual task data|Project|Each project component has a list of associated tasks, which are represented by the task components.
-|Avatar|Displays the users profile image with added style and optional text with their username|Project|The projects members are displayed in a list, each represented by the avatar component.
-|Member|A button element with the users profile image, name and organisation, to add or remove a member to a project.|AddMembers|The AddMembers component contains a list of all users, each represented by a Member component. 
+|Avatar|Displays the user's profile image with added style and optional text with their username|Project|The project members are displayed in a list, each represented by the avatar component.
+|Member|A button element with the user profile image, name, and organization, to add or remove a member to a project.|AddMembers|The AddMembers component contains a list of all users, each represented by a Member component. 
 |Avatar|Displays the users profile image with added style and optional text with their username|DeleteMembers|The DeleteMembers component contains a list of all users with the option to remove them from the project, each represented by an Avatar component.
 
 ## User Stories
@@ -149,7 +149,7 @@ Testing is detailed fully in [TESTING.MD](https://github.com/AlexSmall96/Smart-W
 
 - [https://www.figma.com](Figma) was used to create site logic and react architecture
 diagrams.
-- [http://amiresponsive.blogspot.com/](Colours.co) Am I responsive was used to create a responsive diagram.
+- [http://amiresponsive.blogspot.com/](Colours. co) Am I responsive was used to create a responsive diagram.
 - [https://coolors.co/](Colours.co) was used to create the colour pallet diagram
 - Github was used as a version control system.
 - Gitpod was used as a development environment.
@@ -161,7 +161,7 @@ diagrams.
 3. Once the app is created, click on it in the dashboard and go to the deploy tab.
 4. Go to deployment methods, and select GitHub.
 5. Search for the name of the repository and click connect.
-6. Go to the Manual Deploy section and click deploy main branch.
+6. Go to the Manual Deploy section and click deploy the main branch.
 7. Wait for the build log to complete and click View App to view the site.
 ### Forking the Repository on GitHub
 1. On GitHub.com, navigate to the main page of the repository.
@@ -185,12 +185,12 @@ diagrams.
 The site was built with inspiration from the Code Institute Moments walkthrough project. Several components have been created with the walkthrough project as source material, however, custom code was required to deal with deviations in the site functionality and database schema.
 ## Media
 The images used on the home page and sign up / sign up pages were taken from 
-[https://pixelied.com/home](pixelid)
+[https://pixelied.com/home](pixel)
 ## Code
 Several external resources were used in the code. The links to the resources are given below, along with the file and line they were used at.
 
 - Member.Module.css, line 6: The code used to remove the active display after a button is clicked was taken from [https://stackoverflow.com/questions/43875517/react-bootstrap-remove-active-after-button-was-clicked]().
-- TaskCreateForm.js, line 48, Task.js, line 46, Task.js, line 46, ProjectCreateForm.js, line 31, ProjectEdit.js, line 47 : The code to handle data formatting was taken from
+- TaskCreateForm.js, line 48, Task.js, line 46, Task.js, line 46, ProjectCreateForm.js, line 31, ProjectEdit.js, line 47: The code to handle data formatting was taken from
 [https://stackoverflow.com/questions/67866155/how-to-handle-onchange-value-in-date-reactjs]().
 ## Acknowledgements 
 This application was created as a portfolio 5 project for the Diploma in Full Stack Software Development from [Code Institute](https://codeinstitute.net/full-stack-software-development-diploma/?utm_term=code%20institute&utm_campaign=CI+-+UK+-+Search+-+Brand&utm_source=adwords&utm_medium=ppc&hsa_acc=8983321581&hsa_cam=1578649861&hsa_grp=62188641240&hsa_ad=635720257674&hsa_src=g&hsa_tgt=kwd-319867646331&hsa_kw=code%20institute&hsa_mt=e&hsa_net=adwords&hsa_ver=3&gclid=CjwKCAiA5Y6eBhAbEiwA_2ZWIUE0LRewvfAYnQS69Lujb5s2FrQjmX0Idzqj-Olbamn1DbS2D-R7gBoC-1AQAvD_BwE

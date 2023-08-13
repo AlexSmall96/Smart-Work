@@ -1,7 +1,23 @@
 # Testing
 
 ## Table of Contents
-
+- [Testing](#testing)
+  * [Table of Contents](#table-of-contents)
+  * [Manual Testing](#manual-testing)
+    + [Home Page](#home-page)
+    + [Navigation Bar](#navigation-bar)
+    + [Signin Page](#signin-page)
+    + [Signup Page](#signup-page)
+    + [Profile Page](#profile-page)
+    + [Project Create Page](#project-create-page)
+    + [Projects Page](#projects-page)
+      - [Projects](#projects)
+      - [Members](#members)
+      - [Tasks](#tasks)
+    + [Tasks Page](#tasks-page)
+  * [Responsiveness](#responsiveness)
+  * [User Stories Testing](#user-stories-testing)
+  * [Validation Testing](#validation-testing)
 ## Manual Testing
 This section has been divided into subsections based on each page of the site. For each subsection, a table is given with the list of tests required, showing its category, description, and a pass/fail status. Each test has a unique reference number. Where applicable, screenshots are given of evidence of passing the test, with each image referencing the test by its number.
 ### Home Page
@@ -282,3 +298,6 @@ Each of the user stories are given below, along with their acceptance criteria a
         - Display the users details on the profile page, ensuring the appropriate access is given to the current user.
 
 ## Validation Testing
+
+- [ES Lint](https://eslint.org/) was used to validate the JS files. All JS files pass through the validator with no major issues affecting functionality. There are several warnings regaring misuse of quotes, indentation and unescaped entities. These warnings didn't afffect any functionality and only affect readibility. I chose to ignore these warnings due to time constraints.
+- [W3 CSS Validator](https://jigsaw.w3.org/css-validator//) was used to validate the CSS files. All files passed with no issues.
