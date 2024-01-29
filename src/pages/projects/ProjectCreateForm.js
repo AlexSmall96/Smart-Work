@@ -30,22 +30,33 @@ const ProjectCreateForm = () => {
     */
     const handleStartDateChange = (event) => {
         const newStartDate = format(new Date(event.target.value), 'yyyy-MM-dd');
-        if (newStartDate >= format(new Date(), 'yyyy-MM-dd')){
-            setStartDate(newStartDate);
-            setStartDateFeedback('')
+        if (newStartDate <= format(new Date(dueDate), 'yyy-MM-dd')){
+            if (newStartDate >= format(new Date(), 'yyyy-MM-dd')){
+                setStartDate(newStartDate);
+                setStartDateFeedback('')
+            } else {
+                setStartDateFeedback('Start Date cannot be in the past.')
+            } 
         } else {
-            setStartDateFeedback('Start Date cannot be in the past.')
-        } 
+            setStartDateFeedback('Start Date cannot be after Due Date')
+        }
+
     }
+
     const handleDueDateChange = (event) => {
         const newDueDate = format(new Date(event.target.value), 'yyyy-MM-dd');
-        if (newDueDate >= startDate){
-            setDueDate(newDueDate);
-            setDueDateFeedback('')
+        if (newDueDate >= format(new Date(startDate), 'yyy-MM-dd')){
+            if (newDueDate >= format(new Date(), 'yyyy-MM-dd')){
+                setDueDate(newDueDate);
+                setDueDateFeedback('')
+            } else {
+                setDueDateFeedback('Due Date cannot be in the past.')
+            } 
         } else {
-            setDueDateFeedback('Due Date must be ahead of Start Date.')
+            setDueDateFeedback('Due Date must be after Start Date')
         }
     }
+
     // Handle change for text inputs
     const handleChange = (event) => {
         setProjectData({
