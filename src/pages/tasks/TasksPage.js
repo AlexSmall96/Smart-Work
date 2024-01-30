@@ -4,9 +4,11 @@ import { Link, useParams } from 'react-router-dom/cjs/react-router-dom.min';
 import { axiosReq } from '../../api/axiosDefaults';
 import styles from './../../styles/TasksPage.module.css';
 import appStyles from '../../App.module.css';
+import { useRedirect } from '../../hooks/UseRedirect.js';
 
 /* Loads the users tasks onto a seperate page, read only*/
 const TasksPage = () => {
+  useRedirect("loggedOut");
   // Initialize variables
   const { id } = useParams();
   const [tasks, setTasks] = useState([]);

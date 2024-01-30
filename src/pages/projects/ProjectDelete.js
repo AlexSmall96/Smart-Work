@@ -5,9 +5,11 @@ import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { Card, Button } from 'react-bootstrap';
 import { axiosReq, axiosRes } from '../../api/axiosDefaults';
 import appStyles from '../../App.module.css';
+import { useRedirect } from '../../hooks/UseRedirect.js';
 
 /* Allows user to delete a project */
 const ProjectDelete = () => {
+    useRedirect("loggedOut");
     // Initialize variables
     const currentUser = useCurrentUser();
     const { id } = useParams();

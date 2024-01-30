@@ -6,9 +6,11 @@ import appStyles from '../../App.module.css';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import { Button, Container } from 'react-bootstrap';
 import Asset from '../../components/Asset';
+import { useRedirect } from '../../hooks/UseRedirect.js';
 
 /* Loads all the users current projects */
 const ProjectsPage = () => {
+  useRedirect("loggedOut");
     // Initialize variables
     const { id } = useParams();
     const [members, setMembers] = useState([]);

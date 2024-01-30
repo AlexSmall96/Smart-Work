@@ -4,9 +4,11 @@ import { Card, Button, Form } from 'react-bootstrap';
 import Avatar from '../../components/Avatar';
 import { axiosReq } from '../../api/axiosDefaults';
 import appStyles from '../../App.module.css';
+import { useRedirect } from '../../hooks/UseRedirect.js';
 
 /* Allow user to edit their own profile*/
 const ProfileEdit = () => {
+  useRedirect("loggedOut");
    // Initialize state variables
     const {id} = useParams();
     const imageFile = useRef();

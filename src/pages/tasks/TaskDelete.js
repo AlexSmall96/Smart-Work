@@ -5,9 +5,11 @@ import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { Card, Button } from 'react-bootstrap';
 import { axiosReq, axiosRes } from '../../api/axiosDefaults';
 import appStyles from '../../App.module.css';
+import { useRedirect } from '../../hooks/UseRedirect.js';
 
 /* Allow the task assigned to user to delete task*/
 const TaskDelete = () => {
+    useRedirect("loggedOut");
     // Initialize variables
     const currentUser = useCurrentUser();
     const { id } = useParams();

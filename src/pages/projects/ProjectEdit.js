@@ -7,9 +7,11 @@ import { axiosReq, axiosRes } from '../../api/axiosDefaults';
 import { useParams, useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
 import appStyles from '../../App.module.css';
+import { useRedirect } from '../../hooks/UseRedirect.js';
 
 /* Allows user to edit a project with a given id */
 const ProjectEdit = () => {
+  useRedirect("loggedOut");
   // Initialize variables
   const {id} = useParams();
   const history = useHistory();

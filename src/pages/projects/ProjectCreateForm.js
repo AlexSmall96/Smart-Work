@@ -6,9 +6,11 @@ import { axiosReq } from "../../api/axiosDefaults";
 import { useHistory } from "react-router";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import appStyles from '../../App.module.css';
+import { useRedirect } from '../../hooks/UseRedirect.js';
 
 /* Allow users to create a new project */
 const ProjectCreateForm = () => {
+    useRedirect("loggedOut");
     // Initialize state variables
     const [errors, setErrors] = useState({});
     const [dueDateFeedback, setDueDateFeedback] = useState('')
