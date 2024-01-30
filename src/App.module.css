@@ -4,6 +4,22 @@ min-height: 100vh;
 background-color: rgb(125, 212, 212);
 }
 
+.green{
+    background-color: rgb(125, 212, 212);
+}
+
+.blue{
+    background-color: rgb(154, 203, 241);
+}
+
+.pink{
+    background-color: rgb(238, 195, 244);
+}
+
+.white{
+    background-color: rgb(243, 239, 233);
+}
+
 .padding{
     padding:5px;
 }

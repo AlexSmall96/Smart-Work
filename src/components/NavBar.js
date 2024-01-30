@@ -65,6 +65,12 @@ const NavBar = () => {
       >
       <Avatar src={currentUser?.profile_image} text={`${currentUser?.username}`} height={40} />
       </NavLink>
+      <NavLink
+            className={styles.NavLink}
+            to={`/settings/`}
+      >
+        <i className="fas fa-gear"></i>
+      </NavLink>
   </>;
 
   const loggedOutIcons = <>

@@ -7,7 +7,7 @@ import axios from 'axios';
 import { removeTokenTimestamp } from '../utils/utils';
 
 /* Home page with pictures and links to signin/signup */
-export const Home = () => {
+export const Home = (color) => {
   // Initialize variables
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
@@ -37,8 +37,8 @@ return (
     className={styles.carousel}
     activeIndex={index} 
     onSelect={handleSelect} 
-    nextIcon={<span aria-hidden="true" className={`carousel-control-next-icon ${styles.carouselIicon}`} />}
-    prevIcon={<span aria-hidden="true" className={`carousel-control-prev-icon ${styles.carouselIicon}`} />}
+    nextIcon={<span aria-hidden="true" className={`carousel-control-next-icon ${color}`} />}
+    prevIcon={<span aria-hidden="true" className={`carousel-control-prev-icon ${color}`} />}
     indicators={false}
     >
       <Carousel.Item>
@@ -46,7 +46,7 @@ return (
       <p>Work on projects with your colleagues and friends.</p>
         <img
           className="d-block w-100"
-          src="https://res.cloudinary.com/dojzptdbc/image/upload/v1691443644/project_kzsven.jpg"
+          src="https://res.cloudinary.com/dojzptdbc/image/upload/v1706630414/project2_ooqzbc.png"
           alt="First slide"
         />
       </Carousel.Item>
@@ -55,7 +55,7 @@ return (
       <p> Personalise your profile with your organisation, role, interests and skills</p>
         <img
           className="d-block w-100"
-          src="https://res.cloudinary.com/dojzptdbc/image/upload/v1691444198/profile_gm4afv.jpg"
+          src="https://res.cloudinary.com/dojzptdbc/image/upload/v1706630216/profile2_g9rt3h.png"
           alt="Second slide"
         />
       </Carousel.Item>
@@ -64,7 +64,7 @@ return (
         <p>Never miss a deadline again with our detailed planning system.</p>
         <img
           className="d-block w-100" 
-          src="https://res.cloudinary.com/dojzptdbc/image/upload/v1691443751/calender_ldwpt4.jpg"
+          src="https://res.cloudinary.com/dojzptdbc/image/upload/v1706630523/calender2_tbnodm.png"
           alt="Third slide"
         />
       </Carousel.Item>

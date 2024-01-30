@@ -16,14 +16,17 @@ import ProjectEdit from "./pages/projects/ProjectEdit";
 import ProfileEdit from "./pages/profiles/ProfileEdit";
 import TasksPage from "./pages/tasks/TasksPage";
 import TaskDelete from "./pages/tasks/TaskDelete";
+import Settings from "./pages/Settings";
+import { useState } from "react";
 
 function App() {
+  const [color, setColor] = useState(styles.green)
   return (
-        <div className={styles.App}>
+        <div className={`${styles.App} ${color}`}>
           <NavBar />
           <Container className={styles.Main}>
             <Switch>
-              <Route exact path="/" render={() => <Home />} />
+              <Route exact path="/" render={() => <Home color={color} />} />
               <Route exact path="/projects/:id" render={() => <ProjectsPage />} />
               <Route exact path="/members/add/:projectId" render={() => <AddMembers />} />
               <Route exact path="/members/delete/:projectId" render={() => <DeleteMembers />} />
@@ -36,6 +39,7 @@ function App() {
               <Route exact path="/profiles/:id" render={() => <Profile />} />
               <Route exact path="/profiles/edit/:id" render={() => <ProfileEdit />} />
               <Route exact path="/tasks/:id" render={() => <TasksPage />} />
+              <Route exact path="/settings" render={() => <Settings setColor={setColor} />} />
               <Route render={() => <p>Page not found!</p>} />
             </Switch>
           </Container>
