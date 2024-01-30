@@ -73,6 +73,9 @@ return (
         </Card.Header>
         <Accordion>
                 {/* Project details in expandable body */}
+                <Link to={`/projects/project/${projectData.project}`}>
+                    <Button variant="outline-primary" className={`${styles.projectButtons} ${styles.verticalMargin}`} size="sm">Go to detail page</Button>
+                </Link>
                 <Accordion.Toggle as={Button} variant="link" eventKey="0" className={styles.projectAccord} onClick={() => setExpanded(!expanded)}>
                     {expanded?('Hide Details'):('View Details')}
                 </Accordion.Toggle>

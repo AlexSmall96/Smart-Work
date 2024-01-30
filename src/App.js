@@ -9,6 +9,7 @@ import Home from "./pages/Home";
 import ProjectCreateForm from "./pages/projects/ProjectCreateForm";
 import ProjectDelete from "./pages/projects/ProjectDelete";
 import ProjectsPage from "./pages/projects/ProjectsPage";
+import ProjectPage from "./pages/projects/ProjectPage";
 import Profile from "./pages/profiles/Profile";
 import AddMembers from "./pages/members/AddMembers";
 import DeleteMembers from "./pages/members/DeleteMembers";
@@ -28,6 +29,7 @@ function App() {
             <Switch>
               <Route exact path="/" render={() => <Home color={color} />} />
               <Route exact path="/projects/:id" render={() => <ProjectsPage />} />
+              <Route exact path="/projects/project/:id" render={() => <ProjectPage />} />
               <Route exact path="/members/add/:projectId" render={() => <AddMembers />} />
               <Route exact path="/members/delete/:projectId" render={() => <DeleteMembers />} />
               <Route exact path="/signin" render={() => <SignInForm />} />
