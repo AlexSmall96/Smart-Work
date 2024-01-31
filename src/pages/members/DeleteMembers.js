@@ -82,7 +82,7 @@ const DeleteMembers = () => {
             {memberSelected? (
             <><Button onClick={handleDelete} className={appStyles.horizontalMargin}>Yes</Button><Button onClick={() => history.goBack()}>No, back to projects.</Button></>
             ):(
-            <Button onClick={() => history.goBack()}>Back to projects.</Button>
+            <Button onClick={() => history.goBack()} className={appStyles.horizontalMargin}>Back to projects.</Button>
             )}
         </Card.Footer>
     </Card>

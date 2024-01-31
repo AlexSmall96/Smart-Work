@@ -36,6 +36,12 @@ background-color: rgb(125, 212, 212);
 .verticalMargin{
     margin-top: 10px;
 }
+
+.verticalMarginTopBottom{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
 .Main {
     padding-top: 81px;
 }

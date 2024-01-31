@@ -27,7 +27,7 @@ function App() {
           <NavBar />
           <Container className={styles.Main}>
             <Switch>
-              <Route exact path="/" render={() => <Home color={color} />} />
+              <Route exact path="/" render={() => <Home />} />
               <Route exact path="/projects/:id" render={() => <ProjectsPage />} />
               <Route exact path="/projects/project/:id" render={() => <ProjectPage />} />
               <Route exact path="/members/add/:projectId" render={() => <AddMembers />} />

@@ -95,7 +95,7 @@ const handleDueDateChange = (event) => {
     <Card>
     {/* Feedback message */}
       <Card.Header>{projectSaved?('Project details updated.'):(`Edit details for ${projectData.title}.`)}</Card.Header>
-            <Form>
+            <Form className={appStyles.horizontalMargin}>
              {/* Title */}     
             <Form.Group controlId="title">
                 <Form.Label>Title</Form.Label>
@@ -199,8 +199,8 @@ const handleDueDateChange = (event) => {
             </Card>
              {/* Go Back and save buttons */} 
             {projectSaved? (
-                <Button className={`${appStyles.verticalMargin} ${appStyles.horizontalMargin}`} variant="secondary" onClick={() => history.push(`/projects/${currentUser.profile_id}`)}>
-                    Back to Projects.
+                <Button className={`${appStyles.verticalMargin} ${appStyles.horizontalMargin}`} variant="secondary" onClick={() => history.push(`/projects/project/${id}`)}>
+                    Back to Project
                 </Button>):(<>
                 <Button className={`${appStyles.verticalMargin}`} variant="secondary" onClick={() => history.goBack()}>
                   Cancel

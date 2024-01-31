@@ -5,6 +5,12 @@
 .projectButtons{
     margin-left:5px;
     margin-right:5px;
+    background-color: rgb(225, 218, 218);
+    border-width: 0px;
+}
+
+.wideMargin{
+    margin-left:25px;
 }
 
 .projectCard{
@@ -15,8 +21,19 @@
         margin-top: 5px;
 }
 
+.verticalMarginTopBottom{
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
 .projectFooter{
     height: 70px;
+}
+
+.narrowFooter{
+    padding-top: 5px;
+    padding-bottom:5px;
+    height:40px
 }
 
 .overflow{
@@ -24,8 +41,8 @@
     flex-direction: row;
     justify-content: left;
     overflow-x: scroll;
-    height: 90px;
-    padding-top: 20px;
+    height: 60px;
+    padding-top: 10px;
     background-color: #f8f9fa;
 }
 
@@ -43,6 +60,12 @@
 .left{
     text-align: left;
     padding-left: 10px;
+}
+
+.right{
+    text-align: right;
+    padding-right: 10px;
+    float:right;
 }
 
 @media (max-width:767px){

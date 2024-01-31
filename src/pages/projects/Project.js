@@ -48,92 +48,21 @@ return (
                 <Container>
                     {/* Header */}
                     <Row className="justify-content-md-center">
-                        <Col xs={2}>
+                        <Col xs={3}>
                             <Link to={`/profiles/${projectData.project_owner_profile_id}`}>
                                 <Avatar src={projectData.project_owner_image} height={40} />
                             </Link>
                         </Col>
-                        <Col xs={8}><strong>{projectData.title}</strong></Col>
-                        <Col xs={2} sm={{ span: 1, offset: 1 }}>
-                        {/* Edit and delete buttons if project owner */}
-                        {is_owner?(<>
-                            <Link to={`/projects/delete/${projectData.project}`}>     
-                                <Button variant="outline-primary" className={styles.projectButtons} size="sm"><i className="fa-solid fa-trash-can"></i></Button>
-                            </Link>
-                            <Link to={`/projects/edit/${projectData.project}`}>     
-                                <Button variant="outline-primary" className={`${styles.projectButtons} ${styles.verticalMargin}`} size="sm"><i className="fa-solid fa-pen-to-square"></i></Button>
-                            </Link>
-                        </>):('')}
-                        </Col>
-                        <Col>Due: {format(new Date(projectData.due_date.slice(0,10)), "dd-MM-yyyy")}</Col>
+                        <Col xs={6}><strong>{projectData.title}</strong></Col>
+                        <Col xs={3}>Due: {format(new Date(projectData.due_date.slice(0,10)), "dd-MM-yyyy")}</Col>
                         <Col>{`Outstanding Tasks: ${tasks.filter(task => task.status !== 'Complete').length} `}</Col>
                     </Row>
                 </Container>
             </div>
         </Card.Header>
-        <Accordion>
-                {/* Project details in expandable body */}
-                <Link to={`/projects/project/${projectData.project}`}>
-                    <Button variant="outline-primary" className={`${styles.projectButtons} ${styles.verticalMargin}`} size="sm">Go to detail page</Button>
-                </Link>
-                <Accordion.Toggle as={Button} variant="link" eventKey="0" className={styles.projectAccord} onClick={() => setExpanded(!expanded)}>
-                    {expanded?('Hide Details'):('View Details')}
-                </Accordion.Toggle>
-                <Accordion.Collapse eventKey="0">
-                    <Card.Body className={styles.noPadding}>
-                    <p className={styles.left}>{projectData.description}</p>
-            <Container>
-                <Row>
-                    <Col md={6}>Start Date: {format(new Date(projectData.start_date.slice(0,10)), "dd-MM-yyyy")}</Col>
-                    <Col md={6}>Due Date: {format(new Date(projectData.due_date.slice(0,10)), "dd-MM-yyyy")}</Col>
-                </Row>  
-                <Row>
-                    <Col md={6}>Complexity: {projectData.complexity}</Col>
-                    <Col md={6}>{`Outstanding Tasks: ${tasks.filter(task => task.status !== 'Complete').length} `}</Col>
-                </Row>
-            </Container>
-                    {/* Members of project */}
-                <p className={styles.left}>
-                    Members
-                    {is_owner?(<>
-                    <Link to={`/members/add/${projectData.project}`}>
-                        <Button size="sm" variant="outline-primary" className={styles.projectButtons}><i className="far fa-plus-square"></i></Button>
-                    </Link>
-                    <Link to={`/members/delete/${projectData.project}`}>
-                        <Button size="sm" variant="outline-primary" className={styles.projectButtons}><i className="far fa-trash-can"></i></Button>
-                    </Link></>):('')}
-                </p>
-                <Container className={styles.overflow}>
-                    {
-                    members.map(
-                        member =>
-                            <div key={member.id}>
-                                <Link to={`/profiles/${member.profile}`}>
-                                    <Avatar src={member.member_image} height={30}/><p className={styles.memberName}>{member.member_username}</p>
-                                </Link>
-                            </div>
-                        )
-                    }
-                </Container>
-                {/* Project tasks */}
-                <TaskCreateForm members={members} projectData={projectData} tasks={tasks} setTasks={setTasks}/>
-                {tasks.length?(
-                <Card.Header className={styles.hideSmall}>
-                <Row>
-                    <Col md={3}>Assigned To</Col>
-                    <Col md={3}>Description</Col>
-                    <Col md={2}>Due Date</Col>
-                    <Col md={2}>Status</Col>
-                    <Col md={2}></Col>
-                </Row>
-                </Card.Header>
-                ):(<Card.Header>
-                    No Tasks yet
-                </Card.Header>)}
-                        {tasks.map(task => <Task key={task.id} task={task} projectData={projectData} setTasks={setTasks} />)}
-                    </Card.Body>
-                </Accordion.Collapse>
-                </Accordion>
+        <Link to={`/projects/project/${projectData.project}`}>
+                    <Button variant="outline-primary" className={`${styles.projectButtons} ${styles.verticalMarginTopBottom}`} size="sm">View Project Details</Button>
+        </Link>
     </Card>
     );
 };
