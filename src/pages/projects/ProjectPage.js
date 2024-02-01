@@ -94,13 +94,18 @@ const ProjectPage = () => {
         </Card.Header>
         <Card.Body>
         <Container>
+            <Row>
+                <Col className={styles.italics}>
+                    {projectData.description}
+                </Col>
+            </Row>
                 <Row>
-                    <Col md={6}>Start Date: {format(new Date(startDate.slice(0,10)), "dd-MM-yyyy")}</Col>
-                    <Col md={6}>Due Date: {format(new Date(dueDate.slice(0,10)), "dd-MM-yyyy")}</Col>
+                    <Col md={6}><span className={styles.bold}>Start Date:</span> {format(new Date(startDate.slice(0,10)), "dd-MM-yyyy")}</Col>
+                    <Col md={6}><span className={styles.bold}>Due Date:</span> {format(new Date(dueDate.slice(0,10)), "dd-MM-yyyy")}</Col>
                 </Row>  
                 <Row>
-                    <Col md={6}>Complexity: {projectData.complexity}</Col>
-                    <Col md={6}>{`Outstanding Tasks: ${tasks.filter(task => task.status !== 'Complete').length} `}</Col>
+                    <Col md={6}><span className={styles.bold}>Complexity:</span> {projectData.complexity}</Col>
+                    <Col md={6}><span className={styles.bold}>Outstanding Tasks:</span>{` ${tasks.filter(task => task.status !== 'Complete').length} `}</Col>
                 </Row>
             </Container>
         </Card.Body>

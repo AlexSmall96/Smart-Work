@@ -30,6 +30,10 @@
     height: 70px;
 }
 
+.taskKey{
+    padding-left:0px;
+}
+
 .narrowFooter{
     padding-top: 5px;
     padding-bottom:5px;
@@ -46,8 +50,17 @@
     background-color: #f8f9fa;
 }
 
+
 .memberName{
     font-size:x-small;
+}
+
+.italics{
+    font-style: italic;
+}
+
+.bold{
+    font-weight: bold;
 }
 
 .projectHeader{

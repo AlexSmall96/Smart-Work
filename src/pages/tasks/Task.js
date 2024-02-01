@@ -8,6 +8,8 @@ import { axiosReq, axiosRes } from '../../api/axiosDefaults';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import Alert from "react-bootstrap/Alert";
 import appStyles from '../../App.module.css';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Tooltip from 'react-bootstrap/Tooltip';
 
 /* Task component to be attached to the corresponding project */
 const Task = ({task, setTasks, projectData}) => {
@@ -25,20 +27,35 @@ const Task = ({task, setTasks, projectData}) => {
     const [dueDateFeedback, setDueDateFeedback] = useState('')
     const [startDateFeedback, setStartDateFeedback] = useState('')
     const [errors, setErrors] = useState({});
+    const [warning, setWarning] = useState(styles.hidden)
+
 
     // Colour tasks based on status when component updates
     useEffect(() => {
         const colourTask = () => {
             setTaskClass(
-                `${styles.taskHeader} ${task.status === 'In Progress'?
-                (styles.inProgress):(
-                   task.status === 'Complete'? (styles.complete):('')
+                `${styles.taskHeader} ${task.status === 'Complete'?
+                (styles.complete):(
+                   format(new Date(task.due_date), 'yyyy-MM-dd') < format(new Date(), 'yyyy-MM-dd')? (styles.overdue):(
+                    task.status === 'In Progress' ? (styles.inProgress):('')
+                   )
                 )}`
             );
         }
+        const showWarning = () => {
+            setWarning(
+                format(new Date(task.due_date), 'yyyy-MM-dd') < format(new Date(), 'yyyy-MM-dd')?(styles.visible):(styles.hidden)
+            )
+        }
         colourTask();
+        showWarning();
     }, [task]);
-
+    
+    const renderTooltip = (props) => (
+        <Tooltip id="button-tooltip" {...props}>
+          Task overdue
+        </Tooltip>
+      );
     /*
     Handle change for date inputs. The below code was taken from the following stack overflow forum
     https://stackoverflow.com/questions/67866155/how-to-handle-onchange-value-in-date-reactjs
@@ -122,8 +139,16 @@ const Task = ({task, setTasks, projectData}) => {
                             <Link to={`/profiles/${task.assigned_to_profile_id}`}><Avatar src={task.assigned_to_image} height={30}/></Link>
                             </Col>                      
                             <Col xs={{span:8, order:1}} md={{span:3, order:3}} className={styles.description}>{task.description}</Col>
-                            <Col xs={{span:6, order:4}} md={{span:2, order:4}}><span className={styles.hidden}>Due: </span>{format(new Date(task.due_date.slice(0,10)), "dd-MM-yyyy")}</Col>
-                            <Col xs={{span:4, order:2}} md={{span:2, order:5}}className={styles.description}>{task.status}</Col>
+                            <Col xs={{span:6, order:4}} md={{span:2, order:4}}><span className={styles.hidden}> Due: </span>    
+    <OverlayTrigger
+      placement="left"
+      delay={{ show: 150, hide: 300 }}
+      overlay={renderTooltip}
+    >
+        <i className={`${warning} fa-solid fa-triangle-exclamation`}></i>
+    </OverlayTrigger>
+         {` ${format(new Date(task.due_date), "dd-MM-yyyy")}`}</Col>
+                            <Col xs={{span:4, order:2}} md={{span:2, order:5}} className={styles.description}>{task.status}</Col>
                             <Col xs={{span:6, order:6}} md={{span:2, order:6}}>
                             {is_task_owner?(<>
                             <Link to={`/tasks/delete/${task.id}`}><i className="fa-solid fa-trash-can"></i></Link>
