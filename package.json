@@ -6,7 +6,7 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
-    "axios": "^1.6.7",
+    "axios": "^0.21.4",
     "bootstrap": "^4.6.0",
     "date-fns": "^2.30.0",
     "jwt-decode": "^3.1.2",
@@ -15,7 +15,7 @@
     "react-dom": "^17.0.2",
     "react-infinite-scroll-component": "^6.1.0",
     "react-router-dom": "^5.3.0",
-    "react-scripts": "^5.0.1",
+    "react-scripts": "^4.0.3",
     "web-vitals": "^1.1.2"
   },
   "scripts": {
@@ -44,9 +44,6 @@
     ]
   },
   "devDependencies": {
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
-    "@babel/plugin-transform-private-property-in-object": "^7.23.4",
-    "eslint-plugin-react": "^7.33.1",
     "msw": "^0.35.0"
   },
   "engines": {
