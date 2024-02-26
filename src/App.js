@@ -24,7 +24,7 @@ function App() {
   const [color, setColor] = useState(styles.green)
   return (
         <div className={`${styles.App} ${color}`}>
-          <NavBar />
+          <NavBar color={color} />
           <Container className={styles.Main}>
             <Switch>
               <Route exact path="/" render={() => <Home />} />

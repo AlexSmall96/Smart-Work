@@ -3,3 +3,7 @@
     border-color: aliceblue;
     border-width: 2px;
 }
+
+.toolbar{
+    display:block;
+}

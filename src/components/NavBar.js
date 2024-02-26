@@ -69,7 +69,7 @@ const NavBar = () => {
             className={styles.NavLink}
             to={`/settings/`}
       >
-        <i className="fas fa-gear"></i>
+        <i className={`fa-xl fa-solid fa-palette`}></i>
       </NavLink>
   </>;
 

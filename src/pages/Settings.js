@@ -9,7 +9,7 @@ const Settings = ({setColor}) => {
   return (
     <div>
     Choose Colour theme:
-    <ButtonToolbar aria-label="Toolbar with button groups">
+    <ButtonToolbar aria-label="Toolbar with button groups" className={styles.toolbar}>
     <ButtonGroup className={"me-2"} aria-label="First group">
       <Button id="green" onClick={() => setColor(appStyles.green)} className={`${appStyles.green} ${styles.colorSelect}`}></Button> 
       <Button id="white" onClick={() => setColor(appStyles.white)} className={`${appStyles.white} ${styles.colorSelect}`}></Button> 
