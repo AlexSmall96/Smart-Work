@@ -1,0 +1,25 @@
+.calTask{
+    height:26px;
+    overflow:hidden;
+    display:block;
+}
+
+.notStarted{
+    background-color: #17a2b8;
+}
+
+.inProgress{
+    background-color: rgb(255, 211, 128);
+}
+
+.complete{
+    background-color: rgb(105, 212, 95);
+}
+
+.overdue{
+    background-color: #dc3545;
+}
+
+.blankProgress{
+    background-color: #e9ecef;
+}

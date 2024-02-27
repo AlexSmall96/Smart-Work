@@ -18,6 +18,7 @@ import ProfileEdit from "./pages/profiles/ProfileEdit";
 import TasksPage from "./pages/tasks/TasksPage";
 import TaskDelete from "./pages/tasks/TaskDelete";
 import Settings from "./pages/Settings";
+import Calendar from "./pages/Calender";
 import { useState } from "react";
 
 function App() {
@@ -42,6 +43,7 @@ function App() {
               <Route exact path="/profiles/edit/:id" render={() => <ProfileEdit />} />
               <Route exact path="/tasks/:id" render={() => <TasksPage />} />
               <Route exact path="/settings" render={() => <Settings setColor={setColor} />} />
+              <Route exact path="/calendar/:id" render={() => <Calendar />} />
               <Route render={() => <p>Page not found!</p>} />
             </Switch>
           </Container>
