@@ -12,7 +12,7 @@ import appStyles from '../../App.module.css';
 import Alert from "react-bootstrap/Alert";
 
 /* Allows any member of a project to create a task */
-const TaskCreateForm = ({members, projectData, setTasks}) => {
+const TaskCreateForm = ({members, projectData, setTasks, projStartDate, projDueDate}) => {
     // Initialize variables
     const [errors, setErrors] = useState({});
     const [taskCreated, setTaskCreated] = useState(false);
@@ -47,11 +47,13 @@ const TaskCreateForm = ({members, projectData, setTasks}) => {
     */
     const handleStartDateChange = (event) => {
         const newStartDate = format(new Date(event.target.value), 'yyyy-MM-dd');
-        if (newStartDate <= format(new Date(dueDate), 'yyy-MM-dd')){
+        if (newStartDate <= format(new Date(dueDate), 'yyy-MM-dd') && newStartDate >= projStartDate){
             if (newStartDate >= format(new Date(), 'yyyy-MM-dd')){
                 setStartDate(newStartDate);
                 setStartDateFeedback('')
-            } else {
+            } 
+            
+            else {
                 setStartDateFeedback('Start Date cannot be in the past.')
             } 
         } else {

@@ -7,3 +7,64 @@
 .blankProgress *{
     background-color: #e9ecef;
 }
+
+.months{
+    margin-bottom: 10px;
+}
+
+.year{
+    padding:2.5px 0 0 0 ;
+    text-align: center;
+}
+
+.year i:hover{
+    color: #2142b2;
+    transition: color ease-in-out 0.3s;
+    cursor: pointer;
+    font-weight: bolder;
+}
+
+.filter *{
+    font-size: small;
+}
+
+.taskKey{
+    padding-left:0px;
+}
+
+.verticalMarginTopBottom{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.monthHeading{
+    width:8.33%;
+    border-radius: .25rem;
+    height:30px;
+    color:white;
+    display:inline-block;
+    font-size:medium;
+    font-weight: bold;
+    padding-top:2.5px;
+    background-color:rgba(75, 170, 183, 0.613);
+    border-width: 0 0.5px 0 0px;
+    border-style:solid;
+    border-color:white;
+}
+
+.projectCard{
+    padding:0 0 0 0
+}
+
+.projectCard *{
+    padding-left:0px ;
+}
+
+.projectTitle{
+    padding-top:2%;
+    padding-bottom:2%;
+    padding-left:20px;
+    border-style:solid;
+    border-width:0 1px 0 0;
+    border-color:rgb(228, 227, 227);
+}

@@ -8,11 +8,29 @@ import { axiosReq } from '../api/axiosDefaults';
 
 const Calendar = () => {
   useRedirect("loggedOut");
-
   // Initialize variables
   const { id } = useParams();
   const [members, setMembers] = useState([]);
   const [tasks, setTasks] = useState([])
+  const [taskFilter, setTaskFilter] = useState("all-tasks")
+  const [year, setYear] = useState(new Date().getFullYear())
+
+  // Month Array for heading
+  const months =[
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec'
+  ]
+
   // Get the users projects via member data
   useEffect(() => {
     const fetchMembers = async () => {
@@ -27,56 +45,68 @@ const Calendar = () => {
     fetchMembers();
   }, [id]);
 
-  return (
-    <>
-      <ButtonGroup aria-label="Basic example">
-        <Button variant="secondary">Year</Button>
-        <Button variant="secondary">Month</Button>
-      </ButtonGroup>
-      <Container>
-        <Row>
-          <Col sm={2}></Col>
-          <Col sm={10}>
-            <Card>
-              <Card.Header>
-                <Container>
-                  <Row>
-                    <Col className={styles.cell}>Jan</Col>
-                    <Col className={styles.cell}>Feb</Col>
-                    <Col className={styles.cell}>Mar</Col>
-                    <Col>Apr</Col>
-                    <Col>May</Col>
-                    <Col>Jun</Col>
-                    <Col>Jul</Col>
-                    <Col>Aug</Col>
-                    <Col>Sep</Col>
-                    <Col>Oct</Col>
-                    <Col>Nov</Col>
-                    <Col>Dec</Col>
-                  </Row>
-                </Container>
-              </Card.Header>
-              <Card.Header>
-            <ProgressBar>
-                <ProgressBar variant="danger" now={40} min={10} label={'task 1'} />
-                <ProgressBar variant="warning" now={20} label={'task 2'} />
-            </ProgressBar>
-            <ProgressBar className={styles.blankProgress}>
-                <ProgressBar now={0} />
-                <ProgressBar variant="warning" now={40} label={'task 3'} />
-            </ProgressBar>
-          </Card.Header>
+  // Handdle tasks filter - users tasks or all tasks
+  const handleFilter = (event) => {
+      setTaskFilter(event.target.id)
+  }
+
+  // Handle change year
+  const handleYearChange = (event) => {
+    setYear(
+      event.target.id === "right" ? (year + 1) : (year-1)
+    )
+  }
+
+return (
+  <>
+    {/* Colour Key for task status */}
+    <Container className={`${styles.taskKey} ${styles.verticalMarginTopBottom}`} >
+      <Row>
+        <Col xs={6} sm={4} lg={3}>
+          <Card>
+            <Card.Header>Key</Card.Header>
+            <Card.Body>
+              <ProgressBar variant="success" now={100} label="Complete"/>
+              <ProgressBar variant="warning" now={100} label="In Progress"/>
+              <ProgressBar variant="danger" now={100} label="Overdue"/>
+              <ProgressBar variant="info" now={100} label="Not Started"/>
+            </Card.Body>
           </Card>
+        </Col>
+        {/* Buttons to filter tasks */}
+        <Col xs={2}>
+          <ButtonGroup className={styles.filter} aria-label="Basic example">
+            <Button variant="secondary" id="all-tasks" disabled={taskFilter === "all-tasks"} onClick={handleFilter}>All Tasks</Button>
+            <Button variant="secondary" id="my-tasks" disabled={taskFilter === "my-tasks"} onClick={handleFilter}>My Tasks</Button>
+          </ButtonGroup>
+        </Col>
+      </Row>
+    </Container>
+    {/* Year and month heading */}
+    <Card className={styles.months}>
+      <Card.Header className={styles.projectCard}>
+        <Row>
+          <Col xs={2} className={styles.year}> 
+            <i className="fa-solid fa-chevron-left" id="left" onClick={handleYearChange}></i> {year} <i className="fa-solid fa-chevron-right" id="right" onClick={handleYearChange}></i>
           </Col>
+          <Col xs={10}>{months.map(month => <div key={month} className={styles.monthHeading}>{month}</div>)}</Col>
         </Row>
-        {members.length?(
-          members.map(member => (
-              <CalendarProject key={member.id} projectData={member} />
-          ))
-        ):('')}
-      </Container>
-    </>
-  )
+      </Card.Header>
+    </Card>
+    {/* Map through members data to show timeline for each project */}
+    {members.length?(
+      members.map(member => (
+        <CalendarProject 
+          key={member.id} 
+          projectData={member} 
+          userId={id} 
+          taskFilter={taskFilter}
+          year={year} />
+      ))
+    ):('')}
+  </>
+)
+
 }
 
 export default Calendar

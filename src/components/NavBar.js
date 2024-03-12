@@ -48,9 +48,9 @@ const NavBar = () => {
       <NavLink
         className={styles.NavLink}
         activeClassName={styles.Active}
-        to={`/tasks/${currentUser?.profile_id}`}
+        to={`/calendar/${currentUser?.profile_id}`}
       > 
-      <i className="fa-solid fa-list-check"></i> My Workspace
+      <i className="fa-solid fa-calendar-days"></i> Calendar
       </NavLink>
       <NavLink
         className={styles.NavLink}
@@ -64,12 +64,6 @@ const NavBar = () => {
         to={`/profiles/${currentUser?.profile_id}`}
       >
       <Avatar src={currentUser?.profile_image} text={`${currentUser?.username}`} height={40} />
-      </NavLink>
-            <NavLink
-            className={styles.NavLink}
-            to={`/calendar/${currentUser?.profile_id}`}
-      >
-        <i className={`fa-xl fa-solid fa-calendar-days`}></i>
       </NavLink>
       <NavLink
             className={styles.NavLink}

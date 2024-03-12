@@ -39,7 +39,7 @@ const ProjectPage = () => {
                 owner: response.data[0].project_owner_username,
                 projectId: response.data[0].project,
                 ownerImage:response.data[0].project_owner_image,
-                ownerId:response.data[0].project_owner_profile_id
+                ownerId:response.data[0].project_owner_profile_id,
             });
             setMembers(response.data)
             setStartDate(format(new Date(response.data[0].start_date), 'yyyy-MM-dd'));
@@ -137,7 +137,14 @@ const ProjectPage = () => {
         </Card.Footer>
     </Card>
     <Card className={appStyles.verticalMargin}>
-    <TaskCreateForm members={members} projectData={members[0]} tasks={tasks} setTasks={setTasks}/>
+    <TaskCreateForm 
+    members={members} 
+    projectData={members[0]} 
+    tasks={tasks} 
+    setTasks={setTasks}
+        projStartDate={startDate}
+    projDueDate={dueDate}
+    />
     {tasks.length?(
                 <Card.Header className={styles.hideSmall}>
                 <Row>
@@ -151,7 +158,13 @@ const ProjectPage = () => {
                 ):(<Card.Header>
                     No Tasks yet
                 </Card.Header>)}
-    {tasks.map(task => <Task key={task.id} task={task} projectData={projectData} setTasks={setTasks} />)}
+    {tasks.map(task => <Task 
+    key={task.id} 
+    task={task} 
+    projectData={projectData}
+    projStartDate={startDate}
+    projDueDate={dueDate} 
+    setTasks={setTasks} />)}
     </Card>
     <Button variant="secondary" className={appStyles.verticalMargin} onClick={() => history.push(`/projects/${currentUser?.profile_id}`)}>
         Back to My Projects

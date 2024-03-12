@@ -12,7 +12,7 @@ import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
 
 /* Task component to be attached to the corresponding project */
-const Task = ({task, setTasks, projectData}) => {
+const Task = ({task, setTasks, projectData, projStartDate, projDueDate}) => {
     // Initialize variables
     const currentUser = useCurrentUser();
     const profile_id = currentUser?.profile_id;
@@ -20,15 +20,14 @@ const Task = ({task, setTasks, projectData}) => {
     const [taskUpdated, setTaskUpdated] = useState(false);
     const [expanded, setExpanded] = useState(false);
     const [taskDescription, setTaskDescription] = useState(task.description);
-    const [taskDueDate, setTaskDueDate] = useState(format(new Date(task.start_date), 'yyyy-MM-dd'));
-    const [taskStartDate, setTaskStartDate] = useState(format(new Date(task.due_date), 'yyyy-MM-dd'));
+    const [taskStartDate, setTaskStartDate] = useState(format(new Date(task.start_date), 'yyyy-MM-dd'));
+    const [taskDueDate, setTaskDueDate] = useState(format(new Date(task.due_date), 'yyyy-MM-dd'));
     const [status, setStatus] = useState(task.status);
     const [taskClass, setTaskClass] = useState(styles.taskHeader);
     const [dueDateFeedback, setDueDateFeedback] = useState('')
     const [startDateFeedback, setStartDateFeedback] = useState('')
     const [errors, setErrors] = useState({});
     const [warning, setWarning] = useState(styles.hidden)
-
 
     // Colour tasks based on status when component updates
     useEffect(() => {
@@ -62,19 +61,26 @@ const Task = ({task, setTasks, projectData}) => {
     */
     const handleDueDateChange = (event) => {
         const newDueDate = format(new Date(event.target.value), 'yyyy-MM-dd');
-        if (newDueDate >= taskStartDate){
+        if (newDueDate >= taskStartDate && newDueDate <= projDueDate){
             setTaskDueDate(newDueDate);
             setDueDateFeedback('')
-        } else {
+        } else if (newDueDate > projDueDate){
+            setDueDateFeedback('Task due date cannot be after project due date.')
+        } 
+        else if (newDueDate < taskStartDate) {
             setDueDateFeedback('Due Date must be ahead of Start Date.')
         }
     }
     const handleStartDateChange = (event) => {
         const newStartDate = format(new Date(event.target.value), 'yyyy-MM-dd');
-        if (newStartDate >= format(new Date(), 'yyyy-MM-dd')){
+        const today = format(new Date(), 'yyyy-MM-dd')
+        if (newStartDate >= today && newStartDate >= projStartDate){
             setTaskStartDate(newStartDate);
             setStartDateFeedback('')
-        } else {
+        } else if (newStartDate < projStartDate){
+            setStartDateFeedback('Task start date cannot be before project start date.')
+        }
+        else if (newStartDate < today) {
             setStartDateFeedback('Start Date cannot be in the past.')
         } 
     }
@@ -136,7 +142,7 @@ const Task = ({task, setTasks, projectData}) => {
                         <Row>
                             <Col xs={{span:6, order:3}} md={{span:2, order:1}}><span className={styles.hidden}>Assigned To: </span>{task.assigned_to_username}</Col>
                             <Col xs={{span:6, order:5}} md={{span:1, order:2}}>
-                            <Link to={`/profiles/${task.assigned_to_profile_id}`}><Avatar src={task.assigned_to_image} height={30}/></Link>
+                                <Link to={`/profiles/${task.assigned_to_profile_id}`}><Avatar src={task.assigned_to_image} height={30}/></Link>
                             </Col>                      
                             <Col xs={{span:8, order:1}} md={{span:3, order:3}} className={styles.description}>{task.description}</Col>
                             <Col xs={{span:6, order:4}} md={{span:2, order:4}}><span className={styles.hidden}> Due: </span>    

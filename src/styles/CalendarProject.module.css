@@ -1,3 +1,54 @@
 .blankProgress{
     background-color: #e9ecef;
 }
+
+.stackedProgress  > *{
+    width:100%;
+    background-color: #e9ecef;
+}
+
+.notStarted{
+    background-color: #17a2b8;
+}
+
+.inProgress{
+    background-color: rgb(255, 211, 128);
+}
+
+.complete{
+    background-color: rgb(105, 212, 95);
+}
+
+.overdue{
+    background-color: #dc3545;
+}
+
+.calTask{
+    border-radius: .25rem;
+}
+
+.projectCard{
+    padding:0 0 0 0
+
+}
+
+.outerProjectCard{
+    margin-bottom: 10px;
+}
+
+.projectCard *{
+    padding-left:0px ;
+}
+
+.projectTitle{
+    padding-left:20px;
+    border-style:solid;
+    border-width:0 1px 0 0;
+    border-color:rgb(228, 227, 227);
+}
+
+.greyBackground{
+    background-color: lightgray;
+    border-radius: .25rem;
+}
+
