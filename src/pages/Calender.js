@@ -14,7 +14,10 @@ const Calendar = () => {
   const [tasks, setTasks] = useState([])
   const [taskFilter, setTaskFilter] = useState("all-tasks")
   const [year, setYear] = useState(new Date().getFullYear())
-
+  const [month, setMonth] = useState('Jan')
+  const [yearView, setYearView] = useState(true)
+  const [monthNum, setMonthNum] = useState(0)
+  const [daysArr, setDaysArr] = useState([])
   // Month Array for heading
   const months =[
     'Jan',
@@ -29,6 +32,9 @@ const Calendar = () => {
     'Oct',
     'Nov',
     'Dec'
+  ]
+  const daysInMonth = [
+    31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31
   ]
 
   // Get the users projects via member data
@@ -45,16 +51,59 @@ const Calendar = () => {
     fetchMembers();
   }, [id]);
 
-  // Handdle tasks filter - users tasks or all tasks
+  // Handle tasks filter - users tasks or all tasks
   const handleFilter = (event) => {
       setTaskFilter(event.target.id)
   }
 
   // Handle change year
   const handleYearChange = (event) => {
-    setYear(
-      event.target.id === "right" ? (year + 1) : (year-1)
+      setYear(
+        event.target.id === "right" ? (year + 1) : (year-1)
+      )
+  }
+
+  const handleMonthChange = (event) => {
+    setMonth(
+      event.target.id
     )
+    setMonthNum(
+      months.findIndex((element) => element === event.target.id)
+    )
+    let newArr = []
+    for (let i=1;i<daysInMonth[months.findIndex((element) => element === event.target.id)]+1;i++){
+      newArr.push(i)
+    }
+    setDaysArr(newArr)
+    setYearView(false)
+  }
+
+  const handleMonthUpDown = (event) => {
+    let change = event.target.id.slice(4,6) === 'dn' ? (
+      month != 'Jan' ? (-1):(11)
+    ):(
+      month != 'Dec' ? (1):(-11)
+    )
+      setMonth(
+        months[months.findIndex((element) => element === event.target.id.slice(0,3)) + change]
+      )
+      setMonthNum(
+        months.findIndex((element) => element === event.target.id.slice(0,3)) + change
+      )
+      let newArr = []
+      for (let i=1;i<daysInMonth[months.findIndex((element) => element === event.target.id.slice(0,3)) + change]+1;i++){
+      newArr.push(i)
+      }
+      setDaysArr(newArr)
+      setYear(
+        event.target.id.slice(4,6) === 'dn' ? (
+          month === 'Jan' ? (year - 1):(year)
+        ):(month === 'Dec' ? (year + 1):(year))
+      )
+  }
+
+  const handleTimeChange = () => {
+    setYearView(true)
   }
 
 return (
@@ -86,10 +135,39 @@ return (
     <Card className={styles.months}>
       <Card.Header className={styles.projectCard}>
         <Row>
-          <Col xs={2} className={styles.year}> 
-            <i className="fa-solid fa-chevron-left" id="left" onClick={handleYearChange}></i> {year} <i className="fa-solid fa-chevron-right" id="right" onClick={handleYearChange}></i>
+          <Col xs={2} className={yearView?(''):(styles.yearButtonMonthView)}> 
+          <div className={`${styles.arrow}`}><i className="fa-solid fa-circle-chevron-left" id={`left`} onClick={handleYearChange}></i></div>
+                <Button variant="secondary" disabled={yearView} className={`${styles.yearHeading} ${styles.monthHeading} ${yearView?(''):(styles.singleMonthHeading)}`} onClick={handleTimeChange}> {year} </Button>
+              <div className={`${styles.arrow}`}><i className="fa-solid fa-circle-chevron-right" id={`right`} onClick={handleYearChange}></i></div>
           </Col>
-          <Col xs={10}>{months.map(month => <div key={month} className={styles.monthHeading}>{month}</div>)}</Col>
+          <Col xs={10}>{
+          yearView ? (
+            months.map(
+              month => <Button 
+              id={month} 
+              key={month} 
+              className={styles.monthHeading}
+              onClick={handleMonthChange}
+              >{month}</Button>
+              )
+          ):(<>
+              <div className={`${styles.arrow} `}><i className="fa-solid fa-circle-chevron-left" id={`${month}-dn`} onClick={handleMonthUpDown}></i></div>
+                <div className={`${styles.singleMonthHeading} ${styles.monthHeading}`}> {month} </div>
+              <div className={`${styles.arrow}`}><i className="fa-solid fa-circle-chevron-right" id={`${month}-up`} onClick={handleMonthUpDown}></i></div>
+              <div>
+                {
+                  daysArr.map(num => <span
+                     key={num}
+                     className={`${styles.monthHeading} ${styles.dayHeading}`}
+                     style={{
+                      width:`${100/daysInMonth[monthNum]}%`
+                     }}
+                     >{num}</span>)
+                }
+              </div>
+            </>)
+          }
+          </Col>
         </Row>
       </Card.Header>
     </Card>
@@ -101,7 +179,11 @@ return (
           projectData={member} 
           userId={id} 
           taskFilter={taskFilter}
-          year={year} />
+          year={year}
+          month={month}
+          monthNum={monthNum}
+          yearView={yearView}
+          />
       ))
     ):('')}
   </>

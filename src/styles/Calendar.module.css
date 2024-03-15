@@ -17,13 +17,6 @@
     text-align: center;
 }
 
-.year i:hover{
-    color: #2142b2;
-    transition: color ease-in-out 0.3s;
-    cursor: pointer;
-    font-weight: bolder;
-}
-
 .filter *{
     font-size: small;
 }
@@ -41,15 +34,63 @@
     width:8.33%;
     border-radius: .25rem;
     height:30px;
-    color:white;
+    color:rgb(74, 73, 73);
     display:inline-block;
     font-size:medium;
     font-weight: bold;
     padding-top:2.5px;
-    background-color:rgba(75, 170, 183, 0.613);
+    background-color:rgb(200, 199, 199);
     border-width: 0 0.5px 0 0px;
     border-style:solid;
     border-color:white;
+    padding:0
+}
+
+.singleMonthHeading{
+    margin: 5px 5px 5px 5px;
+    height:25px;
+}
+
+.yearButtonMonthView{
+    padding-top: 18px;
+}
+.disabled i{
+    color: lightgray;
+}
+
+.yearHeading{
+    width:30%;
+    margin:0 5px 0 5px;
+}
+
+.dayHeading{
+    height:22px;
+}
+
+.yearButton{
+    border-radius: .25rem;
+    border-width:2px;
+    border-style:solid;
+    background-color: lightgray;
+    height:30px;
+    border-color:grey;
+    width:40%;
+    display:inline;
+    margin:0px 7px 0px 7px;
+    padding:0px 2px 0px 2px;
+}
+
+.arrow{
+    display:inline;
+}
+
+.arrow i{
+    color:rgb(130, 130, 130);   
+}
+
+.arrow i:hover{
+    cursor: pointer;
+    color:rgb(54, 53, 53);
 }
 
 .projectCard{
