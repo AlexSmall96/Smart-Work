@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { axiosReq } from '../api/axiosDefaults';
-import { Button, Card, Col, Row, Tooltip, OverlayTrigger } from 'react-bootstrap';
+import { Button, Card, Col, Row, Tooltip, OverlayTrigger, Container } from 'react-bootstrap';
 import styles from '../styles/CalendarProject.module.css';
 import { format } from 'date-fns';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
@@ -211,11 +211,12 @@ const CalendarProject = ({projectData, userId, taskFilter, year, month, monthNum
 return (
     <Card className={styles.outerProjectCard}>
         <Card.Header className={styles.projectCard}>
-            <Row>
-                <Col className={styles.projectTitle} xs={2}>
+            <Container>
+            <Row className={styles.noMarginMobile}>
+                <Col className={styles.projectTitle} xs={12} sm={2}>
                     {projectData.title}
                 </Col>
-                <Col xs={10}>
+                <Col xs={{span:12, offset:0}} sm={{span:10, offset:0}} className={styles.topMargin}>
                 <Link to={`/projects/project/${projectData.project}`}>
                     <div className={styles.greyBackground}
                     style={{
@@ -411,6 +412,7 @@ return (
                 </Link>
                 </Col>
             </Row>
+        </Container>
         </Card.Header>
     </Card> 
   )

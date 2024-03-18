@@ -43,7 +43,7 @@ function App() {
               <Route exact path="/profiles/edit/:id" render={() => <ProfileEdit />} />
               <Route exact path="/tasks/:id" render={() => <TasksPage />} />
               <Route exact path="/settings" render={() => <Settings setColor={setColor} />} />
-              <Route exact path="/calendar/:id" render={() => <Calendar />} />
+              <Route exact path="/calendar/:id" render={() => <Calendar className={styles.childMain} />} />
               <Route render={() => <p>Page not found!</p>} />
             </Switch>
           </Container>

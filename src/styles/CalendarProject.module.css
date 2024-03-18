@@ -47,6 +47,19 @@
     border-color:rgb(228, 227, 227);
 }
 
+@media (max-width:576px){
+    .projectTitle{
+        border-width:0 0px 1px 0px;
+        padding-left:0px;
+    }
+    .noMarginMobile{
+        margin-left:0;
+    }
+    .topMargin{
+        margin-top:5px;
+    }
+}
+
 .greyBackground{
     background-color: lightgray;
     border-radius: .25rem;

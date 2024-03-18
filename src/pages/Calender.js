@@ -137,15 +137,22 @@ return (
       </Row>
     </Container>
     {/* Year and month heading */}
-    <Card className={styles.months}>
+    <Card className={`${styles.months}`}>
       <Card.Header className={styles.projectCard}>
-        <Row>
-          <Col xs={2} className={yearView?(''):(styles.yearButtonMonthView)}> 
+        <Row className={styles.noMarginMobile}>
+          <Col xs={12} sm={12} md={2} className={yearView?(''):(styles.yearButtonMonthView)}> 
           <div className={`${styles.arrow}`}><i className="fa-solid fa-circle-chevron-left" id={`left`} onClick={handleYearChange}></i></div>
-                <Button variant="secondary" disabled={yearView} className={`${styles.yearHeading} ${styles.monthHeading} ${yearView?(''):(styles.singleMonthHeading)}`} onClick={handleTimeChange}> {year} </Button>
+                <Button 
+                  variant="secondary" 
+                  disabled={yearView} 
+                  className={`${styles.yearHeading} ${styles.monthHeading} ${yearView?(''):(styles.singleMonthHeading)}`} 
+                  onClick={handleTimeChange}> 
+
+                    {year} 
+                </Button>
               <div className={`${styles.arrow}`}><i className="fa-solid fa-circle-chevron-right" id={`right`} onClick={handleYearChange}></i></div>
           </Col>
-          <Col xs={10}>{
+          <Col xs={{span:12, offset:0}} sm={{span:10, offset:2}} md={{span:10, offset:0}}>{
           yearView ? (
             months.map(
               month => <Button 
@@ -159,7 +166,7 @@ return (
               <div className={`${styles.arrow} `}><i className="fa-solid fa-circle-chevron-left" id={`${month}-dn`} onClick={handleMonthUpDown}></i></div>
                 <div className={`${styles.singleMonthHeading} ${styles.monthHeading}`}> {month} </div>
               <div className={`${styles.arrow}`}><i className="fa-solid fa-circle-chevron-right" id={`${month}-up`} onClick={handleMonthUpDown}></i></div>
-              <div>
+              <div className={styles.wideScreenOnly}>
                 {
                   daysArr.map(num => <span
                      key={num}
