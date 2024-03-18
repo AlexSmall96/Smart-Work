@@ -19,6 +19,9 @@ const ProjectEdit = () => {
   const [dueDate, setDueDate] = useState(format(new Date(), 'yyyy-MM-dd'));
   const [dueDateFeedback, setDueDateFeedback] = useState('')
   const [startDateFeedback, setStartDateFeedback] = useState('')
+  const [tasks, setTasks] = useState([])
+  const [taskDueDates, setTaskDueDates] = useState([])
+  const [taskStartDates, setTaskStartDates] = useState([])
   const [projectData, setProjectData] = useState({});
   const [errors, setErrors] = useState({});
   const [projectSaved, setProjectSaved] = useState(false);
@@ -40,29 +43,57 @@ const ProjectEdit = () => {
             // console.log(err);
         }
     };
+    const fetchTasks = async () => {
+        try {
+            const response = await axiosReq.get(`/tasks/?assigned_to__project=${id}`);
+            setTasks(response.data);
+            setTaskStartDates(
+                response.data.map(task => task.start_date)
+            )
+            setTaskDueDates(
+                response.data.map(task => task.due_date)
+            )
+        } catch(err){
+            // console.log(err.response);
+        }
+    };
+    fetchTasks()
     fetchProject();
   }, [id]);
   /*
   Handle change for date inputs. The below code was taken from the following stack overflow forum
   https://stackoverflow.com/questions/67866155/how-to-handle-onchange-value-in-date-reactjs
   */
-  const handleStartDateChange = (event) => {
+const handleStartDateChange = (event) => {
     const newStartDate = format(new Date(event.target.value), 'yyyy-MM-dd');
-    if (newStartDate >= format(new Date(), 'yyyy-MM-dd')){
+    if (taskStartDates.filter(taskSD => format(new Date(taskSD), 'yyyy-MM-dd')  < newStartDate).length){
+        setStartDateFeedback('Project Start Date cannot be after any task start date. Please edit task dates.')
+    } else if (taskDueDates.filter(taskDD => format(new Date(taskDD), 'yyyy-MM-dd')  < newStartDate).length){
+        setStartDateFeedback('Project Start Date cannot be after any task due date. Please edit task dates.')
+    } else if (newStartDate < format(new Date(), 'yyyy-MM-dd')) {
+        setStartDateFeedback('Start Date cannot be in the past.')
+    } else if (newStartDate > dueDate){
+        setStartDateFeedback('Start Date cannot be after due date.')
+    } else {
         setStartDate(newStartDate);
         setStartDateFeedback('')
-    } else {
-        setStartDateFeedback('Start Date cannot be in the past.')
     } 
 }
+
 const handleDueDateChange = (event) => {
     const newDueDate = format(new Date(event.target.value), 'yyyy-MM-dd');
-    if (newDueDate >= startDate){
+    if (taskStartDates.filter(taskSD => format(new Date(taskSD), 'yyyy-MM-dd')  > newDueDate).length){
+        setDueDateFeedback('Project Due Date cannot be before any task start date. Please edit task dates.')
+    } else if (taskDueDates.filter(taskDD => format(new Date(taskDD), 'yyyy-MM-dd') > newDueDate).length){
+        setDueDateFeedback('Project Due Date cannot be before any task due date. Please edit task dates.')
+    } else if (newDueDate < format(new Date(), 'yyyy-MM-dd')) {
+        setDueDateFeedback('Due Date cannot be in the past.')
+    } else if (newDueDate < startDate){
+        setDueDateFeedback('Due Date cannot be before start date.')
+    } else {
         setDueDate(newDueDate);
         setDueDateFeedback('')
-    } else {
-        setDueDateFeedback('Due Date must be ahead of Start Date.')
-    }
+    } 
 }
   // Handle change for text inputs
   const handleChange = (event) => {

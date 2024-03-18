@@ -37,6 +37,11 @@
     height:70px;
 }
 
+.innerDescription{
+    height:100px;
+    overflow: hidden;
+}
+
 @media (max-width:767px){
     .description{
         border-bottom: 2px;

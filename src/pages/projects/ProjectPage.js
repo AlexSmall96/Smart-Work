@@ -138,12 +138,12 @@ const ProjectPage = () => {
     </Card>
     <Card className={appStyles.verticalMargin}>
     <TaskCreateForm 
-    members={members} 
-    projectData={members[0]} 
-    tasks={tasks} 
-    setTasks={setTasks}
+        members={members} 
+        projectData={members[0]} 
+        tasks={tasks} 
+        setTasks={setTasks}
         projStartDate={startDate}
-    projDueDate={dueDate}
+        projDueDate={dueDate}
     />
     {tasks.length?(
                 <Card.Header className={styles.hideSmall}>

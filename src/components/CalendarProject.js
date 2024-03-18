@@ -239,25 +239,7 @@ return (
                         }%`
                     }}
                     >
-                    {/* {
-                    stackedTasks.length?(
-                        stackedTasks.map(
-                            task => 
-                                <div className={styles.calTask}
-                                    style={{
-                                        width:`${getLength(task.start_date, task.due_date)}%`,
-                                        margin:`0 0 -7px ${
-                                            task.id === stackedTasks[0].id ? (getOffset(task.start_date)):(getStackedOffset(task.start_date, stackedTasks[0].due_date))
-                                        }%`,
-                                        height:'18px',
-                                        color:'white',
-                                        display:'inline-block',
-                                        fontSize:'small',
-                                        backgroundColor:`${getColor(task.status, task.due_date)}`,
-                                        overflow:'hidden'
-                                    }}
-                                >{task.description}</div>
-                        )):('')} */}
+
                     {taskFilter === "all-tasks" ? (
                         tasks.length?(
                             tasks.map(task =>
@@ -311,7 +293,37 @@ return (
                                 
                             )
                         ):
-                        ('')
+                        (<OverlayTrigger
+                            placement="top"
+                            delay={{ show: 150, hide: 300 }}
+                            overlay={
+                                <Tooltip id="button-tooltip">
+                                    {`No tasks yet, click to add.`}
+                                </Tooltip>}
+                        >
+                        <div className={`${styles.greyBackground} ${styles.calTask}`}
+                            style={{
+                                width:`${yearView ? (
+                                    getTaskLength(
+                                        new Date(projectData.start_date.slice(0,10)).getTime(), 
+                                        new Date(projectData.due_date.slice(0,10)).getTime(), 
+                                        new Date(projectData.start_date.slice(0,10)).getTime(), 
+                                        new Date(projectData.due_date.slice(0,10)).getTime())
+                                ):(
+                                    getTaskLengthMonth(
+                                        new Date(projectData.start_date.slice(0,10)).getTime(), 
+                                        new Date(projectData.due_date.slice(0,10)).getTime(), 
+                                        new Date(projectData.start_date.slice(0,10)).getTime(), 
+                                        new Date(projectData.due_date.slice(0,10)).getTime())                                                    
+                                )
+                            }%`,
+                                margin:'0',
+                                height:'18px',
+                                display:'block',
+                                overflow:'hidden'
+                            }}
+                        ></div>
+                        </OverlayTrigger>)
                     ) : (usersTasks.length?(
                             usersTasks.map(task =>
                                 <OverlayTrigger
@@ -362,7 +374,37 @@ return (
                                     >{task.description}</div>
                                 </OverlayTrigger>
                             )
-                        ):('')
+                        ):(<OverlayTrigger
+                            placement="top"
+                            delay={{ show: 150, hide: 300 }}
+                            overlay={
+                                <Tooltip id="button-tooltip">
+                                    {`No tasks yet, click to add.`}
+                                </Tooltip>}
+                        >
+                        <div className={`${styles.greyBackground} ${styles.calTask}`}
+                            style={{
+                                width:`${yearView ? (
+                                    getTaskLength(
+                                        new Date(projectData.start_date.slice(0,10)).getTime(), 
+                                        new Date(projectData.due_date.slice(0,10)).getTime(), 
+                                        new Date(projectData.start_date.slice(0,10)).getTime(), 
+                                        new Date(projectData.due_date.slice(0,10)).getTime())
+                                ):(
+                                    getTaskLengthMonth(
+                                        new Date(projectData.start_date.slice(0,10)).getTime(), 
+                                        new Date(projectData.due_date.slice(0,10)).getTime(), 
+                                        new Date(projectData.start_date.slice(0,10)).getTime(), 
+                                        new Date(projectData.due_date.slice(0,10)).getTime())                                                    
+                                )
+                            }%`,
+                                margin:'0',
+                                height:'18px',
+                                display:'block',
+                                overflow:'hidden'
+                            }}
+                        ></div>
+                        </OverlayTrigger>)
                     )
                     }
                     </div>

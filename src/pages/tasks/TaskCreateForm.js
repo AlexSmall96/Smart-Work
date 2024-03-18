@@ -22,8 +22,8 @@ const TaskCreateForm = ({members, projectData, setTasks, projStartDate, projDueD
         status: 'Not Started',
     });
     const {description, status} = taskData;
-    const [startDate, setStartDate] = useState(format(new Date(), 'yyyy-MM-dd'));
-    const [dueDate, setDueDate] = useState(format(new Date(), 'yyyy-MM-dd'));
+    const [startDate, setStartDate] = useState(format(new Date(projStartDate), 'yyyy-MM-dd'));
+    const [dueDate, setDueDate] = useState(format(new Date(projDueDate), 'yyyy-MM-dd'));
     const [dueDateFeedback, setDueDateFeedback] = useState('')
     const [startDateFeedback, setStartDateFeedback] = useState('')
     const [assignedToId, setAssignedToId] = useState(0);
@@ -47,32 +47,35 @@ const TaskCreateForm = ({members, projectData, setTasks, projStartDate, projDueD
     */
     const handleStartDateChange = (event) => {
         const newStartDate = format(new Date(event.target.value), 'yyyy-MM-dd');
-        if (newStartDate <= format(new Date(dueDate), 'yyy-MM-dd') && newStartDate >= projStartDate){
-            if (newStartDate >= format(new Date(), 'yyyy-MM-dd')){
+        if (newStartDate < format(new Date(), 'yyy-MM-dd')){
+            setStartDateFeedback('Start Date cannot be in the past.')
+        } else if (newStartDate > format(new Date(dueDate), 'yyy-MM-dd')){
+            setStartDateFeedback('Start Date cannot be after Due Date')
+        } else if (newStartDate < projStartDate){
+            setStartDateFeedback('Task Start Date cannot be before project Start Date.')
+        } else if (newStartDate > projDueDate){
+            setStartDateFeedback('Task Start Date cannot be after project due Date.')
+        } else {{
                 setStartDate(newStartDate);
                 setStartDateFeedback('')
             } 
-            
-            else {
-                setStartDateFeedback('Start Date cannot be in the past.')
-            } 
-        } else {
-            setStartDateFeedback('Start Date cannot be after Due Date')
         }
-
     }
 
     const handleDueDateChange = (event) => {
         const newDueDate = format(new Date(event.target.value), 'yyyy-MM-dd');
-        if (newDueDate >= format(new Date(startDate), 'yyy-MM-dd')){
-            if (newDueDate >= format(new Date(), 'yyyy-MM-dd')){
+        if (newDueDate < format(new Date(), 'yyy-MM-dd')){
+            setDueDateFeedback('Due Date cannot be in the past.')
+        } else if (newDueDate < format(new Date(startDate), 'yyy-MM-dd')){
+            setDueDateFeedback('Start Date cannot be before Due Date')
+        } else if (newDueDate < projStartDate){
+            setDueDateFeedback('Task Due Date cannot be before project Start Date.')
+        } else if (newDueDate > projDueDate){
+            setDueDateFeedback('Task Due Date cannot be after project Due Date.')
+        } else {{
                 setDueDate(newDueDate);
                 setDueDateFeedback('')
-            } else {
-                setDueDateFeedback('Due Date cannot be in the past.')
             } 
-        } else {
-            setDueDateFeedback('Due Date must be after Start Date')
         }
     }
     // Handle text field changes
@@ -93,23 +96,33 @@ const TaskCreateForm = ({members, projectData, setTasks, projStartDate, projDueD
     // Handle form submit
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const formData = new FormData();
-        formData.append('description', description);
-        formData.append('status', status);
-        formData.append('assigned_to', Number(assignedToId));
-        formData.append('start_date', startDate.concat('T00:00:00.000000Z'));
-        formData.append('due_date', dueDate.concat('T00:00:00.000000Z'));
-        try {
-            await axiosReq.post("/tasks/", formData);
-            setTaskCreated(true);
-            } catch (err) {
-                setErrors(err.response?.data);
-        }
-        try {
-            const newTasks = await axiosReq.get(`/tasks/?assigned_to__project=${projectData.project}`);
-            setTasks(newTasks.data);
-            } catch (err) {
-            // console.log(err.response);
+        if (startDate < projStartDate){
+            setStartDateFeedback('Task start date cannot be before project start date.')
+        } else if (startDate > projDueDate) {
+            setStartDateFeedback('Task start date cannot be after project due date.')
+        } else if (dueDate < projStartDate){
+            setDueDateFeedback('Task due date cannot be before project start date.')
+        } else if (dueDate > projDueDate){
+            setDueDateFeedback('Task due date cannot be after project due date.')
+        } else {
+            const formData = new FormData();
+            formData.append('description', description);
+            formData.append('status', status);
+            formData.append('assigned_to', Number(assignedToId));
+            formData.append('start_date', startDate.concat('T00:00:00.000000Z'));
+            formData.append('due_date', dueDate.concat('T00:00:00.000000Z'));
+            try {
+                await axiosReq.post("/tasks/", formData);
+                setTaskCreated(true);
+                } catch (err) {
+                    setErrors(err.response?.data);
+            }
+            try {
+                const newTasks = await axiosReq.get(`/tasks/?assigned_to__project=${projectData.project}`);
+                setTasks(newTasks.data);
+                } catch (err) {
+                // console.log(err.response);
+            }
         }
     }
 

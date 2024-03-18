@@ -144,7 +144,7 @@ const Task = ({task, setTasks, projectData, projStartDate, projDueDate}) => {
                             <Col xs={{span:6, order:5}} md={{span:1, order:2}}>
                                 <Link to={`/profiles/${task.assigned_to_profile_id}`}><Avatar src={task.assigned_to_image} height={30}/></Link>
                             </Col>                      
-                            <Col xs={{span:8, order:1}} md={{span:3, order:3}} className={styles.description}>{task.description}</Col>
+                            <Col xs={{span:8, order:1}} md={{span:3, order:3}} className={styles.description}><div className={styles.innerDescription}>{task.description}</div></Col>
                             <Col xs={{span:6, order:4}} md={{span:2, order:4}}><span className={styles.hidden}> Due: </span>    
     <OverlayTrigger
       placement="left"
