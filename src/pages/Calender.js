@@ -2,9 +2,11 @@ import React, {useState, useEffect} from 'react';
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 import { Button, ButtonGroup, Card, Container, Col, Row, ProgressBar } from 'react-bootstrap'
 import styles from '../styles/Calendar.module.css';
+import appStyles from '../App.module.css';
 import CalendarProject from '../components/CalendarProject';
 import { useRedirect } from '../hooks/UseRedirect'
 import { axiosReq } from '../api/axiosDefaults';
+import Asset from '../components/Asset';
 
 const Calendar = () => {
   useRedirect("loggedOut");
@@ -18,6 +20,8 @@ const Calendar = () => {
   const [yearView, setYearView] = useState(true)
   const [monthNum, setMonthNum] = useState(0)
   const [daysArr, setDaysArr] = useState([])
+  const [hasLoaded, setHasLoaded] = useState(false);
+  
   // Month Array for heading
   const months =[
     'Jan',
@@ -107,6 +111,7 @@ const Calendar = () => {
   }
 
 return (
+  hasLoaded?(
   <>
     {/* Colour Key for task status */}
     <Container className={`${styles.taskKey} ${styles.verticalMarginTopBottom}`} >
@@ -186,7 +191,9 @@ return (
           />
       ))
     ):('')}
-  </>
+  </>):(<Container className={appStyles.Content}>
+      <Asset spinner />
+    </Container>)
 )
 
 }
