@@ -1,5 +1,5 @@
 .taskHeader{
-    height:110px;
+    height:auto;
     font-size: small;
     text-align: left;
     background-color: rgb(236, 230, 230);
@@ -19,7 +19,7 @@
 }
 
 .hidden{
-    display:none
+    display: none;
 }
 
 .visible{
@@ -38,8 +38,10 @@
 }
 
 .innerDescription{
-    height:100px;
+    height:60px;
     overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 @media (max-width:767px){
@@ -47,13 +49,14 @@
         border-bottom: 2px;
         border-bottom-style: solid;
         border-color: rgb(180, 175, 175);
-        font-weight:700
+        font-weight:700;
+        max-height:50px;
     }
 }
 
 
 @media (min-width:767px){
-    .hidden{
+    .mobileHeading{
         display:none;
     }
     .taskHeader{
@@ -61,3 +64,12 @@
     }
 }
 
+.noBorderButton{
+    border:0;
+    background-color:inherit;
+}
+
+.noBorderButton:hover{
+    text-decoration: underline;
+    color:#2142b2;
+}

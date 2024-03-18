@@ -158,13 +158,15 @@ const ProjectPage = () => {
                 ):(<Card.Header>
                     No Tasks yet
                 </Card.Header>)}
-    {tasks.map(task => <Task 
-    key={task.id} 
-    task={task} 
-    projectData={projectData}
-    projStartDate={startDate}
-    projDueDate={dueDate} 
-    setTasks={setTasks} />)}
+    {tasks.map(task => 
+    <Task 
+        key={task.id} 
+        task={task} 
+        projectData={projectData}
+        projStartDate={startDate}
+        projDueDate={dueDate} 
+        setTasks={setTasks} 
+    />)}
     </Card>
     <Button variant="secondary" className={appStyles.verticalMargin} onClick={() => history.goBack()}>
         Back to My Projects

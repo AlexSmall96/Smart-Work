@@ -50,11 +50,6 @@ const Task = ({task, setTasks, projectData, projStartDate, projDueDate}) => {
         showWarning();
     }, [task]);
     
-    const renderTooltip = (props) => (
-        <Tooltip id="button-tooltip" {...props}>
-          Task overdue
-        </Tooltip>
-      );
     /*
     Handle change for date inputs. The below code was taken from the following stack overflow forum
     https://stackoverflow.com/questions/67866155/how-to-handle-onchange-value-in-date-reactjs
@@ -138,35 +133,49 @@ const Task = ({task, setTasks, projectData, projStartDate, projDueDate}) => {
     <Card>
         <Card.Header className={`${taskClass}`}>
         <Container fluid>
-                        {/* Show task data*/}
-                        <Row>
-                            <Col xs={{span:6, order:3}} md={{span:2, order:1}}><span className={styles.hidden}>Assigned To: </span>{task.assigned_to_username}</Col>
-                            <Col xs={{span:6, order:5}} md={{span:1, order:2}}>
-                                <Link to={`/profiles/${task.assigned_to_profile_id}`}><Avatar src={task.assigned_to_image} height={30}/></Link>
-                            </Col>                      
-                            <Col xs={{span:8, order:1}} md={{span:3, order:3}} className={styles.description}><div className={styles.innerDescription}>{task.description}</div></Col>
-                            <Col xs={{span:6, order:4}} md={{span:2, order:4}}><span className={styles.hidden}> Due: </span>    
-    <OverlayTrigger
-      placement="left"
-      delay={{ show: 150, hide: 300 }}
-      overlay={renderTooltip}
-    >
-        <i className={`${warning} fa-solid fa-triangle-exclamation`}></i>
-    </OverlayTrigger>
-         {` ${format(new Date(task.due_date), "dd-MM-yyyy")}`}</Col>
-                            <Col xs={{span:4, order:2}} md={{span:2, order:5}} className={styles.description}>{task.status}</Col>
-                            <Col xs={{span:6, order:6}} md={{span:2, order:6}}>
-                            {is_task_owner?(<>
-                            <Link to={`/tasks/delete/${task.id}`}><i className="fa-solid fa-trash-can"></i></Link>
-                            <Accordion.Toggle onClick={handleHide} as={Button} variant="link" eventKey="0">
-                            {expanded?(<strong>Hide</strong>):(<i className="fa-solid fa-pen-to-square"></i>)}
-                            </Accordion.Toggle>
-                            </>):('')}
-                            </Col>
-                        </Row>
+            {/* Show task data*/}
+            <Row>
+                <Col xs={12} md={{span:2, order:1}}><span className={styles.mobileHeading}>Assigned To: </span>{task.assigned_to_username}</Col>
+                <Col xs={0} md={{span:1, order:2}}>    
+                    <Link to={`/profiles/${task.assigned_to_profile_id}`}><Avatar src={task.assigned_to_image} height={30}/></Link>
+                </Col>                      
+                <Col md={{span:3, order:3}} className={styles.description}>
+                <OverlayTrigger
+                        placement="top"
+                        delay={{ show: 150, hide: 300 }}
+                        overlay={
+                            <Tooltip id="button-tooltip">
+                                {task.description}
+                            </Tooltip>}
+                >
+                    <div className={styles.innerDescription}>{task.description}</div>
+                </OverlayTrigger>
+                </Col>
+                <Col xs={6} md={{span:2, order:4}} className={styles.description}><span className={styles.mobileHeading}> Due: </span>    
+                    <OverlayTrigger
+                        placement="right"
+                        delay={{ show: 150, hide: 300 }}
+                        overlay={
+                            <Tooltip id="button-tooltip">
+                                Task overdue
+                            </Tooltip>}
+                    >
+                        <i className={`${warning} fa-solid fa-triangle-exclamation`}></i>
+                    </OverlayTrigger>
+                    {` ${format(new Date(task.due_date), "dd-MM-yyyy")}`}
+                </Col>
+                <Col xs={6} md={{span:2, order:5}} className={styles.description}>{task.status}</Col>
+                <Col xs={{span:3, offset:9}} md={{span:2, order:6, offset:0}}>
+                    {is_task_owner?(<>
+                    <Link to={`/tasks/delete/${task.id}`}><i className="fa-solid fa-trash-can"></i></Link>
+                    <Accordion.Toggle onClick={handleHide} className={styles.noBorderButton} variant="link" eventKey="0">
+                        {expanded?(<strong>Hide</strong>):(<i className="fa-solid fa-pen-to-square"></i>)}
+                    </Accordion.Toggle>
+                    </>):('')}
+                </Col>
+            </Row>
         </Container>
-
-        </Card.Header>
+    </Card.Header>
         <Accordion.Collapse eventKey="0">
         {/* Feedback message */}
         <Card.Body>

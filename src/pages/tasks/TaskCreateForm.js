@@ -150,7 +150,7 @@ const TaskCreateForm = ({members, projectData, setTasks, projStartDate, projDueD
     <Card>
         <div className={styles.left}>
         Tasks: 
-        <Accordion.Toggle as={Button} variant="link" eventKey="0" onClick={handleHide}>
+        <Accordion.Toggle variant="link" eventKey="0" onClick={handleHide} className={styles.noBorderButton}>
              {expanded?(
              <strong>Hide Form</strong>
              ):(<>

@@ -9,3 +9,13 @@
     padding-top: 10px;
     height:60px;
 }
+
+.noBorderButton{
+    border:0;
+    background-color:inherit;
+}
+
+.noBorderButton:hover{
+    text-decoration: underline;
+    color:#2142b2;
+}
