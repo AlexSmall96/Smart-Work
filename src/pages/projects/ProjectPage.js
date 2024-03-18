@@ -166,7 +166,7 @@ const ProjectPage = () => {
     projDueDate={dueDate} 
     setTasks={setTasks} />)}
     </Card>
-    <Button variant="secondary" className={appStyles.verticalMargin} onClick={() => history.push(`/projects/${currentUser?.profile_id}`)}>
+    <Button variant="secondary" className={appStyles.verticalMargin} onClick={() => history.goBack()}>
         Back to My Projects
     </Button>
     </>
