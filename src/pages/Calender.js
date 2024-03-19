@@ -163,9 +163,11 @@ return (
               >{month}</Button>
               )
           ):(<>
-              <div className={`${styles.arrow} `}><i className="fa-solid fa-circle-chevron-left" id={`${month}-dn`} onClick={handleMonthUpDown}></i></div>
-                <div className={`${styles.singleMonthHeading} ${styles.monthHeading}`}> {month} </div>
-              <div className={`${styles.arrow}`}><i className="fa-solid fa-circle-chevron-right" id={`${month}-up`} onClick={handleMonthUpDown}></i></div>
+              <div className={styles.monthButtonArrows}>
+                  <div className={`${styles.arrow} `}><i className="fa-solid fa-circle-chevron-left" id={`${month}-dn`} onClick={handleMonthUpDown}></i></div>
+                    <div className={`${styles.singleMonthHeading} ${styles.monthHeading}`}> {month} </div>
+                  <div className={`${styles.arrow}`}><i className="fa-solid fa-circle-chevron-right" id={`${month}-up`} onClick={handleMonthUpDown}></i></div>
+              </div>
               <div className={styles.wideScreenOnly}>
                 {
                   daysArr.map(num => <span

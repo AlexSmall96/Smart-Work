@@ -21,6 +21,12 @@
     }
 }
 
+@media (min-width:576px){
+    .monthButtonArrows{
+        margin-right:20%;
+    }
+}
+
 .year{
     padding:2.5px 0 0 0 ;
     text-align: center;
