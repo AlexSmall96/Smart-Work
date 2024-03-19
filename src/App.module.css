@@ -57,6 +57,13 @@ background-color: rgb(125, 212, 212);
     }
 }
 
+@media(max-width:576px){
+    .Main{
+        padding-left: 0px;
+        padding-right: 0px;;
+    }
+}
+
 .Content {
 background-color: #ffffff;
 padding: 10px;

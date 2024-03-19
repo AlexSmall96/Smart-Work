@@ -34,6 +34,7 @@
 
 .outerProjectCard{
     margin-bottom: 10px;
+    
 }
 
 .projectCard *{
@@ -65,3 +66,7 @@
     border-radius: .25rem;
 }
 
+.noPadding{
+    padding-right: 0px;
+    margin-right:0px;
+}

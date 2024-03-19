@@ -211,7 +211,7 @@ const CalendarProject = ({projectData, userId, taskFilter, year, month, monthNum
 return (
     <Card className={styles.outerProjectCard}>
         <Card.Header className={styles.projectCard}>
-            <Container>
+            <Container className={styles.noPadding}>
             <Row className={styles.noMarginMobile}>
                 <Col className={styles.projectTitle} xs={12} sm={2}>
                     {projectData.title}
