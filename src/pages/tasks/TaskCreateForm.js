@@ -150,12 +150,16 @@ const TaskCreateForm = ({members, projectData, setTasks, projStartDate, projDueD
     <Card>
         <div className={styles.left}>
         Tasks: 
-        <Accordion.Toggle variant="link" eventKey="0" onClick={handleHide} className={styles.noBorderButton}>
-             {expanded?(
-             <strong>Hide Form</strong>
-             ):(<>
-            <i className="far fa-plus-square"></i></>)}
-        </Accordion.Toggle>
+        {projDueDate < format(new Date(), 'yyyy-MM-dd') ? (
+            <small> (Project due date passed, change project dates to add tasks.)</small>
+        ):(
+            <Accordion.Toggle variant="link" eventKey="0" onClick={handleHide} className={styles.noBorderButton}>
+            {expanded?(
+            <strong>Hide Form</strong>
+            ):(<>
+           <i className="far fa-plus-square"></i></>)}
+       </Accordion.Toggle>
+        )}
         </div>
         <Accordion.Collapse eventKey="0">
         <Card.Body>
