@@ -12,13 +12,13 @@ const Member = ({
       id={id} variant={variant} disabled={disabled} onClick={onClick} active={active}
     >
       <Avatar src={src} height={height}/>
-    {owner}
-    <br></br>
-    {organisation}
-    {selected? (<i className="fa-solid fa-check fa-sm"></i>):('')}
-    <br></br>
-    {disabled? (<small>Existing Member</small>):('')}
-  </Button> 
+      {owner}
+      <br></br>
+      {organisation}
+      {selected? (<i className="fa-solid fa-check fa-sm"></i>):('')}
+      <br></br>
+      {disabled? (<small>Existing Member</small>):('')}
+    </Button> 
   );
 };
 

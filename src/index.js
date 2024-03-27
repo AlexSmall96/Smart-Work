@@ -7,11 +7,11 @@ import { BrowserRouter as Router } from 'react-router-dom/cjs/react-router-dom.m
 import { CurrentUserProvider } from './contexts/CurrentUserContext';
 
 ReactDOM.render(
-    <Router>
-      <CurrentUserProvider>
-        <App />
-      </CurrentUserProvider>
-    </Router>,
+  <Router>
+    <CurrentUserProvider>
+      <App />
+    </CurrentUserProvider>
+  </Router>,
   document.getElementById('root')
 );
 
