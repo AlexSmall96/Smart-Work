@@ -23,7 +23,6 @@ Alex Small
   * [Project Goals and Planning](#project-goals-and-planning)
   * [UX](#ux)
     + [Target Audience](#target-audience)
-    + [Site Logic](#site-logic)
     + [Wireframes](#wireframes)
       - [Home Page](#home-page)
       - [Projects Page](#projects-page)
@@ -62,13 +61,6 @@ The goals of the project are as follows:
 ## UX
 ### Target Audience
 Although Smart Work is a project management app, it is intended to be used by anyone who requires a simple, effective planning and collaboration tool. This could range from professionals working on complex projects to university students working on group assignments, or even in a more informal setting such as planning a holiday or family chores.
-### Site Logic
-To plan the flow of logic throughout the site, and the interaction between pages, the following diagram was used.
-
-![Site Logic](documentation/images/SiteLogic.png)
-
-See [TESTING.MD](https://github.com/AlexSmall96/Smart-Work/blob/main/TESTING.MD) for details of the implementation of this logic.
-
 ### Wireframes
 
 To plan the basic layout of each page, the below diagrams were created. A wireframe for each page has been provided, on desktop and mobile.
