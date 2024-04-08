@@ -7,6 +7,7 @@ import CalendarProject from '../components/CalendarProject';
 import { useRedirect } from '../hooks/UseRedirect';
 import { axiosReq } from '../api/axiosDefaults';
 import Asset from '../components/Asset';
+import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 
 const Calendar = () => {
   useRedirect('loggedOut');
@@ -200,7 +201,7 @@ const Calendar = () => {
               yearView={yearView}
             />
           ))
-        ):('')}
+        ):(<>You&apos;re not currently a member of any projects. <Link to='/create'><Button variant='primary'>Create a Project</Button></Link></>)}
       </>):(<Container className={appStyles.Content}>
       <Asset spinner />
     </Container>)
