@@ -115,22 +115,31 @@ This section has been divided into subsections based on each page of the site. F
 ### Individual Project Page
 | Test No.    | Category    | Pass Criteria | Pass/Fail |
 | ----------- | ----------- |---------------|-----------|
-|8.1          |Loading Data | Box loads showing project data along with delete, edit and members add/delete buttons if user is project owner| 
-|8.2          |Loading Data | Tasks appear under project box, with a table showing task data and add task button above| 
-|8.3          |Loading Data | If task is assigned to user edit delete buttons appear| 
-|8.4          |Loading Data | Tasks are colour coded according to status|
-|8.5          |Site navigation| Project edit button takes user to project edit form page|
-|8.6          |Site navigation| Project delete button takes user to project delete page|
-|8.7          |Site navigation| Members add button takes user to members add page|
-|8.8          |Loading Data | All registered users appear in list|
-|8.9          |Site navigation | Members delete button takes user to members delete page, where all members of the project appear in a list with delete buttons|
-|8.10         |Component Interactivity | Clicking add task button reveals a form where user can create a task|
-|8.11         |Component Interactivity | Clicking edit task button reveals a form under task where user can edit task details|
-|8.12         |Site navigation | Back to projects button takes user back to projects page |
+|8.1          |Loading Data | Box loads showing project data along with delete, edit and members add/delete buttons if user is project owner| Pass
+|8.2          |Loading Data | Tasks appear under project box, with a table showing task data and add task button above| Pass
+|8.3          |Loading Data | If task is assigned to user edit delete buttons appear| Pass
+|8.4          |Loading Data | Tasks are colour coded according to status| Pass
+|8.5          |Site navigation| Project edit button takes user to project edit form page| Pass
+|8.6          |Site navigation| Project delete button takes user to project delete page| Pass
+|8.7          |Site navigation| Members add button takes user to members add page| Pass
+|8.8          |Loading Data | All registered users appear in list| Pass
+|8.9          |Site navigation | Members delete button takes user to members delete page, where all members of the project appear in a list with delete buttons| Pass
+|8.10         |Component Interactivity | Clicking add task button reveals a form where user can create a task| Pass
+|8.11         |Component Interactivity | Clicking edit task button reveals a form under task where user can edit task details| Pass
+|8.12         |Site navigation | Back to projects button takes user back to projects page | Pass
 
 [Individual Project Page Tests Screenshots](https://github.com/AlexSmall96/Smart-Work/blob/main/documentation/testing/IndProjectPage.pdf)
 ### Calendar Page
+| Test No.    | Category    | Pass Criteria | Pass/Fail |
+| ----------- | ----------- |---------------|-----------| 
+|9.1          | Loading Data             | Page loads with colour key, task filter and current year and month buttons, along with a box for each users projects | Pass
+|9.2          | Tasks for project appear colour coded according to status, with start and due dates aligned to headings above             | Page loads with colour key, task filter and current year and month buttons, along with a box for each users projects | Pass
+|9.3 |Component Interactivity | Clicking my tasks button at top shows only tasks current user has been assigned to |  Pass
+|9.4 |Component Interactivity | Clicking on a month zooms in on the timeline with invidual dates appearing below |  Pass 
+|9.5 |Component Interactivity | Clicking arrows next to year increases or decreases year number and changes which tasks appear |  Pass 
+|9.6 |Site navigation | Clicking on the task bar takes user to relevant project page |  Pass 
 
+[Calendar Page Tests Screenshots](https://github.com/AlexSmall96/Smart-Work/blob/main/documentation/testing/Calendar.pdf)
 ## Defensiveness
 
 ## Responsiveness
