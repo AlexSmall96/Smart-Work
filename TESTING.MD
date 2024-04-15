@@ -141,7 +141,7 @@ This section has been divided into subsections based on each page of the site. F
 
 [Calendar Page Tests Screenshots](https://github.com/AlexSmall96/Smart-Work/blob/main/documentation/testing/Calendar.pdf)
 ## Defensiveness
-
+Appropriate defensiveness has been added to the site to ensure that a logged out user can't access information only available to logged in users. The site also ensures that users can't edit data they don't have access to. If a user tries to access this information they are redirected to the home page.
 ## Responsiveness
 The full site has been tested across all browser sizes, and every page has been confirmed as presentable and user friendly at each size. Beyond this, below is a list of specific feautures that were tested when changing browser sizes, all of which have passed.
 
