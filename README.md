@@ -93,8 +93,8 @@ Below is a summary of the react components which are used multiple times in thei
 |Avatar|Displays the user's profile image with added style and optional text with their username|Project|The project members are displayed in a list, each represented by the avatar component.
 |Member|A button element with the user profile image, name, and organization, to add or remove a member to a project.|AddMembers|The AddMembers component contains a list of all users, each represented by a Member component. 
 |Avatar|Displays the users profile image with added style and optional text with their username|DeleteMembers|The DeleteMembers component contains a list of all users with the option to remove them from the project, each represented by an Avatar component.
-|Calendar Project| Shows an overview of the project represented as a timeline| Calendar| Calendar page contains all users projects, each represented by the Calendar Project component|
-|Calendar Task | Shows the task infomration as a timeline, with start date and due dates determining component length | Calendar Project | Calendar Project component contains all the tasks associated with the project, arranged chronologically and each represented by a Calendar Task component |
+|Calendar Project| Shows an overview of the project represented as a timeline| Calendar| Calendar page contains all users projects, each represented by the Calendar Project component.|
+|Calendar Task | Shows the task infomration as a timeline, with start date and due dates determining component length | Calendar Project | Calendar Project component contains all the tasks associated with the project, arranged chronologically and each represented by a Calendar Task component. |
 
 ## User Stories
 - User stories were linked to issues on GitHub (see the above link to view the repository). This was used as an agile tool to help plan and develop the project.
