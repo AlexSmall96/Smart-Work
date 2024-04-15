@@ -32,7 +32,6 @@ Alex Small
     + [Fonts](#fonts)
     + [Images](#images)
   * [React Architecture](#react-architecture)
-    + [Reuse of Components](#reuse-of-components)
   * [User Stories](#user-stories)
     + [Create a modern, professional-looking project manager app](#create-a-modern--professional-looking-project-manager-app)
     + [Create a simple effective planning system to help meet deadlines](#create-a-simple-effective-planning-system-to-help-meet-deadlines)
@@ -85,24 +84,17 @@ The images chosen were modern cartoon-style images of work situations. This fits
 
 ![Images](documentation/images/AllImages.jpeg)
 ## React Architecture
-Several React components were used in the site. The architecture used to build the site using the components is documented below.
-- App is the highest level component, which all other components are nested under.
-- Top-level components are indicated in orange, level two components are green, etc.
-- Top-level components which have no subcomponents are displayed above the app component in opaque orange.
-- Arrow connectors have been used to show the relationship between the components.
-
-![React Architecture](documentation/images/ReactArchitecture.png)
-
-### Reuse of Components
-Below is a summary of the react components which are used multiple times in their corresponding parent component (See above diagram). For each component, its purpose and parent are given. 
+Below is a summary of the react components which are used multiple times in their corresponding parent component. For each component, its purpose and parent are given. 
 
 | Component    | Purpose     | Parent Component | Use in Parent Component
 | -----------  | ----------- |-----------------|-----------------|
-|Project|Loads the individual project data along with its members|Projects Page|Each project the user is currently a member of is represented by a project component. 
-|Task|Loads the individual task data|Project|Each project component has a list of associated tasks, which are represented by the task components.
+|Project Preview|Loads an overview of project data|Projects Page|Each project the user is currently a member of is represented by a project component. 
+|Task|Loads the individual task data|Project Page|Each project component has a list of associated tasks, which are represented by the task components.
 |Avatar|Displays the user's profile image with added style and optional text with their username|Project|The project members are displayed in a list, each represented by the avatar component.
 |Member|A button element with the user profile image, name, and organization, to add or remove a member to a project.|AddMembers|The AddMembers component contains a list of all users, each represented by a Member component. 
 |Avatar|Displays the users profile image with added style and optional text with their username|DeleteMembers|The DeleteMembers component contains a list of all users with the option to remove them from the project, each represented by an Avatar component.
+|Calendar Project| Shows an overview of the project represented as a timeline| Calendar| Calendar page contains all users projects, each represented by the Calendar Project component|
+|Calendar Task | Shows the task infomration as a timeline, with start date and due dates determining component length | Calendar Project | Calendar Project component contains all the tasks associated with the project, arranged chronologically and each represented by a Calendar Task component |
 
 ## User Stories
 - User stories were linked to issues on GitHub (see the above link to view the repository). This was used as an agile tool to help plan and develop the project.
