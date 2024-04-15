@@ -11,10 +11,8 @@
     + [Profile Page](#profile-page)
     + [Project Create Page](#project-create-page)
     + [Projects Page](#projects-page)
-      - [Projects](#projects)
-      - [Members](#members)
-      - [Tasks](#tasks)
-    + [Tasks Page](#tasks-page)
+    + [Individual Project Page](#individual-project-page)
+    + [Calendar Page](#calendar-page)
   * [Responsiveness](#responsiveness)
   * [User Stories Testing](#user-stories-testing)
   * [Validation Testing](#validation-testing)
@@ -32,8 +30,8 @@ This section has been divided into subsections based on each page of the site. F
 | 1.7         | Site Navigation| Clicking Get Started Button loads sign up page |Pass
 | 1.8         | Site Navigation| Clicking Log in Button loads sign in page |Pass    
 | 1.9         | Site Navigation| Clicking sign out successfully signs the user out and appropriate icons appear in navbar 
-[Home Page Tests Screenshots](https://github.com/AlexSmall96/Smart-Work/blob/main/documentation/testing/HomePage.pdf)
 
+[Home Page Tests Screenshots](https://github.com/AlexSmall96/Smart-Work/blob/main/documentation/testing/HomePage.pdf)
 ### Navigation Bar
 | Test No.    | Category    | Pass Criteria | Pass/Fail |
 | ----------- | ----------- |---------------|-----------|
