@@ -48,7 +48,7 @@
     border-color:rgb(228, 227, 227);
 }
 
-@media (max-width:576px){
+@media (max-width:767px){
     .projectTitle{
         border-width:0 0px 1px 0px;
         padding-left:0px;

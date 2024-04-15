@@ -75,7 +75,7 @@ const CalendarTask = ({task, projectData, projLength, yearView, year, month, mon
       new Date(`${monthNum + 1}/01/${year}`)
     ):(
       new Date(`${monthNum + 1}/01/${year}`)
-    )   ;
+    );
     if (taskStartDate <= rangeStart){
       return 0;
     } else { 

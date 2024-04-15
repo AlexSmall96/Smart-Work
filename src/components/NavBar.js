@@ -67,9 +67,10 @@ const NavBar = () => {
     </NavLink>
     <NavLink
       className={styles.NavLink}
+      activeClassName={styles.Active}
       to={`/settings/`}
     >
-      <i className={`fa-xl fa-solid fa-palette`}></i>
+      <i className='fa-xl fa-solid fa-palette'></i>
     </NavLink>
   </>;
 
