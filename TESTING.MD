@@ -110,6 +110,25 @@ This section has been divided into subsections based on each page of the site. F
 |7.2          |Loading Data| Each project is displayed in a box showing project owners profile image, project title, due date, and tasks bar, along with a 'view project details' button| Pass
 |7.3          |Loading Data| Task bar shows a colour coded block with numbers corresponding to task status| Pass
 |7.4          |Site Navigation| Clicking view project details button takes user to individual project page| Pass
+
+[Projects Page Tests Screenshots](https://github.com/AlexSmall96/Smart-Work/blob/main/documentation/testing/ProjectsPage.pdf)
+### Individual Project Page
+| Test No.    | Category    | Pass Criteria | Pass/Fail |
+| ----------- | ----------- |---------------|-----------|
+|8.1          |Loading Data | Box loads showing project data along with delete, edit and members add/delete buttons if user is project owner| 
+|8.2          |Loading Data | Tasks appear under project box, with a table showing task data and add task button above| 
+|8.3          |Loading Data | If task is assigned to user edit delete buttons appear| 
+|8.4          |Loading Data | Tasks are colour coded according to status|
+|8.5          |Site navigation| Project edit button takes user to project edit form page|
+|8.6          |Site navigation| Project delete button takes user to project delete page|
+|8.7          |Site navigation| Members add button takes user to members add page|
+|8.8          |Loading Data | All registered users appear in list|
+|8.9          |Site navigation | Members delete button takes user to members delete page, where all members of the project appear in a list with delete buttons|
+|8.10         |Component Interactivity | Clicking add task button reveals a form where user can create a task|
+|8.11         |Component Interactivity | Clicking edit task button reveals a form under task where user can edit task details|
+|8.12         |Site navigation | Back to projects button takes user back to projects page |
+
+[Individual Project Page Tests Screenshots](https://github.com/AlexSmall96/Smart-Work/blob/main/documentation/testing/IndProjectPage.pdf)
 ### Calendar Page
 
 ## Defensiveness
