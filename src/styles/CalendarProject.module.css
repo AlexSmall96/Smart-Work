@@ -66,7 +66,19 @@
     border-radius: .25rem;
 }
 
+.centerItems{
+  margin-top:10%;
+  margin-bottom:10%
+}
+
 .noPadding{
     padding-right: 0px;
     margin-right:0px;
+}
+
+.verticalCenter {
+    position: relative;
+    top: 45%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
 }
