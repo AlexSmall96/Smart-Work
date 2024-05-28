@@ -108,7 +108,7 @@ const Calendar = () => {
                       key={month} 
                       className={styles.monthHeading}
                       disabled
-                      variant='secondary'
+                      variant='light'
                     >
                       {month}
                     </Button>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { axiosReq } from '../api/axiosDefaults';
-import { Card, Col, Row, Container } from 'react-bootstrap';
+import { Card, Col, Container, Row} from 'react-bootstrap';
 import styles from '../styles/CalendarProject.module.css';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import CalendarTaskGroup from './CalendarTaskGroup';
@@ -50,7 +50,7 @@ const CalendarProject = ({projectData, userId, taskFilter, year}) => {
     fetchTasks();
   }, [projectData.project, taskFilter]);
 
-  // Calculate length of project in relation to year or month
+  // Calculate length of project in relation to year
   const getProjectLength = (startDate, dueDate) => {
     let length;
     let rangeStart = new Date(`01/01/${year}`).getTime();

@@ -78,7 +78,17 @@
 
 .verticalCenter {
     position: relative;
-    top: 45%;
+    top: 49%;
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
+}
+
+.overflow{
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  overflow-x: scroll;
+  height: 60px;
+  padding-top: 10px;
+  background-color: #f8f9fa;
 }
