@@ -3,9 +3,9 @@ Smart Work is a project manager app built using the Javascript React framework. 
 
 ![responsive](documentation/images/amiresponsive.jpg) 
 ## Live Site
-[https://smart-work-3d4938feb378.herokuapp.com/](https://smart-work-3d4938feb378.herokuapp.com/)
+[https://smart-work.onrender.com](https://smart-work.onrender.com)
 #### Backend API Site
-[https://smart-work-api-c3503744e915.herokuapp.com/](https://smart-work-api-c3503744e915.herokuapp.com)
+[https://smart-work-api.onrender.com](https://smart-work-api.onrender.com)
 ## Repository
 [https://github.com/AlexSmall96/Smart-Work](https://github.com/AlexSmall96/Smart-Work)
 #### Backend API Repository
