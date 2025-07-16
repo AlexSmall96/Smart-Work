@@ -15,7 +15,6 @@ import AddMembers from './pages/members/AddMembers';
 import DeleteMembers from './pages/members/DeleteMembers';
 import ProjectEdit from './pages/projects/ProjectEdit';
 import ProfileEdit from './pages/profiles/ProfileEdit';
-import TasksPage from './pages/tasks/TasksPage';
 import TaskDelete from './pages/tasks/TaskDelete';
 import Settings from './pages/Settings';
 import Calendar from './pages/Calender';
