@@ -6,6 +6,9 @@ Smart Work is a project manager app built using the Javascript React framework. 
 [https://smart-work.onrender.com](https://smart-work.onrender.com)
 #### Backend API Site
 [https://smart-work-api.onrender.com](https://smart-work-api.onrender.com)
+
+The deployed project is currently on Render's free tier. Projects on this tier spin down during periods of inactivity, therefore, there may be a delay when loading the above URL(s) or when making HTTP requests.
+
 ## Repository
 [https://github.com/AlexSmall96/Smart-Work](https://github.com/AlexSmall96/Smart-Work)
 #### Backend API Repository
