@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react';
-import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 import { Button, ButtonGroup, Card, Container, Col, Row, ProgressBar } from 'react-bootstrap';
 import styles from '../styles/Calendar.module.css';
 import appStyles from '../App.module.css';
@@ -7,17 +6,19 @@ import CalendarProject from '../components/CalendarProject';
 import { useRedirect } from '../hooks/UseRedirect';
 import { axiosReq } from '../api/axiosDefaults';
 import Asset from '../components/Asset';
-import { Link } from 'react-router-dom/cjs/react-router-dom.min';
+import { Link, useParams } from 'react-router-dom/cjs/react-router-dom.min';
+import { ProjectDataProvider } from '../contexts/ProjectDataContext';
+import { useCalender } from '../contexts/CalenderContext';
 
 const Calendar = () => {
   useRedirect('loggedOut');
+
   // Initialize variables
-  const { id } = useParams();
   const [members, setMembers] = useState([]);
-  const [taskFilter, setTaskFilter] = useState('all-tasks');
-  const [year, setYear] = useState(new Date().getFullYear());
   const [hasLoaded, setHasLoaded] = useState(false);
-  
+  const { year, setYear, taskFilter, setTaskFilter } = useCalender()
+  const { id } = useParams()
+
   // Month Array for heading
   const months =[
     'Jan',
@@ -121,13 +122,9 @@ const Calendar = () => {
         {/* Map through members data to show timeline for each project */}
         {members.length?(
           members.map(member => (
-            <CalendarProject 
-              key={member.id} 
-              projectData={member} 
-              userId={id} 
-              taskFilter={taskFilter}
-              year={year}
-            />
+            <ProjectDataProvider key={member.id} projectData={member} >
+              <CalendarProject />
+            </ProjectDataProvider>
           ))
         ):(<>You&apos;re not currently a member of any projects. <Link to='/create'><Button variant='primary'>Create a Project</Button></Link></>)}
       </>):(<Container className={appStyles.Content}>

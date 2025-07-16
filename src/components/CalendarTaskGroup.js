@@ -1,8 +1,15 @@
 import React from 'react';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 import styles from '../styles/CalendarTaskGroup.module.css';
+import { useProjectData } from '../contexts/ProjectDataContext';
+import { useCalender } from '../contexts/CalenderContext';
 
-const CalendarTaskGroup = ({ taskGroup, projectData, projLength, year, noTasksYet }) => {
+const CalendarTaskGroup = ({ taskGroup, projLength, noTasksYet }) => {
+
+  // Initialise variables from contexts
+  const { projectData } = useProjectData()
+  const { year } = useCalender()
+  
   // Gets length of task, group of tasks, gap between tasks or offset between project start date and task start date
   const getSpanLength = (task, type, isOffset) => {
     // Declare date range variables

@@ -2,27 +2,33 @@ import React, { useEffect, useState } from 'react';
 import { axiosReq } from '../api/axiosDefaults';
 import { Card, Col, Container, Row} from 'react-bootstrap';
 import styles from '../styles/CalendarProject.module.css';
-import { Link } from 'react-router-dom/cjs/react-router-dom.min';
+import { Link, useParams } from 'react-router-dom/cjs/react-router-dom.min';
 import CalendarTaskGroup from './CalendarTaskGroup';
+import { useProjectData } from '../contexts/ProjectDataContext';
+import { useCalender } from '../contexts/CalenderContext';
 
-const CalendarProject = ({projectData, userId, taskFilter, year}) => {
+const CalendarProject = () => {
 
   // Initialize variables
   const [tasks, setTasks] = useState([]);
   const [taskGroups, setTaskGroups] = useState([]);
+  const { projectData } = useProjectData()
+  const { taskFilter, year } = useCalender()
+  const { id } = useParams()
+
   // Get the tasks associated with the project    
   useEffect(() => {
     const fetchTasks = async () => {
       try {
         const response = await axiosReq.get(`/tasks/?assigned_to__project=${projectData.project}`);
-        const data = taskFilter == 'all-tasks' ? (response.data):(response.data.filter(task => task.assigned_to_profile_id === parseInt(userId)));
+        const data = taskFilter === 'all-tasks' ? (response.data):(response.data.filter(task => task.assigned_to_profile_id === parseInt(id)));
         // All Tasks
         setTasks(data);
         // Initialize taskRows with first task in data
         let taskRows = [[data[0]]];
         // Try to place each task in a row
         for (let task of data){
-          if (task != data[0]){
+          if (task !== data[0]){
             let notPlaced = true;
             // Loop through all rows to find suitable position based on start and due dates
             for (let taskRow of taskRows){
@@ -48,7 +54,7 @@ const CalendarProject = ({projectData, userId, taskFilter, year}) => {
       };
     };
     fetchTasks();
-  }, [projectData.project, taskFilter]);
+  }, [projectData, taskFilter, id]);
 
   // Calculate length of project in relation to year
   const getProjectLength = (startDate, dueDate) => {
@@ -96,7 +102,7 @@ const CalendarProject = ({projectData, userId, taskFilter, year}) => {
             <Col xs={{span:12, offset:0}} sm={{span:10, offset:0}} className={styles.topMargin}>
               {/* Project span based on its start and due dates */}
               <Link to={`/projects/project/${projectData.project}`}>
-                <div className={`${styles.greyBackground} ${taskGroups.length == 1 ? (styles.verticalCenter):('')}`}
+                <div className={`${styles.greyBackground} ${taskGroups.length === 1 ? (styles.verticalCenter):('')}`}
                   style={{
                     width:`${100*getProjectLength(
                       new Date(projectData.start_date.slice(0,10)).getTime(),
@@ -110,25 +116,20 @@ const CalendarProject = ({projectData, userId, taskFilter, year}) => {
                       <CalendarTaskGroup
                         key={taskGroup[0].id}
                         taskGroup={taskGroup} 
-                        projectData={projectData} 
                         projLength={
                           getProjectLength(
                             new Date(projectData.start_date.slice(0,10)).getTime(),
                             new Date(projectData.due_date.slice(0,10)).getTime())
-                        }
-                        year={year}
-                        noTasksYet={false}/>
+                        }/>
                   )):(
                     <CalendarTaskGroup
                       taskGroup={[]} 
-                      projectData={projectData} 
                       projLength={
                         getProjectLength(
                           new Date(projectData.start_date.slice(0,10)).getTime(),
                           new Date(projectData.due_date.slice(0,10)).getTime())
                       }
-                      year={year}
-                      noTasksYet={true}/>)}
+                      noTasksYet />)}
                 </div>
               </Link>
             </Col>
