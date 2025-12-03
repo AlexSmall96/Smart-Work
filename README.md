@@ -1,11 +1,11 @@
 # Smart Work
+## ⚠️ARCHIVED PROJECT
+
+**This is an archived project from my bootcamp with [Code Institute](https://codeinstitute.net) in 2023, kept for historical reference. It does not represent my current skill level or tech stack.**
+
 Smart Work is a project manager app built using the Javascript React framework. The app uses an API created with the Django-Rest Framework to load, create, edit, and delete data. The purpose of the site is to collaborate on projects with colleagues or friends, where users can add, update and delete tasks from projects, as well as view users' profiles and customize their own. The app is split into two separate sites. This repository is the front-end JS React section of the app.
 
 ![responsive](documentation/images/amiresponsive.jpg) 
-## Live Site
-[https://smart-work.onrender.com](https://smart-work.onrender.com)
-#### Backend API Site
-[https://smart-work-api.onrender.com](https://smart-work-api.onrender.com)
 ## Repository
 [https://github.com/AlexSmall96/Smart-Work](https://github.com/AlexSmall96/Smart-Work)
 #### Backend API Repository
